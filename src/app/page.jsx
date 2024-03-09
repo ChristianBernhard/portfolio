@@ -11,16 +11,18 @@ import {
   LinkedInIcon,
   XIcon,
 } from '@/components/SocialIcons'
-import logoAirbnb from '@/images/logos/airbnb.svg'
-import logoFacebook from '@/images/logos/facebook.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
-import logoStarbucks from '@/images/logos/starbucks.svg'
+import logoAInleuchtend from '@/images/logos/ainleuchtend.png'
+import logoAqarios from '@/images/logos/aqarios.png'
+import logoAdesso from '@/images/logos/adesso.png'
+import logoWryte from '@/images/logos/wryte.png'
+import logoT4G from '@/images/logos/t4g.png'
 import image1 from '@/images/photos/image-1.jpg'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
 import { getAllArticles } from '@/lib/articles'
+import { getAllSpeakings } from '@/lib/speakings'
 import { formatDate } from '@/lib/formatDate'
 
 function MailIcon(props) {
@@ -97,6 +99,22 @@ function Article({ article }) {
   )
 }
 
+function Speaking({ speaking }) {
+  return (
+    <Card as="article">
+      <Card.Title href={`/speaking/${speaking.slug}`}>
+        {speaking.title}
+      </Card.Title>
+      <Card.Eyebrow as="time" dateTime={speaking.date} decorate>
+        {formatDate(speaking.date)}
+      </Card.Eyebrow>
+      <Card.Description>{speaking.description}</Card.Description>
+      <Card.Cta href={`/speakings/${speaking.slug}`}>Read more</Card.Cta>
+    </Card>
+  )
+}
+
+
 function SocialLink({ icon: Icon, ...props }) {
   return (
     <Link className="group -m-1 p-1" {...props}>
@@ -108,7 +126,8 @@ function SocialLink({ icon: Icon, ...props }) {
 function Newsletter() {
   return (
     <form
-      action="/thank-you"
+      action="https://script.google.com/macros/s/AKfycbxKtNarPufaMjMeURmzlWYAf0zKs57rPdzfN_RnQEc/dev"
+      method="POST"
       className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
     >
       <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
@@ -120,6 +139,7 @@ function Newsletter() {
       </p>
       <div className="mt-6 flex">
         <input
+          name="email"
           type="email"
           placeholder="Email address"
           aria-label="Email address"
@@ -146,7 +166,7 @@ function Role({ role }) {
   return (
     <li className="flex gap-4">
       <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-        <Image src={role.logo} alt="" className="h-7 w-7" unoptimized />
+        <Image src={role.logo} alt="" className="h-7 w-7 rounded-full" unoptimized />
       </div>
       <dl className="flex flex-auto flex-wrap gap-x-2">
         <dt className="sr-only">Company</dt>
@@ -174,35 +194,45 @@ function Role({ role }) {
 function Resume() {
   let resume = [
     {
-      company: 'Planetaria',
-      title: 'CEO',
-      logo: logoPlanetaria,
-      start: '2019',
+      company: 'Aqarios',
+      title: 'Head of Software Development',
+      logo: logoAqarios,
+      start: '2023',
+      end: {
+        label: 'Present',
+        dateTime: new Date().getFullYear().toString(),
+      },
+    },
+      {
+      company: 'AInleuchtend',
+      title: 'Founder',
+      logo: logoAInleuchtend,
+      start: '2023',
       end: {
         label: 'Present',
         dateTime: new Date().getFullYear().toString(),
       },
     },
     {
-      company: 'Airbnb',
-      title: 'Product Designer',
-      logo: logoAirbnb,
-      start: '2014',
-      end: '2019',
+      company: 'Tech4Germany',
+      title: 'Engineering Fellow',
+      logo: logoT4G,
+      start: '2022',
+      end: '2022',
     },
     {
-      company: 'Facebook',
-      title: 'iOS Software Engineer',
-      logo: logoFacebook,
-      start: '2011',
-      end: '2014',
+      company: 'Adesso',
+      title: 'Software Engineer',
+      logo: logoAdesso,
+      start: '2020',
+      end: '2022',
     },
     {
-      company: 'Starbucks',
-      title: 'Shift Supervisor',
-      logo: logoStarbucks,
-      start: '2008',
-      end: '2011',
+      company: 'Wryte',
+      title: 'iOS Developer',
+      logo: logoWryte,
+      start: '2020',
+      end: '2020',
     },
   ]
 
@@ -217,10 +247,11 @@ function Resume() {
           <Role key={roleIndex} role={role} />
         ))}
       </ol>
-      <Button href="#" variant="secondary" className="group mt-6 w-full">
-        Download CV
-        <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
-      </Button>
+      <Button href="/cv.pdf" variant="secondary" className="group mt-6 w-full" download="cv.pdf">
+  Download CV
+  <ArrowDownIcon className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50" />
+</Button>
+
     </div>
   )
 }
@@ -254,19 +285,19 @@ function Photos() {
 
 export default async function Home() {
   let articles = (await getAllArticles()).slice(0, 4)
-
+  let speakings = (await getAllSpeakings()).slice(0, 4);
   return (
     <>
       <Container className="mt-9">
         <div className="max-w-2xl">
           <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-            Software developer, founder, and amateur astronaut.
+            Head of Software Development, AI Engineer and Founder.
           </h1>
           <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-            I’m Spencer, a software designer and entrepreneur based in New York
-            City. I’m the founder and CEO of Planetaria, where we develop
-            technologies that empower regular people to explore space on their
-            own terms.
+            I’m Christian, a computer scientist and entrepreneur based in Munich.
+            I'm the founder of AInleuchtend, a company specializing in AI workshops for executives,
+            politicians, and businesses, catering to both beginners and experts. We provide AI
+            strategy advisory and oversee the implementation and management of AI projects for companies seeking to harness the potential of artificial intelligence.
           </p>
           <div className="mt-6 flex gap-6">
             <SocialLink href="#" aria-label="Follow on X" icon={XIcon} />
@@ -292,8 +323,11 @@ export default async function Home() {
       <Container className="mt-24 md:mt-28">
         <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
           <div className="flex flex-col gap-16">
-            {articles.map((article) => (
+             {articles.map((article) => (
               <Article key={article.slug} article={article} />
+            ))}
+            {speakings.map((speaking) => (
+              <Speaking key={speaking.slug} speaking={speaking} />
             ))}
           </div>
           <div className="space-y-10 lg:pl-16 xl:pl-24">
