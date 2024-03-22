@@ -1,0 +1,43 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    date: '2024-06-18',
+    location: 'vhs Würmthal',
+    title: 'Von Theorie zur Praxis: ChatGPT in Anwendung',
+    description: 'Wir starten mit einer fundierten theoretischen Einführung in Large Language Models und GenAI, gefolgt von der praktischen Anwendung. Verstehen Sie, wie ChatGPT hinter den Kulissen funktioniert, von Trainingsmethoden bis hin zur Multimodalität.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Wir starten mit einer fundierten theoretischen Einführung in Large
+                Language Models und GenAI, gefolgt von der praktischen Anwendung. Verstehen Sie, wie ChatGPT hinter den
+                Kulissen funktioniert, von Trainingsmethoden bis hin zur Multimodalität.</p>
+            <p className="course-description">Dann, im praktischen Teil, erkunden Sie zahlreiche reale Anwendungen von
+                ChatGPT und weiteren KI-Tools für den Alltag und das Berufsleben. Themen sind unter anderem:
+                Automatisches Verfassen von E-Mails/Berichten, Vorbereitung von Präsentationen, Planung von Reisen,
+                Erstellung von urheberrechtsfreiem Bildmaterial für Präsentationen, Entfernen von Hintergründen für
+                Bildbearbeitung, Zusammenfassung von Text/- Audio/- Videoinhalten, Live-Übersetzungen.</p>
+            <p className="practical-applications">Zur aktiven Teilnahme bitte Laptops, Tablets oder Smartphones
+                mitbringen. Der Vortrag kann aber auch passiv verfolgt werden. Zur aktiven Teilnahme empfehle ich
+                folgende Schritte vorab (der Prozess wird aber auch live vor Ort demonstriert): Besuch der
+                ChatGPT-Webseite: chat.openai.com, dort Erstellung eines Accounts, Bestätigung des Accounts per
+                Mail.</p>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-wuermtal.de/p/vhs-kurse-mensch-und-umwelt/wissenschaft-und-technik/von-theorie-zur-praxis-chatgpt-in-anwendung-654-C-E2802"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

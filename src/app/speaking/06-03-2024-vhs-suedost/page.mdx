@@ -1,0 +1,40 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    date: '2024-06-03',
+    location: 'vhs Südost',
+    title: 'CyberMonday: Braucht KI Regulierung?',
+    description: 'Inmitten der digitalen Revolution ist die Diskussion über klare Leitlinien für KI in vollem Gange. Tauchen Sie ein in die Facetten dieses zentralen Themas, erkunden Sie unterschiedliche Standpunkte und erfahren Sie, wie die Regulierung von KI unsere digitale Zukunft formen könnte.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Inmitten der digitalen Revolution ist die Diskussion über klare Leitlinien
+                für KI in vollem Gange.</p>
+            <p className="course-description">Tauchen Sie ein in die Facetten dieses zentralen Themas, erkunden Sie
+                unterschiedliche Standpunkte und erfahren Sie, wie die Regulierung von KI unsere digitale Zukunft formen
+                könnte.</p>
+            <p className="practical-applications">Von ethischen Überlegungen bis zu wirtschaftlichen Auswirkungen, von
+                Sicherheit zu Gefahren oder Chancen und Risiken – wir beleuchten mehrere Aspekte, um ein tieferes
+                Verständnis für dieses bedeutende Thema zu schaffen.</p>
+            <p>Schließen Sie sich der Debatte an und bleiben Sie informiert über die Entwicklungen, die die Welt der
+                Künstlichen Intelligenz nachhaltig beeinflussen werden.</p>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-suedost.de/service/kurssuche/kurs/CyberMonday-Braucht-KI-Regulierung/241-11893#inhalt"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

@@ -2,7 +2,9 @@
 import { Card } from '@/components/Card';
 import { Section } from '@/components/Section';
 import { SimpleLayout } from '@/components/SimpleLayout';
-
+import {getAllArticles} from "@/lib/articles";
+import {getAllSpeakings} from "@/lib/speakings";
+import { formatDate } from '@/lib/formatDate'
 function SpeakingSection({ title, children }) {
   return (
     <Section title={title}>
@@ -11,13 +13,13 @@ function SpeakingSection({ title, children }) {
   );
 }
 
-function Appearance({ title, description, event, cta, href }) {
+function Appearance({ title, description, date, location, cta, href }) {
   return (
     <Card as="article">
       <Card.Title as="h3" href={href}>
         {title}
       </Card.Title>
-      <Card.Eyebrow decorate>{event}</Card.Eyebrow>
+      <Card.Eyebrow decorate>{date} - {location}</Card.Eyebrow>
       <Card.Description>{description}</Card.Description>
       <Card.Cta href={href}>{cta}</Card.Cta>
     </Card>
@@ -29,7 +31,49 @@ export const metadata = {
   description: 'I’ve spoken at events all around the world and been interviewed for many podcasts.',
 };
 
-export default function Speaking() {
+export default async function Speaking() {
+  let speakings = await getAllSpeakings()
+
+  return (
+    <SimpleLayout
+      title="I’ve spoken at events all around the world and been interviewed for many podcasts."
+      intro="One of my favorite ways to share my ideas is live on stage..."
+    >
+      <div className="space-y-20">
+        {/* Dynamically generate SpeakingSection components based on speakings */}
+        <SpeakingSection title="Upcoming">
+          {speakings.filter(speaking => new Date(speaking.date) >= new Date()).map((speaking) => (
+            <Appearance
+              key={speaking.slug}
+              href={`/speaking/${speaking.slug}`}
+              title={speaking.title}
+              description={speaking.description}
+              date={formatDate(speaking.date)}
+              location={speaking.location}
+              cta="Sign in"
+            />
+          ))}
+        </SpeakingSection>
+        <SpeakingSection title="Past">
+          {speakings.filter(speaking => new Date(speaking.date) < new Date()).map((speaking) => (
+            <Appearance
+              key={speaking.slug}
+              href={`/speaking/${speaking.slug}`}
+              title={speaking.title}
+              description={speaking.description}
+              date={formatDate(speaking.date)}
+              location={speaking.location}
+              cta="Read more"
+            />
+          ))}
+        </SpeakingSection>
+      </div>
+    </SimpleLayout>
+  );
+}
+
+/*
+export default function backup() {
   return (
     <SimpleLayout
       title="I’ve spoken at events all around the world and been interviewed for many podcasts."
@@ -39,7 +83,7 @@ export default function Speaking() {
         <SpeakingSection title="Upcoming">
           <Appearance
             href="/speaking/in-space-no-one-can-watch-you-stream"
-            title="In space, no one can watch you stream — until now"
+            title="Jenseits von Schlagwörtern - Wie funktioniert Künstliche Intelligenz"
             description="A technical deep-dive into HelioStream, the real-time streaming library I wrote for transmitting live video back to Earth."
             event="SysConf 2021"
             cta="Watch video"
@@ -75,8 +119,9 @@ export default function Speaking() {
             cta="Listen to podcast"
           />
         </SpeakingSection>
-        {/*Public/Podcast/*/}
+        {Public/Podcast}
       </div>
     </SimpleLayout>
   );
 }
+*/

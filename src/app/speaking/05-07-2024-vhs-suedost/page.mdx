@@ -1,0 +1,45 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {BulletPoint} from '@/components/BulletPoint';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    date: '2024-05-07',
+    location: 'vhs Südost',
+    title: 'KI-Tools für den Alltag',
+    description: 'Tauchen Sie in unserem Workshop ein in die Welt der KI-Tools für den alltäglichen Gebrauch. Praxisnah erfahren Sie, wie Künstliche Intelligenz individuell genutzt werden kann. Vom Einsatz einfacher Anwendungen bis hin zu smarten Tools zeigen wir Ihnen, wie KI Ihre persönlichen Projekte unterstützen kann.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Tauchen Sie in unserem Workshop ein in die Welt der KI-Tools für den
+                alltäglichen Gebrauch.</p>
+            <p className="course-description">Praxisnah erfahren Sie, wie Künstliche Intelligenz individuell genutzt
+                werden kann. Vom Einsatz einfacher Anwendungen bis hin zu smarten Tools zeigen wir Ihnen, wie KI Ihre
+                persönlichen Projekte unterstützen kann.</p>
+            <p className="practical-applications">Erweitern Sie Ihr Verständnis für die vielfältigen Möglichkeiten von
+                Künstlicher Intelligenz im privaten Bereich und nutzen Sie die Gelegenheit, Tools für Ihre persönlichen
+                Bedürfnisse zu entdecken.</p>
+            <div className="my-8">
+                <h3 className="font-bold">Aus dem Inhalt:</h3>
+                <BulletPoint
+                    text="KI für sich selbst im Alltag nutzen (Reiseplanung, Bilderstellung, Erstellung von Präsentationen)"/>
+                <BulletPoint text="wie können potenzielle Aufgaben für KI aussehen"/>
+            </div>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-suedost.de/service/kurssuche/kurs/KI-Tools-fuer-den-Alltag/241-11874#inhalt"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

@@ -1,0 +1,44 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {BulletPoint} from '@/components/BulletPoint';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    date: '2024-04-24',
+    location: 'vhs Aschheim',
+    title: 'Wie funktioniert künstliche Intelligenz',
+    description: 'Dieser 90-minütige Vortrag ist ideal für Einsteiger und vermittelt die Grundlagen und Mechanismen der KI. Das Besondere: Christian Bernhard schafft es, Ihnen einen tiefgreifenden Einblick in die Algorithmen hinter der Künstlichen Intelligenz zu geben und gleichzeitig die Universitätsmathematik auszublenden. Das Versprechen: Sie können den Status des Laien nach diesem Vortrag ablegen.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">{speakingEvent.description}</p>
+            <p className="ai-impact">Geeignet für jedes Publikum, unabhängig von Vorkenntnissen. Gewinnen Sie ein
+                umfassendes Verständnis für die Technologie, die unsere Zukunft formt!</p>
+            <div className="my-8">
+                <h3 className="font-bold">Was Sie mitnehmen:</h3>
+                <BulletPoint text="Verständnis des KI-Trainingsprozesses"/>
+                <BulletPoint text="Herausforderungen bei der KI-Entwicklung"/>
+                <BulletPoint text="Erkennen von KI-Einsatzmöglichkeiten"/>
+                <BulletPoint text="Gemeinsames entwickeln einer KI vor Ort"/>
+                <BulletPoint text="Einblicke in verschiedene KI-Bereiche (z.B. Sprachverarbeitung, Mustererkennung)"/>
+                <BulletPoint text="Aktuelle Forschung und Anwendungsmöglichkeiten"/>
+                <BulletPoint text="Antworten auf Ihre Fragen in der Diskussionsrunde"/>
+            </div>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhsolm.de/programm/kurs/Wie-funktioniert-kuenstliche-Intelligenz-KI/241-04101?cHash=116de2b332d5d257129ea4c0e71e71fc"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

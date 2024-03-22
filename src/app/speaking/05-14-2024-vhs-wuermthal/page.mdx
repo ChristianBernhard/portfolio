@@ -1,0 +1,39 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    date: '2024-05-14',
+    location: 'vhs Würmthal',
+    title: 'Wie funktioniert Künstliche Intelligenz?',
+    description: 'Christian Bernhard gibt einen tiefgreifenden Einblick in die Grundlagen und Algorithmen hinter der Künstlichen Intelligenz und vermittelt ein umfassendes Verständnisses für die Technologie, die unsere Zukunft formt.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Christian Bernhard gibt einen tiefgreifenden Einblick in die Grundlagen
+                und Algorithmen hinter der Künstlichen Intelligenz und vermittelt ein umfassendes Verständnisses für die
+                Technologie, die unsere Zukunft formt.</p>
+            <p className="course-description">Was Sie mitnehmen: Vollständiges Verständnis des KI-Trainingsprozesses,
+                Herausforderungen bei der KI-Entwicklung, gemeinsames Entwickeln einer KI vor Ort, Selbstständiges
+                Erkennen von KI-Einsatzmöglichkeiten, Einblicke in verschiedene KI-Bereiche (z.B. Sprachverarbeitung,
+                Mustererkennung), Aktuelle Forschung und Anwendungsmöglichkeiten, Antworten auf Ihre Fragen in der
+                Diskussionsrunde..</p>
+            <p className="practical-applications">Geeignet für alle Interessierten, unabhängig von Vorkenntnissen.</p>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-wuermtal.de/p/vhs-kurse-mensch-und-umwelt/wissenschaft-und-technik/wie-funktioniert-kuenstliche-intelligenz-654-C-E2801"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}
