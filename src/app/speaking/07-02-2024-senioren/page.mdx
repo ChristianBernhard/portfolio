@@ -1,0 +1,24 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    date: '2024-07-02',
+    location: 'Bibliothek Krailling',
+    title: 'Einführung KI für Senioren',
+    description: 'Bei Kaffee und Kuchen erhalten die Senioren aus Krailling eine 60 minütige Einführung in das Thema Künstliche Intelligenz.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Die Senioren aus Krailling möchten das Thema verstehen, was die ganze Welt
+                aktuell bewegt. Diesem Wunsch gehe ich Anfang Juli in der Bibliothek Krailling nach.</p>
+        </SpeakingLayout>
+    );
+}

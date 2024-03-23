@@ -13,7 +13,7 @@ const projects = [
         name: 'Coding Werkstatt',
         description:
             'My second company: Teaching the next generation in Python programming.',
-        link: {href: 'http://planetaria.tech', label: 'planetaria.tech'},
+        link: {href: 'https://www.coding-werkstatt.com/', label: 'Coding Werkstatt'},
         logo: logoPlanetaria,
     },
     {
@@ -34,14 +34,17 @@ const projects = [
         name: 'wryte',
         description:
             'An iPadOS notetaking app for students, which was also featured in the german tv version of shark tank.',
-        link: {href: '#', label: 'github.com'},
+        link: {href: 'https://www.wryte.io/', label: 'wryte.io'},
         logo: logoCosmos,
     },
     {
         name: 'Tech4Germany',
         description:
-            'The schematics for the first rocket I designed that successfully made it to orbit.',
-        link: {href: '#', label: 'github.com'},
+            'Participated in the Tech4Germany Fellowship as an Engineering Fellow in Berlin for 3 months, where I developed BeMIS, a prototype software aimed at digitizing investment management for the Federal Ministry of Finance.',
+        link: {
+            href: 'https://www.hm.edu/aktuelles/news/news_detailseite_247765.de.html',
+            label: 'article of university of applied sciences'
+        },
         logo: logoOpenShuttle,
     },
     {

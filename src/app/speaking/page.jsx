@@ -1,75 +1,75 @@
 // Import necessary components and any other utilities you might need
-import { Card } from '@/components/Card';
-import { Section } from '@/components/Section';
-import { SimpleLayout } from '@/components/SimpleLayout';
-import {getAllArticles} from "@/lib/articles";
+import {Card} from '@/components/Card';
+import {Section} from '@/components/Section';
+import {SimpleLayout} from '@/components/SimpleLayout';
 import {getAllSpeakings} from "@/lib/speakings";
-import { formatDate } from '@/lib/formatDate'
-function SpeakingSection({ title, children }) {
-  return (
-    <Section title={title}>
-      <div className="space-y-16">{children}</div>
-    </Section>
-  );
+import {formatDate} from '@/lib/formatDate'
+
+function SpeakingSection({title, children}) {
+    return (
+        <Section title={title}>
+            <div className="space-y-16">{children}</div>
+        </Section>
+    );
 }
 
-function Appearance({ title, description, date, location, cta, href }) {
-  return (
-    <Card as="article">
-      <Card.Title as="h3" href={href}>
-        {title}
-      </Card.Title>
-      <Card.Eyebrow decorate>{date} - {location}</Card.Eyebrow>
-      <Card.Description>{description}</Card.Description>
-      <Card.Cta href={href}>{cta}</Card.Cta>
-    </Card>
-  );
+function Appearance({title, description, date, location, cta, href}) {
+    return (
+        <Card as="article">
+            <Card.Title as="h3" href={href}>
+                {title}
+            </Card.Title>
+            <Card.Eyebrow decorate>{date} - {location}</Card.Eyebrow>
+            <Card.Description>{description}</Card.Description>
+            <Card.Cta href={href}>{cta}</Card.Cta>
+        </Card>
+    );
 }
 
 export const metadata = {
-  title: 'Speaking',
-  description: 'I’ve spoken at events all around the world and been interviewed for many podcasts.',
+    title: 'Speaking',
+    description: 'I’ve spoken at events all around the world and been interviewed for many podcasts.',
 };
 
 export default async function Speaking() {
-  let speakings = await getAllSpeakings()
+    let speakings = await getAllSpeakings()
 
-  return (
-    <SimpleLayout
-      title="I’ve spoken at events all around the world and been interviewed for many podcasts."
-      intro="One of my favorite ways to share my ideas is live on stage..."
-    >
-      <div className="space-y-20">
-        {/* Dynamically generate SpeakingSection components based on speakings */}
-        <SpeakingSection title="Upcoming">
-          {speakings.filter(speaking => new Date(speaking.date) >= new Date()).map((speaking) => (
-            <Appearance
-              key={speaking.slug}
-              href={`/speaking/${speaking.slug}`}
-              title={speaking.title}
-              description={speaking.description}
-              date={formatDate(speaking.date)}
-              location={speaking.location}
-              cta="Sign in"
-            />
-          ))}
-        </SpeakingSection>
-        <SpeakingSection title="Past">
-          {speakings.filter(speaking => new Date(speaking.date) < new Date()).map((speaking) => (
-            <Appearance
-              key={speaking.slug}
-              href={`/speaking/${speaking.slug}`}
-              title={speaking.title}
-              description={speaking.description}
-              date={formatDate(speaking.date)}
-              location={speaking.location}
-              cta="Read more"
-            />
-          ))}
-        </SpeakingSection>
-      </div>
-    </SimpleLayout>
-  );
+    return (
+        <SimpleLayout
+            title="I’ve spoken at events all around the world and been interviewed for many podcasts."
+            intro="One of my favorite ways to share my ideas is live on stage..."
+        >
+            <div className="space-y-20">
+                {/* Dynamically generate SpeakingSection components based on speakings */}
+                <SpeakingSection title="Upcoming">
+                    {speakings.filter(speaking => new Date(speaking.date) >= new Date()).map((speaking) => (
+                        <Appearance
+                            key={speaking.slug}
+                            href={`/speaking/${speaking.slug}`}
+                            title={speaking.title}
+                            description={speaking.description}
+                            date={formatDate(speaking.date)}
+                            location={speaking.location}
+                            cta="Read more"
+                        />
+                    ))}
+                </SpeakingSection>
+                <SpeakingSection title="Past">
+                    {speakings.filter(speaking => new Date(speaking.date) < new Date()).map((speaking) => (
+                        <Appearance
+                            key={speaking.slug}
+                            href={`/speaking/${speaking.slug}`}
+                            title={speaking.title}
+                            description={speaking.description}
+                            date={formatDate(speaking.date)}
+                            location={speaking.location}
+                            cta="Read more"
+                        />
+                    ))}
+                </SpeakingSection>
+            </div>
+        </SimpleLayout>
+    );
 }
 
 /*

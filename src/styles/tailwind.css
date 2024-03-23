@@ -2,3 +2,20 @@
 @import 'tailwindcss/components';
 @import './prism.css';
 @import 'tailwindcss/utilities';
+
+/* custom.css */
+
+@keyframes scroll {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(calc(-100% + 450px)); /* Move up by 100% of the content height minus one viewport height */
+    }
+}
+
+.animate-scroll {
+    display: block;
+    animation: scroll 30s linear infinite; /* Adjust the time as needed for the speed of the scroll */
+}
+
