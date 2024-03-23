@@ -1,0 +1,38 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+import wulff from './wulff.png'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-01-12',
+    location: 'Christian Wulff',
+    title: 'Generative AI Lecture & Workshop',
+    description: 'Dieses Wochenende war ich bei meinem bisher interessantesten Kunden: Bundespräsident a.D. Christian Wulff 🇩🇪 An zwei Tagen haben wir auf der Grundlage meiner Vorträge einige Aspekte von KI diskutiert.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Dieses Wochenende war ich bei meinem bisher interessantesten Kunden:
+                Bundespräsident a.D. Christian Wulff 🇩🇪 An zwei Tagen haben wir auf der Grundlage meiner Vorträge einige
+                Aspekte von KI diskutiert.</p>
+            <p className="course-description">Gemeinsam mit seinem Büro habe wir Large Language Models am Beispiel von
+                ChatGPT studiert.</p>
+            <Image src={wulff} alt=""/>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.linkedin.com/feed/update/urn:li:activity:7170870770292760578/"
+                    variant="primary" className="mt-4">
+                    Linked Post
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

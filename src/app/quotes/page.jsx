@@ -3,27 +3,48 @@ import {SimpleLayout} from '@/components/SimpleLayout';
 
 
 const quotes = [
+    {author: "Ovid", text: "Gutta cavat lapidem - Steter Tropfen höhlt den Stein"},
+    {author: "Albert Einstein", text: "Lernen ist Erfahrung. Alles andere ist einfach nur Information."},
     {
-        author: "Steve Jobs",
-        text: "Your work is going to fill a large part of your life, and the only way to be truly satisfied is to do what you believe is great work. And the only way to do great work is to love what you do."
+        author: "Albert Einstein",
+        text: "Holzhacken ist deshalb so beliebt, weil man bei dieser Tätigkeit den Erfolg sofort sieht."
     },
-    {author: "Albert Einstein", text: "Life is like riding a bicycle. To keep your balance, you must keep moving."},
     {
-        author: "Maya Angelou",
-        text: "I've learned that people will forget what you said, people will forget what you did, but people will never forget how you made them feel."
+        author: "Albert Einstein",
+        text: "Die reinste Form des Wahnsinns ist es, alles beim Alten zu lassen und gleichzeitig zu hoffen, dass sich etwas ändert."
     },
+    {
+        author: "Usain Bolt",
+        text: "I trained 4 years to run 9 seconds and people give up when they don’t see results in 2 months."
+    },
+    {
+        author: "Ludwig van Beethoven",
+        text: "To play a wrong note is insignificant. To play without passion is inexcusable."
+    },
+    {author: "Valentin Hartig", text: "Wer schreit verliert."},
+    {author: "Valentin Hartig", text: "Wer redet sät, wer zuhört erntet."},
+    {
+        author: "Unknown",
+        text: "Alles was gesagt wird, muss wahr sein. Aber nicht alles, was wahr ist, muß auch gesagt werden."
+    },
+    {
+        author: "Unknown",
+        text: "Wir glauben nicht an die Meinungsfreiheit, wenn wir sie nicht auch den Leuten zugestehen, die wir verachten."
+    },
+    {author: "Unknown", text: "The magic you are looking for is in the work you are avoiding."},
+    {author: "Unknown", text: "You are trying to get into the specifics without covering the basics."},
+    {author: "Unknown", text: "Dream so big, you get uncomfortable telling small minded people."},
+    {author: "Unknown", text: "Early to bed, early to rise makes a man young, wealthy, and wise."}
 ];
 
-function QuotesSection({title, children, ...props}) {
+
+function QuotesSection({children, ...props}) {
     return (
         <Section {...props}>
-            <h2 className="text-3xl font-bold text-center text-gray-800 dark:text-white mb-12">{title}</h2>
-            {/* Add a fixed height and change overflow-y to auto if you want a scrollbar */}
-            <div className="relative overflow-hidden" style={{height: '450px'}}>
-                <ul className="absolute animate-scroll space-y-12">
+            <div className="quotes-container">
+                <ul className="animate-scroll space-y-12">
                     {children}
-                    {/* Duplicate the children to enable the continuous effect */}
-                    {children}
+                    {children} // Duplicate for a continuous scroll effect
                 </ul>
             </div>
         </Section>
@@ -50,13 +71,15 @@ export const metadata = {
 };
 
 export default function Quotes() {
+    const quoteCount = quotes.length; // Assuming 'quotes' is the array of quote objects
+
     return (
         <SimpleLayout
             title="Quotes I Live By"
-            intro="I find inspiration in many places and these quotes reflect my philosophy and drive. Here are some that I hold close to my heart."
+            intro={`I find inspiration in many places and these quotes reflect my philosophy and drive. Here are some that I hold close to my heart. Current count: ${quoteCount}.`}
         >
             <div className="space-y-20">
-                <QuotesSection title="Inspiration">
+                <QuotesSection>
                     {quotes.map((quote, index) => (
                         <Quote key={index} author={quote.author}>
                             {quote.text}

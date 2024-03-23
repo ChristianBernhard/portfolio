@@ -13,13 +13,13 @@ function SpeakingSection({title, children}) {
     );
 }
 
-function Appearance({title, description, date, location, cta, href}) {
+function Appearance({title, description, language, date, location, cta, href}) {
     return (
         <Card as="article">
             <Card.Title as="h3" href={href}>
                 {title}
             </Card.Title>
-            <Card.Eyebrow decorate>{date} - {location}</Card.Eyebrow>
+            <Card.Eyebrow decorate>{language} {date} - {location}</Card.Eyebrow>
             <Card.Description>{description}</Card.Description>
             <Card.Cta href={href}>{cta}</Card.Cta>
         </Card>
@@ -36,8 +36,8 @@ export default async function Speaking() {
 
     return (
         <SimpleLayout
-            title="I’ve spoken at events all around the world and been interviewed for many podcasts."
-            intro="One of my favorite ways to share my ideas is live on stage..."
+            title="An overview of the venues where I lead discussions and workshops on AI."
+            intro="The audiences and events vary, ranging from companies and industry experts to public events designed for beginners in the field. Check out the dates and details of upcoming and past events to see where I'll be sharing insights next."
         >
             <div className="space-y-20">
                 {/* Dynamically generate SpeakingSection components based on speakings */}
@@ -48,6 +48,7 @@ export default async function Speaking() {
                             href={`/speaking/${speaking.slug}`}
                             title={speaking.title}
                             description={speaking.description}
+                            language={speaking.language}
                             date={formatDate(speaking.date)}
                             location={speaking.location}
                             cta="Read more"
@@ -61,6 +62,7 @@ export default async function Speaking() {
                             href={`/speaking/${speaking.slug}`}
                             title={speaking.title}
                             description={speaking.description}
+                            language={speaking.language}
                             date={formatDate(speaking.date)}
                             location={speaking.location}
                             cta="Read more"

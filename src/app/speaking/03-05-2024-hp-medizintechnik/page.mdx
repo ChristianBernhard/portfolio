@@ -1,0 +1,40 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+import hpmedizin from './hpmedizin.png'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-03-05',
+    location: 'HP Medizintechnik GmbH',
+    title: 'Generative AI Lecture & Workshop',
+    description: 'KI Workshop-Tag bei der HP Medizintechnik GmbH🏥 In 2 Sessions gab ich heute den Geschäftsführern Sandro Schmalzl, Helmut Oschwald und Christoph Sing, sowie zahlreichen Mitarbeitern von HP Medizintechnik GmbH, HP Med Consulting GmbH und HP Labortechnik GmbH tiefe Einblicke in Themen der Künstlichen Intelligenz💡',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">KI Workshop-Tag bei der HP Medizintechnik GmbH🏥 In 2 Sessions gab ich
+                heute den Geschäftsführern Sandro Schmalzl, Helmut Oschwald und Christoph Sing, sowie zahlreichen
+                Mitarbeitern von HP Medizintechnik GmbH, HP Med Consulting GmbH und HP Labortechnik GmbH tiefe Einblicke
+                in Themen der Künstlichen Intelligenz💡</p>
+            <p className="course-description">Wir diskutierten konkrete Anwendungsfälle anhand eines von mir
+                entwickelten Prototyps und ich freue mich auf eine langfristige Zusammenarbeit, um die KI Strategie der
+                Firmen voranzutreiben🚀</p>
+            <Image src={hpmedizin} alt=""/>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.linkedin.com/feed/update/urn:li:activity:7170870770292760578/"
+                    variant="primary" className="mt-4">
+                    Linked Post
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

@@ -10,12 +10,19 @@
         transform: translateY(0);
     }
     100% {
-        transform: translateY(calc(-100% + 450px)); /* Move up by 100% of the content height minus one viewport height */
+        transform: translateY(calc(-100% + 644px)); /* Move up by 100% of the content height minus one viewport height */
     }
 }
 
 .animate-scroll {
     display: block;
-    animation: scroll 30s linear infinite; /* Adjust the time as needed for the speed of the scroll */
+    animation: scroll 100s linear infinite; /* Adjust the time as needed for the speed of the scroll */
+}
+
+.quotes-container {
+  position: relative;
+  overflow: hidden;
+  height: 644px; /* New height to accommodate 4 quotes */
+  mask-image: linear-gradient(to bottom, transparent, black 10%, black 90%, transparent);
 }
 

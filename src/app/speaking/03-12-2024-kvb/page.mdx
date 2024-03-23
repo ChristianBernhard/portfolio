@@ -1,0 +1,38 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+import kvb from './kvb.png'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-03-12',
+    location: 'Kassenärztlichen Vereinigung Bayerns',
+    title: 'Grundlagen Künstliche Intelligenz',
+    description: 'Was kann KI, was kann sie nicht? 🤖 Das haben wir heute in einem Workshop für die IT-Abteilung der Kassenärztliche Vereinigung Bayerns diskutiert. Zusätzlich erhalten die knapp 160 anwesenden Teilnehmer Ihr persönliches Teilnahme Zertifikat🎓',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Was kann KI, was kann sie nicht? 🤖 Das haben wir heute in einem Workshop
+                für die IT-Abteilung der Kassenärztliche Vereinigung Bayerns diskutiert. Zusätzlich erhalten die knapp
+                160 anwesenden Teilnehmer Ihr persönliches Teilnahme Zertifikat🎓</p>
+            <p className="course-description">Danke an Rüdiger Haas und Dirk Meise für das Vertrauen! Ich freue mich
+                bereits auf unseren weiteren Termin nächste Woche🙌</p>
+            <Image src={kvb} alt=""/>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.linkedin.com/feed/update/urn:li:activity:7173383094593433600/"
+                    variant="primary" className="mt-4">
+                    Linked Post
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

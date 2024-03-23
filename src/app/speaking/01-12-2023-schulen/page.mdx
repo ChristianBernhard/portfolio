@@ -1,0 +1,41 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+import hpmedizin from './Schulen.JPG'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2023-12-01',
+    location: 'Münchner Gymnasien',
+    title: 'KI im Klassenzimmer von Münchner Schulen',
+    description: 'Die Hauptzielgruppe von AInleuchtend sind Firmen, CEOs & Politiker. Allerdings bin ich auch ein großer Befürworter des Konzepts: 𝐄𝐚𝐜𝐡 𝐨𝐧𝐞, 𝐓𝐞𝐚𝐜𝐡 𝐨𝐧𝐞. Deshalb war ich im Namen von AInleuchtend im Dezember letzten Jahres an zahlreichen Schulen in München.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Die Hauptzielgruppe von AInleuchtend sind Firmen, CEOs & Politiker.
+                Allerdings bin ich auch ein großer Befürworter des Konzepts: Each one, Teach one.
+                Deshalb war ich im Namen von AInleuchtend im Dezember letzten Jahres an zahlreichen Schulen in München,
+                um Einblicke in die Künstliche Intelligenz zu geben, mit dem Ziel, einige Schüler für das
+                Informatikstudium zu begeistern.🏫💡</p>
+            <p className="course-description">Ich bin wirklich positiv überrascht von dem Gesamteindruck der Schulen, an
+                denen ich war: Von der Reife der Schüler, dem Engagement der Lehrer, über die gesamte Organisation bis
+                hin zum Niveau des Lehrplans👏📘</p>
+            <Image src={hpmedizin} alt=""/>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.linkedin.com/feed/update/urn:li:activity:7166892604104683520/"
+                    variant="primary" className="mt-4">
+                    Linked Post
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}
