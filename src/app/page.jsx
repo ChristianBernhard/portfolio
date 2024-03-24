@@ -1,11 +1,11 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
-
+import {isAfter, parseISO} from 'date-fns'; // You might need to install date-fns if you haven't already
 import {Button} from '@/components/Button'
 import {Card} from '@/components/Card'
 import {Container} from '@/components/Container'
-import {GitHubIcon, InstagramIcon, LinkedInIcon, XIcon,} from '@/components/SocialIcons'
+import {GitHubIcon, LinkedInIcon,} from '@/components/SocialIcons'
 import logoAInleuchtend from '@/images/logos/ainleuchtend.png'
 import logoAqarios from '@/images/logos/aqarios.png'
 import logoAdesso from '@/images/logos/adesso.png'
@@ -16,7 +16,6 @@ import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/image-3.jpg'
 import image4 from '@/images/photos/image-4.jpg'
 import image5 from '@/images/photos/image-5.jpg'
-import {getAllArticles} from '@/lib/articles'
 import {getAllSpeakings} from '@/lib/speakings'
 import {formatDate} from '@/lib/formatDate'
 
@@ -107,6 +106,19 @@ function Speaking({speaking}) {
             <Card.Cta href={`/speakings/${speaking.slug}`}>Read more</Card.Cta>
         </Card>
     )
+}
+
+function Appearance({title, description, language, date, location, cta, href}) {
+    return (
+        <Card as="article">
+            <Card.Title href={href}>
+                {title}
+            </Card.Title>
+            <Card.Eyebrow decorate>{language} {date} - {location}</Card.Eyebrow>
+            <Card.Description>{description}</Card.Description>
+            <Card.Cta href={href}>{cta}</Card.Cta>
+        </Card>
+    );
 }
 
 
@@ -283,8 +295,16 @@ function Photos() {
 }
 
 export default async function Home() {
-    let articles = (await getAllArticles()).slice(0, 4)
-    let speakings = (await getAllSpeakings()).slice(0, 3);
+    // let articles = (await getAllArticles()).slice(0, 4)
+
+    let allSpeakings = await getAllSpeakings();
+    // Filter out past events, sort by closest upcoming date, then take the first three
+    let speakings = allSpeakings
+        .filter(speaking => isAfter(parseISO(speaking.date), new Date()))
+        .sort((a, b) => parseISO(a.date) - parseISO(b.date))
+        .slice(0, 2);
+
+
     return (
         <>
             <Container className="mt-9">
@@ -300,12 +320,12 @@ export default async function Home() {
                         seeking to harness the potential of artificial intelligence.
                     </p>
                     <div className="mt-6 flex gap-6">
-                        <SocialLink href="#" aria-label="Follow on X" icon={XIcon}/>
-                        <SocialLink
-                            href="#"
-                            aria-label="Follow on Instagram"
-                            icon={InstagramIcon}
-                        />
+                        {/*<SocialLink href="#" aria-label="Follow on X" icon={XIcon}/>*/}
+                        {/*<SocialLink*/}
+                        {/*    href="#"*/}
+                        {/*    aria-label="Follow on Instagram"*/}
+                        {/*    icon={InstagramIcon}*/}
+                        {/*/>*/}
                         <SocialLink
                             href="https://github.com/ChristianBernhard?tab=repositories"
                             aria-label="Follow on GitHub"
@@ -323,15 +343,29 @@ export default async function Home() {
             <Container className="mt-24 md:mt-28">
                 <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
                     <div className="flex flex-col gap-16">
-                        {/* {articles.map((article) => (*/}
-                        {/*  <Article key={article.slug} article={article} />*/}
-                        {/*))}*/}
+                        <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
+                            Upcoming Events I Will Lead
+                        </h2>
                         {speakings.map((speaking) => (
-                            <Speaking key={speaking.slug} speaking={speaking}/>
+                            <Appearance
+                                key={speaking.slug}
+                                href={`/speaking/${speaking.slug}`}
+                                title={speaking.title}
+                                description={speaking.description}
+                                language={speaking.language}
+                                date={formatDate(speaking.date)}
+                                location={speaking.location}
+                                cta="Read more"
+                            />
                         ))}
+                        <div className="flex justify-center">
+                            <Button href="/speaking" variant="secondary">
+                                Discover More Events
+                            </Button>
+                        </div>
                     </div>
                     <div className="space-y-10 lg:pl-16 xl:pl-24">
-                        <Newsletter/>
+                        {/*<Newsletter/>*/}
                         <Resume/>
                     </div>
                 </div>

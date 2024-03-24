@@ -3,12 +3,9 @@ import {SimpleLayout} from '@/components/SimpleLayout';
 
 
 const quotes = [
+    {author: "Unknown", text: "You are trying to get into the specifics without covering the basics."},
+    {author: "Unknown", text: "The magic you are looking for is in the work you are avoiding."},
     {author: "Ovid", text: "Gutta cavat lapidem - Steter Tropfen höhlt den Stein"},
-    {author: "Albert Einstein", text: "Lernen ist Erfahrung. Alles andere ist einfach nur Information."},
-    {
-        author: "Albert Einstein",
-        text: "Holzhacken ist deshalb so beliebt, weil man bei dieser Tätigkeit den Erfolg sofort sieht."
-    },
     {
         author: "Albert Einstein",
         text: "Die reinste Form des Wahnsinns ist es, alles beim Alten zu lassen und gleichzeitig zu hoffen, dass sich etwas ändert."
@@ -16,10 +13,6 @@ const quotes = [
     {
         author: "Usain Bolt",
         text: "I trained 4 years to run 9 seconds and people give up when they don’t see results in 2 months."
-    },
-    {
-        author: "Ludwig van Beethoven",
-        text: "To play a wrong note is insignificant. To play without passion is inexcusable."
     },
     {author: "Valentin Hartig", text: "Wer schreit verliert."},
     {author: "Valentin Hartig", text: "Wer redet sät, wer zuhört erntet."},
@@ -31,8 +24,6 @@ const quotes = [
         author: "Unknown",
         text: "Wir glauben nicht an die Meinungsfreiheit, wenn wir sie nicht auch den Leuten zugestehen, die wir verachten."
     },
-    {author: "Unknown", text: "The magic you are looking for is in the work you are avoiding."},
-    {author: "Unknown", text: "You are trying to get into the specifics without covering the basics."},
     {author: "Unknown", text: "Dream so big, you get uncomfortable telling small minded people."},
     {author: "Unknown", text: "Early to bed, early to rise makes a man young, wealthy, and wise."}
 ];
