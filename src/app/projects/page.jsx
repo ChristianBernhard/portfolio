@@ -12,7 +12,7 @@ const projects = [
     {
         name: 'Coding Werkstatt',
         description:
-            'My second company: Teaching the next generation in Python and AI programming.',
+            'My second company: Teaching the next generation in Python and AI programming. Still Work in Progress.',
         link: {href: 'https://www.coding-werkstatt.com/', label: 'coding-werkstatt.com'},
         logo: logoCodingWerkstatt,
     },
@@ -76,7 +76,7 @@ export default function Projects() {
     return (
         <SimpleLayout
             title="Things I’ve made trying to put my dent in the universe."
-            intro="I’ve worked on tons of little projects over the years but these are the ones that I’m most proud of. Many of them are open-source, so if you see something that piques your interest, check out the code and contribute if you have ideas for how it can be improved."
+            intro="This section showcases key projects I've tackled, emphasizing hands-on experience and continuous learning in tech."
         >
             <ul
                 role="list"
