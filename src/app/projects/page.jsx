@@ -17,6 +17,13 @@ const projects = [
         logo: logoCodingWerkstatt,
     },
     {
+        name: 'HuBMAP - Hacking the Human Vasculature',
+        description:
+            'Kaggle Challenge: Segment instances of microvascular structures from healthy human kidney tissue slides using multiple Computer Vision models.',
+        link: {href: 'https://github.com/JFLXB/CVDL_HuBMAP', label: 'github.com'},
+        logo: logoHubmap,
+    },
+    {
         name: 'LLaMA2 from Scratch',
         description:
             'A reimplementation of LLaMA2 in PyTorch to explore its key components and testing different inference strategies.',
@@ -24,18 +31,18 @@ const projects = [
         logo: logoMeta,
     },
     {
-        name: 'HuBMAP - Hacking the Human Vasculature',
-        description:
-            'Kaggle Challenge: Segment instances of microvascular structures from healthy human kidney tissue slides using multiple Computer Vision models.',
-        link: {href: 'https://github.com/JFLXB/CVDL_23_project_HuBMAP', label: 'github.com'},
-        logo: logoHubmap,
-    },
-    {
         name: 'wryte',
         description:
             'During my job at adesso, i was working for a start up from munich, developing an iPadOS notetaking app for students, which was also featured in the german tv version of shark tank.',
         link: {href: 'https://www.wryte.io/', label: 'wryte.io'},
         logo: logoWryte,
+    },
+    {
+        name: 'URLShortener',
+        description:
+            'Implemented a URL Shortener service for the "Cloud-Based Data Processing" course at TUM, utilizing the RAFT consensus protocol. This solution showcases proficiency in distributed systems design and cloud computing.',
+        link: {href: 'https://gitlab.db.in.tum.de/Eci/url-shortener', label: 'gitlab.com'},
+        logo: logoGitlab,
     },
     {
         name: 'Tech4Germany',
@@ -46,13 +53,6 @@ const projects = [
             label: 'mediapool.hm.edu'
         },
         logo: logoTech4Germany,
-    },
-    {
-        name: 'URLShortener',
-        description:
-            'Implemented a URL Shortener service for the "Cloud-Based Data Processing" course at TUM, utilizing the RAFT consensus protocol. This solution showcases proficiency in distributed systems design and cloud computing.',
-        link: {href: 'https://gitlab.db.in.tum.de/Eci/url-shortener', label: 'gitlab.com'},
-        logo: logoGitlab,
     },
 ]
 
