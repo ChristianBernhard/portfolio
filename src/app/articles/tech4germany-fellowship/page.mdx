@@ -1,0 +1,61 @@
+import {ArticleLayout} from '@/components/ArticleLayout'
+import tech4germany from './tech4germany.png'
+import {Button} from "@/components/Button";
+
+export const article = {
+    author: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2022-06-27',
+    title: 'HM-Studierender wird Fellow für ein Digitalprojekt im Bundesfinanzministerium',
+    description:
+        'Arbeitsprozesse der Bundesverwaltung digitalisieren: dafür steht das seit fünf Jahren jährlich ausgelobte Tech4GermanyFellowship. Es verbindet die zwei Welten „Bürokratie“ und „Tech“. HM-Bachelorand Christian Bernhard war 2022 als Stipendiat dabei.',
+}
+
+export const metadata = {
+    title: article.title,
+    description: article.description,
+}
+
+export default (props) => (
+    <ArticleLayout article={article} {...props}>
+        <p>Die Arbeitsprozesse der Bundesverwaltung mit Produktentwicklungen aus der digitalen Welt agil machen: dafür
+            steht das seit 2018 jährlich ausgelobte Tech4Germany-Fellowship. Es will die zwei Welten „Bürokratie“ und
+            „Tech“
+            gekonnt vereinen.</p>
+
+        <p>Dieses Jahr ist der HM-Wirtschaftsinformatikstudent Christian Bernhard mit von der Partie. Ab August geht es
+            für
+            ihn für drei Monate nach Berlin. Dort arbeitet er mit 31 weiteren deutschlandweit ausgewählten ExpertInnen
+            aus
+            den Bereichen Product, Design und Engineering an konkreten Digitalvorhaben der Bundesverwaltung. In
+            interdisziplinären Teams entwickeln die Talente mit agilen und nutzerzentrierten Methoden ein tiefes
+            Problem-
+            und Nutzerverständnis und erstellen prototypische Softwareprodukte.</p>
+
+        <p>Unternehmensbeteiligungen des Bundes digitalisieren „Mein konkreter Einsatz wird im Bundesministerium für
+            Finanzen sein“, so Bernhard. Dort wird er als Engineer mit drei weiteren Fellows ein Konzept für ein
+            Softwaresystem entwickeln, das der Bundesregierung hilft, ihre Beteiligung an über hundert Unternehmen
+            digital
+            an den Deutschen Bundestag und die Öffentlichkeit zu kommunizieren. Gecoacht und begleitet werden die
+            Fellows
+            dabei von diversen ProjektpartnerInnen und DigitallotsInnen aus der Verwaltung.</p>
+
+        <p>„Eine herausfordernde Aufgabe, auf die ich mich sehr freue“, ergänzt Bernhard: „Ebenso wie auf einen
+            Spätsommer
+            im hippen Berlin-Kreuzberg.“</p>
+
+        <div className="my-8 flex justify-center"> {/* Adjusted the margin here */}
+            <Button
+                href="https://www.hm.edu/aktuelles/news/news_detailseite_247765.de.html"
+                variant="secondary" className="mt-4 mr-2"> {/* Added right margin to separate the buttons */}
+                HM News
+            </Button>
+            <Button
+                href="https://mediapool.hm.edu/media/dachmarke/dm_lokal/presse/applying_science/HM_Applying_Science_Magazin_1-2023.pdf#page=42"
+                variant="secondary" className="mt-4 ml-2"> {/* Added left margin to separate the buttons */}
+                Applied Science Magazin
+            </Button>
+        </div>
+        <Image src={tech4germany} alt=""/>
+    </ArticleLayout>
+);

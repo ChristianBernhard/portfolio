@@ -1,55 +1,58 @@
 import {SimpleLayout} from '@/components/SimpleLayout'
-import logoAnimaginary from '@/images/logos/animaginary.svg'
-import logoCosmos from '@/images/logos/cosmos.svg'
-import logoHelioStream from '@/images/logos/helio-stream.svg'
-import logoOpenShuttle from '@/images/logos/open-shuttle.svg'
-import logoPlanetaria from '@/images/logos/planetaria.svg'
+import logoMeta from '@/images/logos/meta.png'
+import logoWryte from '@/images/logos/wryte.png'
+import logoGitlab from '@/images/logos/gitlab.png'
+import logoTech4Germany from '@/images/logos/t4g.png'
+import logoCodingWerkstatt from '@/images/logos/codingwerkstatt.svg'
+import logoHubmap from "@/images/logos/hubmap.png"
+import {Card} from "@/components/Card";
+import Image from 'next/image';
 
 const projects = [
     {
         name: 'Coding Werkstatt',
         description:
-            'My second company: Teaching the next generation in Python programming.',
-        link: {href: 'https://www.coding-werkstatt.com/', label: 'Coding Werkstatt'},
-        logo: logoPlanetaria,
+            'My second company: Teaching the next generation in Python and AI programming.',
+        link: {href: 'https://www.coding-werkstatt.com/', label: 'coding-werkstatt.com'},
+        logo: logoCodingWerkstatt,
     },
     {
         name: 'LLaMA2 from Scratch',
         description:
             'A reimplementation of LLaMA2 in PyTorch to explore its key components and testing different inference strategies.',
-        link: {href: '#', label: 'github.com'},
-        logo: logoAnimaginary,
+        link: {href: '#', label: 'work-in-progress.tech'},
+        logo: logoMeta,
     },
     {
         name: 'HuBMAP - Hacking the Human Vasculature',
         description:
             'Kaggle Challenge: Segment instances of microvascular structures from healthy human kidney tissue slides using multiple Computer Vision models.',
-        link: {href: '#', label: 'github.com'},
-        logo: logoHelioStream,
+        link: {href: 'https://github.com/JFLXB/CVDL_23_project_HuBMAP', label: 'github.com'},
+        logo: logoHubmap,
     },
     {
         name: 'wryte',
         description:
-            'An iPadOS notetaking app for students, which was also featured in the german tv version of shark tank.',
+            'During my job at adesso, i was working for a start up from munich, developing an iPadOS notetaking app for students, which was also featured in the german tv version of shark tank.',
         link: {href: 'https://www.wryte.io/', label: 'wryte.io'},
-        logo: logoCosmos,
+        logo: logoWryte,
     },
     {
         name: 'Tech4Germany',
         description:
-            'Participated in the Tech4Germany Fellowship as an Engineering Fellow in Berlin for 3 months, where I developed BeMIS, a prototype software aimed at digitizing investment management for the Federal Ministry of Finance.',
+            'Participated in the Tech4Germany Fellowship as an Engineering Fellow in Berlin for 3 months, where I developed a prototype software aimed at digitizing investment management for the Federal Ministry of Finance.',
         link: {
-            href: 'https://www.hm.edu/aktuelles/news/news_detailseite_247765.de.html',
-            label: 'article of university of applied sciences'
+            href: 'https://mediapool.hm.edu/media/dachmarke/dm_lokal/presse/applying_science/HM_Applying_Science_Magazin_1-2023.pdf#page=42',
+            label: 'mediapool.hm.edu'
         },
-        logo: logoOpenShuttle,
+        logo: logoTech4Germany,
     },
     {
         name: 'URLShortener',
         description:
-            'The schematics for the first rocket I designed that successfully made it to orbit.',
-        link: {href: '#', label: 'github.com'},
-        logo: logoOpenShuttle,
+            'Implemented a URL Shortener service for the "Cloud-Based Data Processing" course at TUM, utilizing the RAFT consensus protocol. This solution showcases proficiency in distributed systems design and cloud computing.',
+        link: {href: 'https://gitlab.db.in.tum.de/Eci/url-shortener', label: 'gitlab.com'},
+        logo: logoGitlab,
     },
 ]
 
@@ -79,28 +82,27 @@ export default function Projects() {
                 role="list"
                 className="grid grid-cols-1 gap-x-12 gap-y-16 sm:grid-cols-2 lg:grid-cols-3"
             >
-                Work in Progress...
-                {/*{projects.map((project) => (*/}
-                {/*    <Card as="li" key={project.name}>*/}
-                {/*        <div*/}
-                {/*            className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">*/}
-                {/*            <Image*/}
-                {/*                src={project.logo}*/}
-                {/*                alt=""*/}
-                {/*                className="h-8 w-8"*/}
-                {/*                unoptimized*/}
-                {/*            />*/}
-                {/*        </div>*/}
-                {/*        <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">*/}
-                {/*            <Card.Link href={project.link.href}>{project.name}</Card.Link>*/}
-                {/*        </h2>*/}
-                {/*        <Card.Description>{project.description}</Card.Description>*/}
-                {/*        <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">*/}
-                {/*            <LinkIcon className="h-6 w-6 flex-none"/>*/}
-                {/*            <span className="ml-2">{project.link.label}</span>*/}
-                {/*        </p>*/}
-                {/*    </Card>*/}
-                {/*))}*/}
+                {projects.map((project) => (
+                    <Card as="li" key={project.name}>
+                        <div
+                            className="relative z-10 flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                            <Image
+                                src={project.logo}
+                                alt=""
+                                className="h-8 w-8 rounded-full"
+                                unoptimized
+                            />
+                        </div>
+                        <h2 className="mt-6 text-base font-semibold text-zinc-800 dark:text-zinc-100">
+                            <Card.Link href={project.link.href}>{project.name}</Card.Link>
+                        </h2>
+                        <Card.Description>{project.description}</Card.Description>
+                        <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
+                            <LinkIcon className="h-6 w-6 flex-none"/>
+                            <span className="ml-2">{project.link.label}</span>
+                        </p>
+                    </Card>
+                ))}
             </ul>
         </SimpleLayout>
     )
