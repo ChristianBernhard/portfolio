@@ -33,6 +33,7 @@ export const metadata = {
 
 export default async function Speaking() {
     let speakings = await getAllSpeakings()
+    const now = new Date();
 
     return (
         <SimpleLayout
@@ -40,34 +41,39 @@ export default async function Speaking() {
             intro="The audiences and events vary, ranging from companies and industry experts to public events designed for beginners in the field. Check out the dates and details of upcoming and past events to see where I'll be sharing insights next."
         >
             <div className="space-y-20">
-                {/* Dynamically generate SpeakingSection components based on speakings */}
                 <SpeakingSection title="Upcoming">
-                    {speakings.filter(speaking => new Date(speaking.date) >= new Date()).map((speaking) => (
-                        <Appearance
-                            key={speaking.slug}
-                            href={`/speaking/${speaking.slug}`}
-                            title={speaking.title}
-                            description={speaking.description}
-                            language={speaking.language}
-                            date={formatDate(speaking.date)}
-                            location={speaking.location}
-                            cta="Read more"
-                        />
-                    ))}
+                    {speakings
+                        .filter(speaking => new Date(speaking.date) >= now)
+                        .sort((a, z) => +new Date(a.date) - +new Date(z.date)) // Ascending sort for upcoming
+                        .map((speaking) => (
+                            <Appearance
+                                key={speaking.slug}
+                                href={`/speaking/${speaking.slug}`}
+                                title={speaking.title}
+                                description={speaking.description}
+                                language={speaking.language}
+                                date={formatDate(speaking.date)}
+                                location={speaking.location}
+                                cta="Read more"
+                            />
+                        ))}
                 </SpeakingSection>
                 <SpeakingSection title="Past">
-                    {speakings.filter(speaking => new Date(speaking.date) < new Date()).map((speaking) => (
-                        <Appearance
-                            key={speaking.slug}
-                            href={`/speaking/${speaking.slug}`}
-                            title={speaking.title}
-                            description={speaking.description}
-                            language={speaking.language}
-                            date={formatDate(speaking.date)}
-                            location={speaking.location}
-                            cta="Read more"
-                        />
-                    ))}
+                    {speakings
+                        .filter(speaking => new Date(speaking.date) < now)
+                        .sort((a, z) => +new Date(z.date) - +new Date(a.date)) // Descending sort for past
+                        .map((speaking) => (
+                            <Appearance
+                                key={speaking.slug}
+                                href={`/speaking/${speaking.slug}`}
+                                title={speaking.title}
+                                description={speaking.description}
+                                language={speaking.language}
+                                date={formatDate(speaking.date)}
+                                location={speaking.location}
+                                cta="Read more"
+                            />
+                        ))}
                 </SpeakingSection>
             </div>
         </SimpleLayout>
