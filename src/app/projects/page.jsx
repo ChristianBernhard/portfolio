@@ -27,7 +27,7 @@ const projects = [
         name: 'LLaMA2 from Scratch',
         description:
             'A reimplementation of LLaMA2 in PyTorch to explore its key components and testing different inference strategies.',
-        link: {href: '#', label: 'work-in-progress.tech'},
+        link: {href: 'https://github.com/ziereis/simple-llama/tree/master', label: 'github.com'},
         logo: logoMeta,
     },
     {

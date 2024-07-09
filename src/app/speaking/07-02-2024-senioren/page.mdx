@@ -1,4 +1,7 @@
 import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+import senioren from "./senioren.jpg"
 
 export const speakingEvent = {
     speaker: 'Christian Bernhard',
@@ -19,7 +22,16 @@ export default function SpeakingEventDetail(props) {
         <SpeakingLayout event={speakingEvent} {...props}>
             <h2 className="section-heading">Beschreibung</h2>
             <p className="course-description">Die Senioren aus Krailling möchten das Thema verstehen, was die ganze Welt
-                aktuell bewegt. Diesem Wunsch gehe ich Anfang Juli in der Bibliothek Krailling nach.</p>
+                aktuell bewegt. Diesem Wunsch ging ich Anfang Juli im Senioren Cafe Krailling nach. Der Vortrag war
+                bereits Tage zuvor restlos ausgebucht. Die ca. 30-40 Anwesenden hatten viel Spaß.</p>
+            <Image src={senioren} alt=""/>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.unser-wuermtal.de/nachrichten/artikel/ki-und-chatgpt-vortrag-in-krailling.html"
+                    variant="primary" className="mt-4">
+                    Würmtal Post
+                </Button>
+            </div>
         </SpeakingLayout>
     );
 }
