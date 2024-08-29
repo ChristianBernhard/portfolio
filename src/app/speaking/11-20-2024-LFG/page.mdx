@@ -1,0 +1,27 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-11-20',
+    location: 'Fortbildung Lehrkräfte am LF-Gymnasium',
+    title: 'Generative AI im Schulalltag',
+    description: 'An diesem Tag findet eine Fortbildung für das Kollegium des Lion Feuchtwanger Gymnasiums statt. Die Lehrkräfte erhalten einen Einblick in KI und wie sie diese in Ihrem beruflichen Alltag nutzen können.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">An diesem Tag findet eine Fortbildung für das Kollegium des Lion
+                Feuchtwanger Gymnasiums statt. Die Lehrkräfte erhalten einen Einblick in KI und wie sie diese in Ihrem
+                beruflichen Alltag nutzen können.</p>
+        </SpeakingLayout>
+    );
+}

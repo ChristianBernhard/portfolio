@@ -1,0 +1,35 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-10-08',
+    location: 'VHS Haar',
+    title: 'KI Intuition - KI verstehen',
+    description: 'Dieser Vortrag ist ideal für Einsteiger:innen und vermittelt die Grundlagen bzw. Mechanismen der KI. Dozent gibt Ihnen einen tiefgreifenden Einblick in die Algorithmen hinter der Künstlichen Intelligenz, blendet dabei aber gleichzeitig die Universitätsmathematik aus.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Dieser Vortrag ist ideal für Einsteiger:innen und vermittelt die
+                Grundlagen bzw. Mechanismen der KI. Dozent gibt Ihnen einen tiefgreifenden Einblick in die Algorithmen
+                hinter der Künstlichen Intelligenz, blendet dabei aber gleichzeitig die Universitätsmathematik aus.</p>
+            {/* <Image src={senioren} alt=""/> */}
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-haar.de/p/beruf-it/neue-wege-in-it-513-C-7980984"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

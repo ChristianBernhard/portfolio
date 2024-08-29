@@ -1,0 +1,37 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-09-20',
+    location: 'BeckAkademie-Fernkurse',
+    title: 'ChatGPT, KI & Co. in der rechtlichen Betreuung',
+    description: 'Unser neues Live-Webinar „ChatGPT, KI & Co. in der rechtlichen Betreuung? So geht’s – wie Künstliche Intelligenz Ihren Betreueralltag verbessern kann“ vermittelt Ihnen praxisnahes Wissen und praktische Fähigkeiten im Umgang mit Künstlicher Intelligenz.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Unser neues Live-Webinar „ChatGPT, KI & Co. in der rechtlichen Betreuung?
+                So geht’s – wie Künstliche Intelligenz Ihren Betreueralltag verbessern kann“ vermittelt Ihnen
+                praxisnahes Wissen und praktische Fähigkeiten im Umgang mit Künstlicher Intelligenz. In nur 4
+                Unterrichtseinheiten (UE) erfahren Sie, wie Sie KI optimal in Ihren Betreuungsalltag integrieren und das
+                Beste aus Chat GPT & Co. rausholen.</p>
+            {/* <Image src={senioren} alt=""/> */}
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.beck-fernkurse.de/chatgpt-ki-und-co-wie-kuenstliche-intelligenz-ihren-betreueralltag-verbessern-kann/"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

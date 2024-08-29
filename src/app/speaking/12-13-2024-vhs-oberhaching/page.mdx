@@ -1,0 +1,33 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-12-13',
+    location: 'vhs Oberhaching',
+    title: 'Chancen & Risiken von KI',
+    description: 'In diesem interaktiven Kurs werden die vielschichtigen Perspektiven auf Künstliche Intelligenz ausführlich beleuchtet.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">In diesem interaktiven Kurs werden die vielschichtigen Perspektiven auf
+                Künstliche Intelligenz ausführlich beleuchtet.</p>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-oberhaching.de/programm/it-digitales/kurs/Chancen-Risiken-von-KI/242-37016?Contrast=0"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

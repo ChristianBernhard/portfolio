@@ -59,8 +59,6 @@ export default async function Speaking() {
                         ))}
                 </SpeakingSection>
                 
-                Will be updated by the end of July. There are over 30 public talks planned for the rest of the year
-                2024.
                 <SpeakingSection title="Past">
                     {speakings
                         .filter(speaking => new Date(speaking.date) < now)

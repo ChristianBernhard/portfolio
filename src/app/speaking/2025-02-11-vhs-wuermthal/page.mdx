@@ -1,0 +1,34 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2025-02-11',
+    location: 'vhs Würmthal',
+    title: 'Von KI-Boom zu Chip-Hype: Warum Nvidia & Co. die Zukunft der Technologie gestalt',
+    description: 'Entdecken Sie die faszinierende Welt der Künstlichen Intelligenz und der Hardware, die sie möglich macht. In diesem Kurs beleuchten wir, warum der rasante Fortschritt im Bereich der KI die Nachfrage nach spezialisierter Hardware, wie GPUs und NPUs, explodieren lässt.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Entdecken Sie die faszinierende Welt der Künstlichen Intelligenz und der
+                Hardware, die sie möglich macht. In diesem Kurs beleuchten wir, warum der rasante Fortschritt im Bereich
+                der KI die Nachfrage nach spezialisierter Hardware, wie GPUs und NPUs, explodieren lässt.</p>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-wuermtal.de/p/vhs-kurse-mensch-und-umwelt/politik-und-gesellschaft/von-ki-boom-zu-chip-hype-warum-nvidia-co-die-zukunft-der-technologie-gestalt-654-C-F2828"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

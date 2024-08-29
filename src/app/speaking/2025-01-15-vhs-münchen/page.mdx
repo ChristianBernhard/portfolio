@@ -1,0 +1,38 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2025-01-15',
+    location: 'vhs München',
+    title: 'Braucht KI Regulierung? Chancen und Risiken',
+    description: 'In diesem interaktiven Kurs beleuchten wir verschiedene Aspekte der KI in Bezug auf ihre Chancen und Risiken. Dabei beantworten wir Fragen wie: Ist KI gut oder böse? Welche Auswirkungen hat KI auf meinen Job und die Arbeitswelt? Braucht KI Regulierung und was hat es mit dem EU AI Act auf sich? Welche Probleme und Gefahren gibt es? Welche Rolle spielt Open Source in der KI? Und was bringt die Zukunft der KI?',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">In diesem interaktiven Kurs beleuchten wir verschiedene Aspekte der KI in
+                Bezug auf ihre Chancen und Risiken. Dabei beantworten wir Fragen wie: Ist KI gut oder böse? Welche
+                Auswirkungen hat KI auf meinen Job und die Arbeitswelt? Braucht KI Regulierung und was hat es mit dem EU
+                AI Act auf sich? Welche Probleme und Gefahren gibt es? Welche Rolle spielt Open Source in der KI? Und
+                was bringt die Zukunft der KI?</p>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.mvhs.de/kurse/it-digitales/information-beratung/braucht-ki-regulierung-chancen-und-risiken/online-kurs-460-C-T486805"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+
+        </SpeakingLayout>
+    )
+        ;
+}

@@ -1,0 +1,34 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-09-25',
+    location: 'VHS Haar',
+    title: 'Studium Generale - Ausgewählte Themen zu Künstlicher Intelligenz',
+    description: 'Von 25.09 - 23.10 jeden Mittwoch jeweils 2 Stunden Ausgewählte Themen zu Künstlicher Intelligenz',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Von 25.09 - 23.10 jeden Mittwoch jeweils 2 Stunden Ausgewählte Themen zu
+                Künstlicher Intelligenz</p>
+            {/* <Image src={senioren} alt=""/> */}
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-haar.de/p/gesellschaft/studium-generale-513-C-8006043"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

@@ -1,0 +1,33 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-11-08',
+    location: 'vhs Oberhaching',
+    title: 'ChatGPT entmystifiziert: Praktische Anwendungen für Beruf und Alltag',
+    description: 'Wir starten mit einer fundierten theoretischen Einführung in sogenannte Large Language Models (LLMs) und generativer KI (GenAI), gefolgt von ihrer praktischen Anwendung.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Wir starten mit einer fundierten theoretischen Einführung in sogenannte
+                Large Language Models (LLMs) und generativer KI (GenAI), gefolgt von ihrer praktischen Anwendung.</p>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-oberhaching.de/kurssuche/kurs/ChatGPT-entmystifiziert-Praktische-Anwendungen-fuer-Beruf-und-Alltag/242-37015?Fsize=1"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

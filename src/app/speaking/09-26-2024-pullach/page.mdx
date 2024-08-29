@@ -1,0 +1,37 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-09-26',
+    location: 'VHS Pullach',
+    title: 'Wie funktionieren die Algorithmen von Künstlicher Intelligenz?',
+    description: 'Dieser 90-minütige Vortrag ist ideal für Einsteiger und vermittelt die Grundlagen und Mechanismen der KI.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Dieser 90-minütige Vortrag ist ideal für Einsteiger und vermittelt die
+                Grundlagen und Mechanismen der KI. Das Besondere: Christian Bernhard schafft es, Ihnen einen
+                tiefgreifenden Einblick in die Algorithmen hinter der Künstlichen Intelligenz zu geben und gleichzeitig
+                die Universitätsmathematik auszublenden.
+                Sein Versprechen: Sie können den Status des Laien nach diesem Vortrag ablegen.</p>
+            {/* <Image src={senioren} alt=""/> */}
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-pullach.de/suche/kursdetails.html/A/course/P/164/I/503-C-5030670/wie-funktionieren-die-algorithmen-von-k%C3%BCnstlicher-intelligenz"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

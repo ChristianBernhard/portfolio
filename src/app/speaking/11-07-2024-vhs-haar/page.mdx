@@ -1,0 +1,35 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-11-07',
+    location: 'vhs Haar',
+    title: 'ChatGPT - Anwendungen für Beruf und Alltag',
+    description: 'Einer fundierten theoretischen Einführung folgt die praktische Anwendung. Sie erfahren, wie ChatGPT hinter den Kulissen funktioniert (von Trainingsmethoden bis hin zur Multimodalität) und dann, im praktischen Teil, erkunden Sie zahlreiche reale Anwendungen und weiteren KI-Tools für den Alltag und Beruf.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Einer fundierten theoretischen Einführung folgt die praktische Anwendung.
+                Sie erfahren, wie ChatGPT hinter den Kulissen funktioniert (von Trainingsmethoden bis hin zur
+                Multimodalität) und dann, im praktischen Teil, erkunden Sie zahlreiche reale Anwendungen und weiteren
+                KI-Tools für den Alltag und Beruf.</p>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-haar.de/p/beruf-it-513-C-7981068"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

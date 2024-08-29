@@ -1,0 +1,44 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-10-11',
+    location: 'VHS Oberhaching',
+    title: 'KI Intuition – Wie funktionieren die Algorithmen von Künstlicher Intelligenz?',
+    description: 'Dieser 90-minütige Vortrag vermittelt die Grundlagen und Mechanismen von KI und ist auch für Einsteiger geeignet.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Dieser 90-minütige Vortrag vermittelt die Grundlagen und Mechanismen von
+                KI und ist auch für Einsteiger geeignet.
+                Das Besondere: Christian Bernhard schafft es, Ihnen einen tiefgreifenden Einblick in die Algorithmen
+                hinter der Künstlichen Intelligenz zu geben und gleichzeitig die Universitätsmathematik auszublenden.
+                Sein Versprechen: Sie können den Status des Laien nach diesem Vortrag ablegen und nehmen sogar gemeinsam
+                an einer KI-Entwicklung vor Ort teil!
+                Was Sie mitnehmen: Vollständiges Verständnis des KI-Trainingsprozesses, Kenntnis von Herausforderungen
+                bei der KI-Entwicklung, Einblicke in verschiedene KI-Bereiche (z.B. Sprachverarbeitung,
+                Mustererkennung), Überblick über die aktuelle Forschung und KI-Anwendungsmöglichkeiten, kompetente
+                Antworten auf Ihre Fragen in der Diskussionsrunde.
+                Geeignet für jedes Publikum, unabhängig von Vorkenntnissen. Melden Sie sich jetzt an und gewinnen Sie
+                ein umfassendes Verständnis für die Technologie, die unsere Zukunft formt!</p>
+            {/* <Image src={senioren} alt=""/> */}
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-oberhaching.de/programm/it-digitales/kurs/KI-Intuition-Wie-funktionieren-die-Algorithmen-von-Kuenstlicher-Intelligenz/242-37014?Contrast=0"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

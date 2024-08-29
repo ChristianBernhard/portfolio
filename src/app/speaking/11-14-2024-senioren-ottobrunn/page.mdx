@@ -1,0 +1,26 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-11-14',
+    location: 'KWA Hanns-Seidel-Haus (Ottobrunn)',
+    title: 'Künstliche Intelligenz – allgemein verständlich erklärt',
+    description: 'Am 14.11.2024 bin ich im KWA Hanns-Seidel-Haus in Ottobrunn und halte vor ca. 200 Senioren einen Einführungsvortrag zu Künstlicher Intelligenz.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Am 14.11.2024 bin ich im KWA Hanns-Seidel-Haus in Ottobrunn und halte vor
+                ca. 200 Senioren einen Einführungsvortrag zu Künstlicher Intelligenz.</p>
+        </SpeakingLayout>
+    );
+}

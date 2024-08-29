@@ -1,0 +1,35 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-12-10',
+    location: 'vhs Haar',
+    title: 'Cloud Computing - die unsichtbare Revolution bei der Datenspeicherung',
+    description: 'Tauchen Sie ein in die faszinierende Welt der Künstlichen Intelligenz und der Hardware, die sie möglich macht. Es wird vermittelt, worum es sich bei den Prozessorentypen GPUs (Graphics Processing Unit) und NPUs (Neural Processing Unit) handelt und warum der rasante Fortschritt im Bereich der KI die Nachfrage nach spezialisierter Hardware explodieren lässt.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Tauchen Sie ein in die faszinierende Welt der Künstlichen Intelligenz und
+                der Hardware, die sie möglich macht. Es wird vermittelt, worum es sich bei den Prozessorentypen GPUs
+                (Graphics Processing Unit) und NPUs (Neural Processing Unit) handelt und warum der rasante Fortschritt
+                im Bereich der KI die Nachfrage nach spezialisierter Hardware explodieren lässt.</p>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-haar.de/p/beruf-it/neue-wege-in-it/digitale-welt-grundlagen/cloud-computing-die-unsichtbare-revolution-bei-der-datenspeicherung/fuer-einsteiger-innen-513-C-7981091"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

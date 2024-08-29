@@ -1,0 +1,41 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-09-25',
+    location: 'VHS München',
+    title: 'Von KI-Boom zu Chip-Hype: Warum Nvidia & Co. die Zukunft der Technologie gestalten',
+    description: 'Entdecken Sie die faszinierende Welt der Künstlichen Intelligenz und der Hardware, die sie möglich macht. In diesem Kurs beleuchten wir, warum der rasante Fortschritt im Bereich der KI die Nachfrage nach spezialisierter Hardware, wie GPUs und NPUs, explodieren lässt.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Entdecken Sie die faszinierende Welt der Künstlichen Intelligenz und der
+                Hardware, die sie möglich macht. In diesem Kurs beleuchten wir, warum der rasante Fortschritt im Bereich
+                der KI die Nachfrage nach spezialisierter Hardware, wie GPUs und NPUs, explodieren lässt. Sie erfahren,
+                wie Rechenleistung in der modernen KI-Ära gemessen wird, warum GPUs gegenüber herkömmlichen CPUs
+                überlegen sind und welche Rolle Tech-Giganten wie Nvidia und TSMC in dieser Revolution spielen. Wir
+                werfen auch einen Blick auf die Herausforderungen der Chip-Knappheit und die Bedeutung von Cloud
+                Computing für das Training und die Inbetriebnahme von KI-Systemen. Dieser Kurs bietet einen umfassenden
+                Überblick über die technische Seite der KI, ideal für alle, die die Technologie von morgen verstehen
+                möchten.</p>
+            {/* <Image src={senioren} alt=""/> */}
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.mvhs.de/services/dozierendenportraets/christian-bernhard-460-L-16175"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

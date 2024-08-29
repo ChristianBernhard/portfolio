@@ -1,0 +1,36 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2025-02-05',
+    location: 'vhs Taufkirchen',
+    title: 'Einführung Cloud Computing und Hardware (GPU) für Künstliche Intelligenz',
+    description: 'Tauchen Sie ein in die Welt des Cloud Computing und der Hardware-AI-Beschleuniger mit unserem neuen Kurs an der VHS Taufkirchen. Entdecken Sie, wie die Cloud und modernste Hardware die Art und Weise, wie wir Daten speichern, teilen und verarbeiten, revolutioniert haben – von den Grundlagen der Servertechnologie bis hin zu den neuesten Entwicklungen in der KI-Beschleunigung.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Tauchen Sie ein in die Welt des Cloud Computing und der
+                Hardware-AI-Beschleuniger mit unserem neuen Kurs an der VHS Taufkirchen. Entdecken Sie, wie die Cloud
+                und modernste Hardware die Art und Weise, wie wir Daten speichern, teilen und verarbeiten,
+                revolutioniert haben – von den Grundlagen der Servertechnologie bis hin zu den neuesten Entwicklungen in
+                der KI-Beschleunigung.</p>
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.vhs-taufkirchen.de/unser-programm/onlinekurse-1/kurs/Einfuehrung-Cloud-Computing-und-Hardware-GPU-fuer-Kuenstliche-Intelligenz/242-2221"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}

@@ -1,0 +1,38 @@
+import {SpeakingLayout} from '@/components/SpeakingLayout';
+import {Button} from '@/components/Button'
+
+export const speakingEvent = {
+    speaker: 'Christian Bernhard',
+    language: "🇩🇪",
+    date: '2024-09-04',
+    location: 'VHS München',
+    title: 'ChatGPT entmystifiziert: Praktische Anwendungen für Beruf und Alltag',
+    description: 'Wir starten mit einer fundierten theoretischen Einführung in Large Language Models und GenAI, gefolgt von der praktischen Anwendung.',
+};
+
+export const metadata = {
+    title: speakingEvent.title,
+    description: speakingEvent.description,
+};
+
+export default function SpeakingEventDetail(props) {
+    return (
+        <SpeakingLayout event={speakingEvent} {...props}>
+            <h2 className="section-heading">Beschreibung</h2>
+            <p className="course-description">Wir starten mit einer fundierten theoretischen Einführung in Large
+                Language Models und GenAI, gefolgt von der praktischen Anwendung. Verstehen Sie, wie ChatGPT hinter den
+                Kulissen funktioniert, von Trainingsmethoden bis hin zur Inference.
+
+                Dann, im praktischen Teil, erkunden Sie zahlreiche reale Anwendungen von ChatGPT und weiteren KI-Tools
+                für den Alltag und das Berufsleben.</p>
+            {/* <Image src={senioren} alt=""/> */}
+            <div className="flex justify-center">
+                <Button
+                    href="https://www.mvhs.de/kurse/it-digitales/ki-robotik/chatgpt-entmystifiziert-praktische-anwendungen-fuer-beruf-und-alltag-460-C-S486825"
+                    variant="primary" className="mt-4">
+                    Melden Sie sich jetzt an!
+                </Button>
+            </div>
+        </SpeakingLayout>
+    );
+}
