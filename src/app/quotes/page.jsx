@@ -25,7 +25,8 @@ const quotes = [
         text: "Wir glauben nicht an die Meinungsfreiheit, wenn wir sie nicht auch den Leuten zugestehen, die wir verachten."
     },
     {author: "Unknown", text: "Dream so big, you get uncomfortable telling small minded people."},
-    {author: "Unknown", text: "Early to bed, early to rise makes a man young, wealthy, and wise."}
+    {author: "Unknown", text: "Early to bed, early to rise makes a man young, wealthy, and wise."},
+    {author: "Unknown", text: "Fortune favers the brave."}
 ];
 
 
