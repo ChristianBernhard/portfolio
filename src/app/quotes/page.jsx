@@ -26,7 +26,17 @@ const quotes = [
     },
     {author: "Unknown", text: "Dream so big, you get uncomfortable telling small minded people."},
     {author: "Unknown", text: "Early to bed, early to rise makes a man young, wealthy, and wise."},
-    {author: "Unknown", text: "Fortune favers the brave."}
+    {author: "Unknown", text: "Fortune favers the brave."},
+    {
+        author: "Elon Musk", text: "Engineering five-step process:\n" +
+            "\n" +
+            "1) Question the requirements\n" +
+            "2) Remove unnecessary process steps\n" +
+            "3) Optimize\n" +
+            "4) Accelerate\n" +
+            "5) Automate (Not the other way around)"
+    },
+    {author: "Unknown", text: "Die Wut ist ein schlechter Ratgeber"},
 ];
 
 
