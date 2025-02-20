@@ -1,11 +1,11 @@
-import {Section} from '@/components/Section';
-import {SimpleLayout} from '@/components/SimpleLayout';
+import { Section } from '@/components/Section';
+import { SimpleLayout } from '@/components/SimpleLayout';
 
 
 const quotes = [
-    {author: "Unknown", text: "You are trying to get into the specifics without covering the basics."},
-    {author: "Unknown", text: "The magic you are looking for is in the work you are avoiding."},
-    {author: "Ovid", text: "Gutta cavat lapidem - Steter Tropfen höhlt den Stein"},
+    { author: "Unknown", text: "You are trying to get into the specifics without covering the basics." },
+    { author: "Unknown", text: "The magic you are looking for is in the work you are avoiding." },
+    { author: "Ovid", text: "Gutta cavat lapidem - Steter Tropfen höhlt den Stein" },
     {
         author: "Albert Einstein",
         text: "Die reinste Form des Wahnsinns ist es, alles beim Alten zu lassen und gleichzeitig zu hoffen, dass sich etwas ändert."
@@ -14,8 +14,8 @@ const quotes = [
         author: "Usain Bolt",
         text: "I trained 4 years to run 9 seconds and people give up when they don’t see results in 2 months."
     },
-    {author: "Valentin Hartig", text: "Wer schreit verliert."},
-    {author: "Valentin Hartig", text: "Wer redet sät, wer zuhört erntet."},
+    { author: "Valentin Hartig", text: "Wer schreit verliert." },
+    { author: "Valentin Hartig", text: "Wer redet sät, wer zuhört erntet." },
     {
         author: "Unknown",
         text: "Alles was gesagt wird, muss wahr sein. Aber nicht alles, was wahr ist, muß auch gesagt werden."
@@ -24,9 +24,9 @@ const quotes = [
         author: "Unknown",
         text: "Wir glauben nicht an die Meinungsfreiheit, wenn wir sie nicht auch den Leuten zugestehen, die wir verachten."
     },
-    {author: "Unknown", text: "Dream so big, you get uncomfortable telling small minded people."},
-    {author: "Unknown", text: "Early to bed, early to rise makes a man young, wealthy, and wise."},
-    {author: "Unknown", text: "Fortune favers the brave."},
+    { author: "Unknown", text: "Dream so big, you get uncomfortable telling small minded people." },
+    { author: "Unknown", text: "Early to bed, early to rise makes a man young, wealthy, and wise." },
+    { author: "Unknown", text: "Fortune favers the brave." },
     {
         author: "Elon Musk", text: "Engineering five-step process:\n" +
             "\n" +
@@ -36,11 +36,15 @@ const quotes = [
             "4) Accelerate\n" +
             "5) Automate (Not the other way around)"
     },
-    {author: "Unknown", text: "Die Wut ist ein schlechter Ratgeber"},
+    { author: "Jeff Bezos", text: "There are one-door and two-door decisions. One-door decisions are hard to reverse. Two-door decisions just need to be made, and you have to live with the chosen option. Most business decisions are two-door decisions and should be made by a single person for speed." },
+    { author: "George Hotz", text: "To develop good software, two of the most important factors are tests and a proper CI/CD pipeline, enabling rapid code changes." },
+    {author: "Eliud Kipchoge", text: "The first rule of self-discipline: Inject yourself with vitamin N—learn to say `No`."},
+    {author: "Khabib Nurmagomedov", text: "When people become successful, they say, `It's because of my mindset, I work hard, I'm smart` But what about the millions of others who work just as hard but don’t have your position? This is a test from God. He gave you this to see how you will handle it."},
+    {author: "Anirudh Ramesh", text: "You're only a few months away from understanding the bleeding edge of research."},
 ];
 
 
-function QuotesSection({children, ...props}) {
+function QuotesSection({ children, ...props }) {
     return (
         <Section {...props}>
             <div className="quotes-container">
@@ -54,7 +58,7 @@ function QuotesSection({children, ...props}) {
 }
 
 
-function Quote({author, children}) {
+function Quote({ author, children }) {
     return (
         <li className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
             <blockquote
