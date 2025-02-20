@@ -26,7 +26,7 @@ const quotes = [
     },
     { author: "Unknown", text: "Dream so big, you get uncomfortable telling small minded people." },
     { author: "Unknown", text: "Early to bed, early to rise makes a man young, wealthy, and wise." },
-    { author: "Unknown", text: "Fortune favers the brave." },
+    { author: "Unknown", text: "Fortune favors the brave." },
     {
         author: "Elon Musk", text: "Engineering five-step process:\n" +
             "\n" +
