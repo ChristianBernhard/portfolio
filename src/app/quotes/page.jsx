@@ -4,7 +4,7 @@ import { SimpleLayout } from '@/components/SimpleLayout';
 
 const quotes = [
     { author: "Unknown", text: "You are trying to get into the specifics without covering the basics." },
-    { author: "Unknown", text: "The magic you are looking for is in the work you are avoiding." },
+    { author: "Marcus Aurelius", text: "The magic you are looking for is in the work you are avoiding." },
     { author: "Ovid", text: "Gutta cavat lapidem - Steter Tropfen höhlt den Stein" },
     {
         author: "Albert Einstein",
@@ -41,6 +41,8 @@ const quotes = [
     {author: "Eliud Kipchoge", text: "The first rule of self-discipline: Inject yourself with vitamin N—learn to say `No`."},
     {author: "Khabib Nurmagomedov", text: "When people become successful, they say, `It's because of my mindset, I work hard, I'm smart` But what about the millions of others who work just as hard but don’t have your position? This is a test from God. He gave you this to see how you will handle it."},
     {author: "Anirudh Ramesh", text: "You're only a few months away from understanding the bleeding edge of research."},
+    {author: "Sam Altman", text: "Tip for early stage startups: No matter how great your idea is, no one cares. Everyone is to busy. You can rely on that to protect your idea."},
+
 ];
 
 
