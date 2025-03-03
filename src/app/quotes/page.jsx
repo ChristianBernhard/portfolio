@@ -24,7 +24,6 @@ const quotes = [
         author: "Unknown",
         text: "Wir glauben nicht an die Meinungsfreiheit, wenn wir sie nicht auch den Leuten zugestehen, die wir verachten."
     },
-    { author: "Unknown", text: "Dream so big, you get uncomfortable telling small minded people." },
     { author: "Unknown", text: "Early to bed, early to rise makes a man young, wealthy, and wise." },
     { author: "Unknown", text: "Fortune favors the brave." },
     {
@@ -42,6 +41,9 @@ const quotes = [
     {author: "Khabib Nurmagomedov", text: "When people become successful, they say, `It's because of my mindset, I work hard, I'm smart` But what about the millions of others who work just as hard but don’t have your position? This is a test from God. He gave you this to see how you will handle it."},
     {author: "Anirudh Ramesh", text: "You're only a few months away from understanding the bleeding edge of research."},
     {author: "Sam Altman", text: "Tip for early stage startups: No matter how great your idea is, no one cares. Everyone is to busy. You can rely on that to protect your idea."},
+    {author: "Unknown", text: "When selling: Change the conversation from price to value."},
+    {author: "Jeff Bezos", text: "Stress primarly comes from not taking action, over something that you can have some control over."},
+
 
 ];
 
