@@ -2,18 +2,18 @@ import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
 
-import {Container} from '@/components/Container'
-import {GitHubIcon, LinkedInIcon,} from '@/components/SocialIcons'
+import { Container } from '@/components/Container'
+import { GitHubIcon, LinkedInIcon, } from '@/components/SocialIcons'
 import portraitImage from '@/images/portrait.jpg'
 
-function SocialLink({className, href, children, icon: Icon}) {
+function SocialLink({ className, href, children, icon: Icon }) {
     return (
         <li className={clsx(className, 'flex')}>
             <Link
                 href={href}
                 className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
             >
-                <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500"/>
+                <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
                 <span className="ml-4">{children}</span>
             </Link>
         </li>
@@ -57,29 +57,21 @@ export default function About() {
                         I live in Munich, working on Artifical Intelligence.
                     </h1>
                     <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
-                        <p>
-                            Hello! I’m a 26-year-old Master of Science in Computer Science, born and raised in Munich.
-                            My passion for technology spans the exciting realms of artificial intelligence and
-                            quantum computing, alongside a keen interest in the art of communication.
-                            This dual enthusiasm led me to create my own company: AInleuchtend.
-                        </p>
-                        <p>
-                            Professionally, my background is rich with experiences in software engineering,
-                            covering mobile development, full-stack, backend, and AI projects. In December 2023,
-                            I stepped up as the Head of Software Development at Aqarios, where I now lead
-                            a talented team towards innovating our product, Aqarios Luna, to new heights.
-                        </p>
-                        <p>
-                            Outside of my day job, AInleuchtend is my personal project where I dive deep into AI,
-                            offering presentations for both beginners and seasoned experts, advising companies
-                            on AI strategy, and rolling out practical AI solutions.
-                            My guiding principles are "Gutta cavat lapidem" (constant effort brings success)
-                            and "Each one, Teach one," emphasizing the importance of persistence and sharing knowledge.
-                        </p>
-                        <p>
-                            In essence, I’m a technology enthusiast with a drive to explore,
-                            create, and lead in the digital age🚀
-                        </p>
+                    <p>
+    Hi! I'm a 27-year-old M.Sc. in Computer Science, born and raised in Munich. My passion lies at the crossroads of cutting-edge tech and meaningful communication—two forces that led me to found AInleuchtend, a company focused on making AI accessible, actionable, and impactful.
+</p>
+<p>
+    I earned my Master’s degree from LMU Munich, where I also conducted research at BMW. There, I focused on fine-tuning retriever and generator components in Retrieval-Augmented Generation (RAG) systems—deepening my expertise in modern NLP and enterprise AI applications.
+</p>
+<p>
+    Professionally, I bring over 5 years of experience in software engineering, with a broad background spanning mobile development, full-stack and backend systems, and AI-powered applications. I'm currently working as an AI Engineer at Cancom, building state-of-the-art AI systems for enterprise clients.
+</p>
+<p>
+    Previously, I served as Head of Operations at Aqarios, where I led a team of 10+ engineers and managed the development of the Luna Platform—a Platform-as-a-Service (PaaS) solution combining a web application and Python SDK to help businesses connect with quantum computing infrastructure.
+</p>
+<p>
+    Outside of my day-to-day, AInleuchtend is my passion project. Through it, I deliver AI workshops and talks tailored to both beginners and experts, advise companies on AI strategy, and implement practical solutions to real-world problems.
+</p>
                     </div>
                 </div>
                 <div className="lg:pl-20">
@@ -94,7 +86,7 @@ export default function About() {
                             Follow on GitHub
                         </SocialLink>
                         <SocialLink href="https://www.linkedin.com/in/christian-bernhard-597224199/" icon={LinkedInIcon}
-                                    className="mt-4">
+                            className="mt-4">
                             Follow on LinkedIn
                         </SocialLink>
                         <SocialLink

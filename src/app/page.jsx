@@ -7,15 +7,17 @@ import {Card} from '@/components/Card'
 import {Container} from '@/components/Container'
 import {GitHubIcon, LinkedInIcon,} from '@/components/SocialIcons'
 import logoAInleuchtend from '@/images/logos/ainleuchtend.png'
+import logoCancom from '@/images/logos/cancom.png'
+import logoBMW from '@/images/logos/bmw.png'
 import logoAqarios from '@/images/logos/aqarios.png'
 import logoAdesso from '@/images/logos/adesso.png'
 import logoWryte from '@/images/logos/wryte.png'
 import logoT4G from '@/images/logos/t4g.png'
 import image1 from '@/images/photos/image-1.png'
 import image2 from '@/images/photos/image-2.jpg'
-import image3 from '@/images/photos/image-3.jpg'
+import image3 from '@/images/photos/beck_1.jpeg'
 import image4 from '@/images/photos/image-4.jpg'
-import image5 from '@/images/photos/image-5.jpg'
+import image5 from '@/images/photos/beck_2.jpeg'
 import {getAllSpeakings} from '@/lib/speakings'
 import {formatDate} from '@/lib/formatDate'
 
@@ -204,10 +206,10 @@ function Role({role}) {
 function Resume() {
     let resume = [
         {
-            company: 'Aqarios',
-            title: 'Head of Software Development',
-            logo: logoAqarios,
-            start: '2023',
+            company: 'Cancom',
+            title: 'AI Engineer',
+            logo: logoCancom,
+            start: '2025',
             end: {
                 label: 'Present',
                 dateTime: new Date().getFullYear().toString(),
@@ -220,6 +222,26 @@ function Resume() {
             start: '2023',
             end: {
                 label: 'Present',
+                dateTime: new Date().getFullYear().toString(),
+            },
+        },
+        {
+            company: 'BMW',
+            title: 'AI Researcher',
+            logo: logoBMW,
+            start: '2024',
+            end: {
+                label: '2025',
+                dateTime: new Date().getFullYear().toString(),
+            },
+        },
+        {
+            company: 'Aqarios',
+            title: 'Head of Operations',
+            logo: logoAqarios,
+            start: '2023',
+            end: {
+                label: '2025',
                 dateTime: new Date().getFullYear().toString(),
             },
         },
@@ -270,29 +292,45 @@ function Resume() {
 function Photos() {
     let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
 
+    // Define object-position for each image
+    const objectPositions = [
+        'object-[80%_center]',        // image1 - centered
+        'object-[20%_center]',    // image2 - you're more on the left
+        'object-[95%_center]',    // image3 - you're on the right
+        'object-[10%_center]',        // image4 - centered
+        'object-[10%_0%]',    // image5 - slight left
+    ];
+
+    const images = [image1, image2, image3, image4, image5];
+
     return (
         <div className="mt-16 sm:mt-20">
             <div className="-my-4 flex justify-center gap-5 overflow-hidden py-4 sm:gap-8">
-                {[image1, image2, image3, image4, image5].map((image, imageIndex) => (
+                {images.map((image, index) => (
                     <div
                         key={image.src}
                         className={clsx(
-                            'relative aspect-[9/10] w-44 flex-none overflow-hidden rounded-xl bg-zinc-100 sm:w-72 sm:rounded-2xl dark:bg-zinc-800',
-                            rotations[imageIndex % rotations.length],
+                            'relative aspect-[9/10] w-44 sm:w-72 flex-none overflow-hidden rounded-xl sm:rounded-2xl bg-zinc-100 dark:bg-zinc-800',
+                            rotations[index % rotations.length],
                         )}
                     >
                         <Image
                             src={image}
                             alt=""
-                            sizes="(min-width: 640px) 18rem, 11rem"
-                            className="absolute inset-0 h-full w-full object-cover"
+                            fill
+                            className={clsx(
+                                'object-cover',
+                                objectPositions[index]
+                            )}
+                            priority
                         />
                     </div>
                 ))}
             </div>
         </div>
-    )
+    );
 }
+
 
 export default async function Home() {
     // let articles = (await getAllArticles()).slice(0, 4)
@@ -310,14 +348,18 @@ export default async function Home() {
             <Container className="mt-9">
                 <div className="max-w-2xl">
                     <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-                        Head of Software Development, AI Engineer and Founder.
+                    AI Engineer, Founder, and Tech Leader🚀
                     </h1>
                     <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-                        I’m Christian, a computer scientist and entrepreneur based in Munich.
-                        I'm the founder of AInleuchtend, a company specializing in AI workshops for executives,
-                        politicians, and businesses, catering to both beginners and experts. We provide AI
-                        strategy advisory and oversee the implementation and management of AI projects for companies
-                        seeking to harness the potential of artificial intelligence.
+                    
+I’m Christian, a computer scientist and entrepreneur based in Munich with over 5 years of experience as a software developer. Currently, I work as an AI Engineer at Cancom, where I design and implement state-of-the-art AI systems for enterprise clients.
+
+I earned my Master’s degree in Computer Science from LMU Munich, where I also spent my research time at BMW, focusing on fine-tuning retriever and generator components in Retrieval-Augmented Generation (RAG) systems.
+
+Previously, I served as Head of Operations at Aqarios, where I led a team of 10+ software engineers and managed the development of the Luna Platform — a PaaS  solution that enables businesses to seamlessly integrate with quantum computing backends and accelerates quantum application development.
+
+I'm also the founder of AInleuchtend, a company dedicated to empowering executives, politicians, and businesses through AI workshops and strategic consulting. We help organizations build and manage impactful, real-world AI solutions.
+                       
                     </p>
                     <div className="mt-6 flex gap-6">
                         {/*<SocialLink href="#" aria-label="Follow on X" icon={XIcon}/>*/}
