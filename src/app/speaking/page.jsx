@@ -4,6 +4,7 @@ import {Section} from '@/components/Section';
 import {SimpleLayout} from '@/components/SimpleLayout';
 import {getAllSpeakings} from "@/lib/speakings";
 import {formatDate} from '@/lib/formatDate'
+import Link from 'next/link';
 
 function SpeakingSection({title, children}) {
     return (
@@ -38,7 +39,29 @@ export default async function Speaking() {
     return (
         <SimpleLayout
             title="An overview of the venues where I lead discussions and workshops on AI."
-            intro="The audiences and events vary, ranging from companies and industry experts to public events designed for beginners in the field. Check out the dates and details of upcoming and past events to see where I'll be sharing insights next."
+            intro={
+                <>
+                    For the past years, I did many events etc. with{' '}
+                    <Link
+                        href="https://www.ainleuchtend.de"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-teal-500 hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300 transition-colors"
+                    >
+                        AInleuchtend
+                    </Link>{' '}
+                    and spoke in front of thousands of people on hundreds of events. At some point, I stopped updating the page as there were times with 5 events a week. You find the track record until February 2025 below or visit{' '}
+                    <Link
+                        href="https://www.ainleuchtend.de"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-teal-500 hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300 transition-colors"
+                    >
+                        www.ainleuchtend.de
+                    </Link>{' '}
+                    for more information. The audiences and events vary, ranging from companies and industry experts to public events designed for beginners in the field.
+                </>
+            }
         >
             <div className="space-y-20">
                 <SpeakingSection title="Upcoming">

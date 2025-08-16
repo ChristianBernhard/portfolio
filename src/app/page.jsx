@@ -346,20 +346,16 @@ export default async function Home() {
     return (
         <>
             <Container className="mt-9">
-                <div className="max-w-2xl">
+                                <div className="max-w-2xl">
                     <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-                    AI Engineer, Founder, and Tech Leader🚀
+                        AI Engineer, Founder, and Solution Architect 🚀
                     </h1>
                     <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-                    
-I’m Christian, a computer scientist and entrepreneur based in Munich with over 5 years of experience as a software developer. Currently, I work as an AI Engineer at Cancom, where I design and implement state-of-the-art AI systems for enterprise clients.
-
-I earned my Master’s degree in Computer Science from LMU Munich, where I also spent my research time at BMW, focusing on fine-tuning retriever and generator components in Retrieval-Augmented Generation (RAG) systems.
-
-Previously, I served as Head of Operations at Aqarios, where I led a team of 10+ software engineers and managed the development of the Luna Platform — a PaaS  solution that enables businesses to seamlessly integrate with quantum computing backends and accelerates quantum application development.
-
-I'm also the founder of AInleuchtend, a company dedicated to empowering executives, politicians, and businesses through AI workshops and strategic consulting. We help organizations build and manage impactful, real-world AI solutions.
-                       
+                        I'm Christian, a computer scientist and entrepreneur based in Munich with 5+ years of experience in software engineering and AI. Currently, I work as an AI Engineer & AI Consultant at Cancom, where I design and deliver enterprise-grade AI solutions with LLMs, RAG, and multi-agent systems.
+                        
+                        I earned my M.Sc. in Computer Science from LMU Munich, conducting research at BMW on fine-tuning retrievers and generators in Retrieval-Augmented Generation systems. Previously, I served as Head of Operations at Aqarios, leading a team of 10+ engineers in developing the Luna Platform, a SaaS solution for quantum computing integration.
+                        
+                        I'm also the founder of AInleuchtend, where I advise organizations, executives, and public institutions on AI strategy and deliver workshops that make AI accessible, actionable, and impactful.
                     </p>
                     <div className="mt-6 flex gap-6">
                         {/*<SocialLink href="#" aria-label="Follow on X" icon={XIcon}/>*/}
