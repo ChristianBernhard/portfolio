@@ -1,0 +1,56 @@
+import {ArticleLayout} from '@/components/ArticleLayout'
+
+export const article = {
+    author: 'Christian Bernhard',
+    language: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    date: '2025-01-15',
+    title: 'Memory Requirements for Finetuning Large Language Models',
+    description:
+        'Understanding the massive memory demands of finetuning 70B parameter models and efficient solutions like LoRA and QLoRA.',
+}
+
+export const metadata = {
+    title: article.title,
+    description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+## Memory Requirements for Finetuning Large Language Models
+
+💾Memory Requirements for Finetuning Large Language Models
+
+Finetuning a 70B parameter model comes with serious memory demands:
+1️⃣ Base weights: 140 GB (BF16)
+2️⃣ Gradients: +140 GB
+3️⃣ Optimizer states (Adam): +280 GB
+4️⃣ Activations: Variable, can easily add 100s of GB
+
+🧮Conclusion: Full Fine-Tuning requires a ton of GPUs e.g. H100s. 
+
+Solution:
+✅ LoRA: drastically reduces memory by freezing base weights and training small low-rank adapters.
+✅ QLoRA: Combine LoRA with quantization to shrink weight memory, making it possible to finetune on a single H100.
+
+<div className="my-8 flex justify-center">
+    <iframe 
+        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7323736559374032897?compact=1" 
+        height="399" 
+        width="504" 
+        frameBorder="0" 
+        allowFullScreen="" 
+        title="Eingebetteter Beitrag"
+        className="rounded-lg shadow-lg"
+    ></iframe>
+</div>
+
+### Resources and Further Reading
+
+- [Original LinkedIn Post](https://www.linkedin.com/feed/update/urn:li:activity:7323736757147979777/)
+- [LoRA Paper: Low-Rank Adaptation of Large Language Models](https://arxiv.org/abs/2106.09685)
+- [QLoRA Paper: Efficient Finetuning of Quantized LLMs](https://arxiv.org/abs/2305.14314)
+- Connect with me on [LinkedIn](https://www.linkedin.com/in/christian-bernhard-597224199/) for more AI engineering discussions
+
+---
+
+*This article accompanies the LinkedIn post about memory requirements for finetuning large language models.*

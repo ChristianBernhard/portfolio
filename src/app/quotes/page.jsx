@@ -43,6 +43,9 @@ const quotes = [
     {author: "Sam Altman", text: "Tip for early stage startups: No matter how great your idea is, no one cares. Everyone is to busy. You can rely on that to protect your idea."},
     {author: "Unknown", text: "When selling: Change the conversation from price to value."},
     {author: "Jeff Bezos", text: "Stress primarly comes from not taking action, over something that you can have some control over."},
+    {author: "Unknown", text: "Decisions beat delays. You can fix a wrong call faster than no call."},
+    {author: "Unknown", text: "Calm is contagious. Your team mirrors your state. Stay steady."},
+    {author: "Unknown", text: "Protect thinking time. Urgency kills strategy if you let it."},
 
 
 ];

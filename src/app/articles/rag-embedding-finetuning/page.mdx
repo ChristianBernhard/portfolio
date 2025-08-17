@@ -1,0 +1,48 @@
+import {ArticleLayout} from '@/components/ArticleLayout'
+
+export const article = {
+    author: 'Christian Bernhard',
+    language: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    date: '2025-01-16',
+    title: 'Boost Your RAG Pipeline Performance with Fine-Tuning Your Embedding Model',
+    description:
+        'Learn how to fine-tune Hugging Face embedding models on your own data using contrastive learning with MultiNegativeRankingLoss.',
+}
+
+export const metadata = {
+    title: article.title,
+    description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+## Boost Your RAG Pipeline Performance with Fine-Tuning Your Embedding Model
+
+🚀 Boost Your RAG Pipeline Performance with Fine-Tuning Your Embedding Model
+
+This video walks you through how to fine-tune any Hugging Face embedding model on your own data using contrastive learning with MultiNegativeRankingLoss.
+
+🏆Advantage: No handcrafted negatives required. Instead, MNR-Loss leverages in-batch negatives, treating all other samples in the batch as incorrect contexts. This trains the model to pull relevant context closer to the query while pushing irrelevant ones further away.
+
+Fine-tuning an off-the-shelf embedding model can significantly boost your RAG pipeline's retrieval quality in production. In this tutorial, we improve accuracy@1 by 8% 🔍💥
+
+<div className="my-8 flex justify-center">
+    <iframe 
+        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7324792181871857664?compact=1" 
+        height="399" 
+        width="504" 
+        frameBorder="0" 
+        allowFullScreen="" 
+        title="Eingebetteter Beitrag"
+        className="rounded-lg shadow-lg"
+    ></iframe>
+</div>
+
+### Resources and Further Reading
+
+- [Original LinkedIn Post](https://www.linkedin.com/feed/update/urn:li:ugcPost:7324792181871857664)
+- Connect with me on [LinkedIn](https://www.linkedin.com/in/christian-bernhard-597224199/) for more AI engineering discussions
+
+---
+
+*This article accompanies the LinkedIn video about fine-tuning embedding models for RAG pipelines.*

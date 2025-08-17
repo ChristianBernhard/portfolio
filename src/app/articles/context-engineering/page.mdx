@@ -1,0 +1,51 @@
+import {ArticleLayout} from '@/components/ArticleLayout'
+
+export const article = {
+    author: 'Christian Bernhard',
+    language: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+    date: '2025-02-15',
+    title: 'Context Engineering in 2 Minutes',
+    description:
+        'Understanding why context engineering is crucial for LLM agents - giving models only what they really need for better performance and lower costs.',
+}
+
+export const metadata = {
+    title: article.title,
+    description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+## Context Engineering in 2 Minutes
+
+🎯 Context Engineering in 2 Minutes
+
+LLMs don't just process prompts anymore - Agents handle system instructions, memory, retrieved data, tools, and more. Context Engineering means giving the model only what it really needs. 
+
+Why is that important?
+💸 You pay for every token
+⚠️ Irrelevant or wrong context = degraded answers (e.g., context poisoning)
+🧠 Good context → better output, faster responses, lower cost
+
+Correct context is all you need.
+
+<div className="my-8 flex justify-center">
+    <iframe 
+        src="https://www.linkedin.com/embed/feed/update/urn:li:ugcPost:7351345962390274049?compact=1" 
+        height="399" 
+        width="504" 
+        frameBorder="0" 
+        allowFullScreen="" 
+        title="Eingebetteter Beitrag"
+        className="rounded-lg shadow-lg"
+    ></iframe>
+</div>
+
+### Resources and Further Reading
+
+- [Original LinkedIn Post](https://www.linkedin.com/feed/update/urn:li:ugcPost:7351345962390274049)
+- Connect with me on [LinkedIn](https://www.linkedin.com/in/christian-bernhard-597224199/) for more AI engineering discussions
+
+---
+
+*This article accompanies the LinkedIn video about context engineering for LLM agents.*
