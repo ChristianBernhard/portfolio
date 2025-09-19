@@ -1,0 +1,298 @@
+import { ArticleLayout } from '@/components/ArticleLayout'
+import { ArticleSwitcher } from '@/components/ArticleSwitcher'
+
+export const article = {
+  author: 'Christian Bernhard',
+  language: "🏴󠁧󠁢󠁥󠁮󠁧󠁿",
+  date: '2025-09-19',
+  title: 'Defeating LLM Nondeterminism in Production: Batch Invariance, Not "GPU Randomness"',
+  description:
+    'Even with temperature=0, LLMs can produce different outputs due to batch composition changes. Learn how batch-invariant kernels solve this production challenge.',
+}
+
+export const metadata = {
+  title: article.title,
+  description: article.description,
+}
+
+export default (props) => <ArticleLayout article={article} {...props} />
+
+<ArticleSwitcher 
+  ceoContent={
+    <div>
+      <h1>Why Deterministic AI Matters for Business</h1>
+      
+      <h2>The Problem</h2>
+      <p>Even when you configure today's large language models (LLMs) to be "deterministic" (temperature = 0, top_p = 1), you can still get <strong>different answers to the same prompt</strong>.</p>
+      <p>Why? Because modern inference servers merge requests from many users to boost efficiency. The way those requests are grouped — the <strong>batch size</strong> — can subtly change the math inside the model and lead to different outputs.</p>
+      
+      <p>That means:</p>
+      <ul>
+        <li><strong>Auditability is broken.</strong> Regulators and customers can't rely on consistent answers.</li>
+        <li><strong>Debugging is harder.</strong> You can't reproduce an issue if the model's behavior shifts depending on server load.</li>
+        <li><strong>Operational risk increases.</strong> Your product experience depends on other users' traffic patterns.</li>
+      </ul>
+
+      <hr />
+
+      <h2>The Breakthrough</h2>
+      <p>Thinking Machines Lab discovered that the real cause of nondeterminism is <strong>batch-sensitive math inside GPU kernels</strong>, not "randomness" in GPUs.</p>
+
+      <p>They built <strong>batch-invariant kernels</strong> — custom low-level functions that guarantee the model computes results the same way regardless of batch size or server load.</p>
+
+      <p>When plugged into inference engines like <strong>vLLM</strong>, these kernels deliver:</p>
+      <ul>
+        <li><strong>True reproducibility:</strong> same prompt → same output, every time.</li>
+        <li><strong>Production-grade reliability:</strong> deterministic behavior even with continuous batching.</li>
+        <li><strong>Acceptable trade-offs:</strong> a modest performance hit (~10-20%) in exchange for full determinism.</li>
+      </ul>
+
+      <hr />
+
+      <h2>Why This Matters for Leaders</h2>
+      <ul>
+        <li><strong>Compliance:</strong> In regulated industries (finance, healthcare, government), deterministic outputs are a requirement, not a nice-to-have.</li>
+        <li><strong>Trust:</strong> Customers expect consistency — reproducible AI is a foundation for credibility.</li>
+        <li><strong>Control:</strong> Determinism means you actually own your product's behavior, rather than letting it drift with infrastructure conditions.</li>
+      </ul>
+
+      <hr />
+
+      <h2>What's Next</h2>
+      <ul>
+        <li>Major inference engines (vLLM, PyTorch FlexAttention, etc.) are already integrating these kernels.</li>
+        <li>Expect a <strong>"deterministic mode" flag</strong> in production AI servers soon.</li>
+        <li>Long term: the same principles will be extended to multi-GPU and probabilistic sampling modes.</li>
+      </ul>
+
+      <hr />
+
+      <h2>The Takeaway</h2>
+      <p>Determinism is not about slowing AI down — it's about making it <strong>trustworthy</strong>.</p>
+      <p>Batch-invariant kernels show that we can have both <strong>scalable performance</strong> and <strong>regulatory-grade reproducibility</strong>.</p>
+      
+      <p>This is a turning point: AI can finally behave like a predictable piece of enterprise software, not a black box.</p>
+    </div>
+  }
+  ctoContent={
+    <div>
+      <h1>Defeating LLM Nondeterminism in Production: Batch Invariance, Not "GPU Randomness"</h1>
+      
+      <p><strong>TL;DR.</strong> Even with <code>temperature=0</code> and <code>top_p=1</code>, the same prompt can produce different completions if your inference server's <strong>batch size or batch composition changes over time</strong>. The core culprit isn't "GPU race conditions" in the forward pass — it's that many kernels are <strong>not batch-invariant</strong>, so numerics shift when the server merges or slices requests (e.g., via continuous batching). Thinking Machines' new work proposes and open-sources <strong>batch-invariant kernels</strong> (RMSNorm, matmul, attention — including a fixed-size split strategy for decoding) and demonstrates a vLLM-based deterministic pipeline.</p>
+
+      <hr />
+
+      <h2>Why this matters (for anyone shipping agents)</h2>
+
+      <ul>
+        <li><strong>Auditability & regulatory pressure.</strong> In banking, healthcare, and other regulated domains, "same input → same output" is a baseline requirement.</li>
+        <li><strong>Reliable evals and debugging.</strong> If your outputs drift because server load changed, you can't trust eval deltas or reproduction of bugs.</li>
+        <li><strong>Operational sanity.</strong> With continuous batching, multi-tenant load constantly reshapes batches; if output quality depends on that, you don't really control your product.</li>
+      </ul>
+
+      <hr />
+
+      <h2>Quick glossary</h2>
+
+      <ul>
+        <li><strong>Deterministic decoding</strong>: Greedy or temperature-0 sampling with fixed seeds and fixed runtime configuration.</li>
+        <li><strong>Run-to-run determinism (kernel)</strong>: Invoking the <strong>same kernel</strong> on the <strong>same inputs</strong> returns <strong>bitwise-identical</strong> outputs.</li>
+        <li><strong>Batch invariance (kernel/system)</strong>: An operation's result for item <em>i</em> is <strong>independent of other items</strong> in the batch and <strong>independent of the batch size</strong> and internal slicing; i.e., same numerics for item <em>i</em> regardless of what else is co-processed.</li>
+        <li><strong>Continuous batching</strong>: Inference servers (e.g., vLLM) <strong>dynamically</strong> merge/split requests across steps to maximize throughput and GPU occupancy.</li>
+        <li><strong>KV cache / paged attention</strong>: Long-context inference stores K/V tensors in GPU/CPU pages; attention reads a concatenation of <strong>cached</strong> past tokens plus <strong>current</strong> tokens.</li>
+      </ul>
+
+      <hr />
+
+      <h2>The popular hypothesis — and what's actually happening</h2>
+
+      <h3>The traditional explanation</h3>
+      <p>People often blame nondeterminism on <strong>floating-point non-associativity + concurrency</strong>:</p>
+      <ul>
+        <li>Floating point is non-associative: <code>(a + b) + c != a + (b + c)</code> in finite precision.</li>
+        <li>On GPUs, parallel reductions can complete in different orders, so "race order" → different sums → different logits → different tokens.</li>
+      </ul>
+
+      <h3>The observation that overturns it</h3>
+      <p>For the <strong>LLM forward pass</strong>, you can repeatedly run the <strong>same</strong> matmul on the <strong>same</strong> inputs and get <strong>bitwise-identical</strong> results; i.e., the common forward kernels are <strong>run-to-run deterministic</strong> under fixed shapes and code paths. The forward pass rarely needs atomics; modern kernels use techniques (e.g., split reductions combined deterministically, or semaphore ordering) that avoid nondeterminism while retaining parallel speed.</p>
+
+      <p><strong>So where does user-visible nondeterminism come from?</strong><br />
+      From <strong>batch-size/shape-dependent numerics</strong>. Many kernels choose <strong>different reduction trees, tilings, or code paths</strong> depending on batch size, sequence length, and how the KV cache is partitioned — and all of those are influenced by <strong>continuous batching</strong> and prefill/decoding strategies. Your request's numbers change <strong>because other users changed the batch</strong>.</p>
+
+      <hr />
+
+      <h2>Batch invariance is the real requirement</h2>
+
+      <p>To make an LLM server deterministic <strong>from the user's perspective</strong>, each op must be <strong>batch-invariant</strong>:</p>
+      <ul>
+        <li>The <strong>reduction order</strong> and <strong>tiling</strong> per item must <strong>not depend</strong> on batch size, batch composition, or chunking of that item's sequence.</li>
+        <li>The <strong>attention reduction</strong> must be invariant to whether tokens arrive via prefill vs. decoding and to the exact KV cache boundary conditions (e.g., partial blocks).</li>
+      </ul>
+
+      <p>In practice, that means fixing or constraining algorithms/parameters across three reduction-bearing ops:<br />
+      1) <strong>RMSNorm</strong>, 2) <strong>Matmul</strong>, 3) <strong>Attention</strong>.</p>
+
+      <hr />
+
+      <h2>What changes under the hood (and why)</h2>
+
+      <h3>1) RMSNorm: data-parallel strategy (avoid split reductions)</h3>
+      <ul>
+        <li><strong>Goal:</strong> Each element's reduction over <code>hidden_dim</code> must have a <strong>fixed order</strong> regardless of batch size.</li>
+        <li><strong>Strategy:</strong> Use <strong>data parallelism</strong> across batch elements (one batch element per core / SM). When batch is small (few rows), resist the urge to "split" reductions across cores (which would alter reduction order). Accept a small slowdown at tiny batch sizes instead of changing the reduction tree.</li>
+        <li><strong>Edge case:</strong> If you truly must split (extremely small batch sizes), you've lost batch invariance. The paper's recommendation is to <strong>ignore</strong> that optimization and eat the (usually minor) perf cost to maintain determinism.</li>
+      </ul>
+
+      <h3>2) Matmul: avoid Split-K and shape-adaptive tiling for determinism</h3>
+      <ul>
+        <li><strong>Problem:</strong> Many matmul libraries dynamically choose <strong>Split-K</strong> or different tile sizes based on shapes/batch size. That changes accumulation order.</li>
+        <li><strong>Fix:</strong> Compile and pin <strong>one kernel configuration</strong> (tile sizes, wave quantization, etc.) for all shapes relevant to LLM inference. Avoid Split-K in the forward pass.</li>
+        <li><strong>Trade-off:</strong> ~<strong>20% perf</strong> loss versus highly tuned cuBLAS at some shapes is reported, but acceptable for inference with large model dims where Split-K is least needed.</li>
+      </ul>
+
+      <h3>3) Attention: two hard parts</h3>
+      <p><strong>(a) Prefill vs. decoding symmetry and KV boundaries</strong></p>
+      <ul>
+        <li>Many engines handle <strong>cached K/V</strong> and <strong>current K/V</strong> in separate loops/blocks. With paged KV and block sizes (e.g., 32/64), you can create different patterns of <strong>full vs. masked blocks</strong> across the "cache" and "current" segments, which <strong>changes the reduction order</strong> for the same query token.</li>
+        <li><strong>Fix:</strong> <strong>Materialize/merge</strong> the KV layout <strong>before</strong> launching the attention kernel so the kernel "sees" a <strong>consistent, contiguous</strong> K/V region. Ensure the kernel's reduction order over that region is identical whether those K/V came from cache or current tokens.</li>
+      </ul>
+
+      <p><strong>(b) Decoding requires split-KV — do it in a fixed-size way</strong></p>
+      <ul>
+        <li>During decoding, query length ≈ 1, so to saturate the GPU you <strong>must</strong> parallelize over the <strong>KV length</strong> (the reduction dimension). Traditional "balanced" schedulers split KV into <strong>equal-length</strong> chunks <strong>based on how many queries are present</strong> — that makes reduction order depend on batch composition.</li>
+        <li><strong>Fix:</strong> Use a <strong>fixed split <em>size</em></strong>, not a fixed number of splits.
+          <ul>
+            <li>Example: For KV length 1000, use <strong>3×256 + 1×232</strong> regardless of how many queries are in flight.</li>
+            <li>The <strong>number</strong> of splits varies, but the <strong>order</strong> of elemental reductions per query is <strong>identical</strong> across batch compositions.</li>
+          </ul>
+        </li>
+        <li><strong>Implementation note:</strong> This required light modifications in the <strong>FlexAttention</strong> backend to pin scheduling/tiling and to update KV page tables before the kernel.</li>
+      </ul>
+
+      <hr />
+
+      <h2>Where continuous batching and kernel fusion fit in</h2>
+
+      <ul>
+        <li><strong>Continuous batching (vLLM, SGLang, etc.).</strong> Great for throughput; <strong>bad</strong> for determinism if kernels are not batch-invariant, because the <strong>effective shapes per step</strong> (and per token!) keep changing as requests join/leave the batch. Batch-invariant kernels make continuous batching <strong>compatible</strong> with determinism.</li>
+        <li><strong>Kernel fusion.</strong> Fusion (e.g., FlashAttention v2) reduces memory traffic and accelerates inference. Fusion per se is <strong>not</strong> the cause of nondeterminism; the issue is <strong>how fused kernels pick reduction/tiling strategies</strong>. Fused attention that separately loops "cache" vs "current" or picks splits based on batch composition can break batch invariance; fused attention with <strong>fixed, shape-independent</strong> strategies preserves it.</li>
+      </ul>
+
+      <hr />
+
+      <h2>Implementation: how Thinking Machines made vLLM deterministic</h2>
+
+      <ul>
+        <li><strong>Kernel library.</strong> A set of <strong>batch-invariant ops</strong> (RMSNorm, matmul, attention) wired via <code>torch.Library</code> so you can transparently swap them into PyTorch models with minimal code changes.</li>
+        <li><strong>Attention backend.</strong> The prototype integrates with <strong>PyTorch FlexAttention</strong> to control scheduling/tiling and <strong>update KV layouts before the kernel</strong> runs.</li>
+        <li><strong>vLLM demo / PoC.</strong> They show a vLLM configuration that routes core ops through the batch-invariant implementations to produce <strong>identical token streams</strong> for a prompt, regardless of batch size or server load.</li>
+        <li><strong>Performance notes.</strong>
+          <ul>
+            <li>Matmul: ~<strong>20% slower</strong> than cuBLAS under some shapes when pinning a single config (no Split-K, fixed tiles).</li>
+            <li>Attention: The <strong>fixed split-size</strong> FlashDecode preserves batch invariance with <strong>modest</strong> overhead; the concrete hit depends on KV length and GPU.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <hr />
+
+      <h2>What this <strong>doesn't</strong> solve</h2>
+
+      <ul>
+        <li><strong>Sampling nondeterminism:</strong> If you use non-greedy decoding (<code>temperature&gt;0</code>, nucleus, etc.), your sampler must be controlled (PRNG seeding, device placement), and even then, across <strong>different hardware</strong> or <strong>different libraries</strong>, numerics can diverge. The work here targets the <strong>forward pass numerics</strong> so that greedy / temp=0 runs are <strong>reproducible</strong> across batchings.</li>
+        <li><strong>Cross-stack drift:</strong> Determinism still assumes <strong>identical model weights, tokenizer, runtime versions, GPU drivers, and kernel choices</strong> across runs. Change any of those and you can get drift, batch-invariance or not.</li>
+        <li><strong>Backprop/training:</strong> Backward passes regularly use atomics (e.g., FlashAttention bwd) or different algorithms; this work is about <strong>inference</strong>.</li>
+      </ul>
+
+      <hr />
+
+      <h2>Practical checklist: making your server deterministic</h2>
+
+      <p><strong>1) Pin numerics + stack</strong></p>
+      <ul>
+        <li>Same model weights/tokenizer, same PyTorch/CUDA, same attention backend (e.g., FlexAttention), same drivers.</li>
+        <li>Disable opportunistic autotuning or shape-adaptive kernel selection.</li>
+      </ul>
+
+      <p><strong>2) Swap in batch-invariant kernels</strong></p>
+      <ul>
+        <li><strong>RMSNorm:</strong> Use data-parallel reductions; avoid split reductions at small batch sizes.</li>
+        <li><strong>Matmul:</strong> Avoid Split-K; compile and pin a <strong>single</strong> tile/wave config for your shapes.</li>
+        <li><strong>Attention:</strong>
+          <ul>
+            <li>Update/merge KV page tables <strong>before</strong> kernel; don't treat cache vs current as separate reduction phases.</li>
+            <li>Use <strong>fixed split-size</strong> FlashDecode so decoding reduction order is independent of batch composition.</li>
+          </ul>
+        </li>
+      </ul>
+
+      <p><strong>3) Server integration</strong></p>
+      <ul>
+        <li>vLLM or SGLang: select a backend that supports FlexAttention; insert <code>torch.Library</code> patches to route ops to batch-invariant versions.</li>
+        <li>Keep <strong>continuous batching enabled</strong> — now it won't change outputs.</li>
+      </ul>
+
+      <p><strong>4) Validation</strong></p>
+      <ul>
+        <li>Build a harness that:
+          <ul>
+            <li>Replays the <strong>same prompt N times</strong> under <strong>different concurrent loads</strong> and batch sizes.</li>
+            <li>Differs <strong>logits</strong> and <strong>tokens</strong> step-by-step, not only final strings.</li>
+          </ul>
+        </li>
+        <li>Confirm <strong>bitwise</strong> or <strong>ulp-level</strong> identity for logits; strict token identity for outputs.</li>
+      </ul>
+
+      <hr />
+
+      <h2>Deeper technical notes (for infra folks)</h2>
+
+      <ul>
+        <li><strong>Why most forward ops don't need atomics.</strong> With adequate <strong>batch</strong> parallelism, reductions can be done <strong>within</strong> a threadblock/SM and combined deterministically via fixed trees or semaphores. Atomics are more common in backward passes (e.g., scatter-add).</li>
+        <li><strong>Why fixed tile sizes matter.</strong> GPU GEMM performance often relies on tile/wave quantization that changes with shape. Pinning a single config avoids tiling changes that subtly reorder accumulation.</li>
+        <li><strong>KV "boundary conditions" are the hidden landmine.</strong> With block size <code>B</code> and KV length <code>L</code>, separate loops over cache/current KVs create <strong>extra masked blocks</strong> (e.g., 5 blocks instead of 4 for the same total length), changing reduction order. "Pre-assemble" K/V and masks so the same query token always reduces over the same block sequence.</li>
+        <li><strong>Fixed split-size vs fixed #splits.</strong> Fixed <strong>#splits</strong> (equal partitions) means the per-split spans depend on <strong>Q</strong> (number of queries processed), breaking batch invariance. Fixed <strong>split size</strong> holds spans constant; the kernel emits however many splits are needed to cover KV.</li>
+      </ul>
+
+      <hr />
+
+      <h2>What to watch next</h2>
+
+      <ul>
+        <li><strong>Upstreaming into inference servers.</strong> vLLM PRs and equivalent issues in SGLang/FlashInfer/FlexAttention are already in motion. Expect flags like <code>--deterministic</code> that pin kernels and schedulers.</li>
+        <li><strong>Beyond greedy:</strong> Deterministic <strong>probabilistic</strong> decoding (temperature&gt;0) needs careful PRNG control, reproducible sorting/top-k numerics, and pinned device placement to avoid cross-device drift.</li>
+        <li><strong>Multi-GPU / tensor parallel.</strong> Ensuring <strong>identical all-reduce order</strong> and identical sharding layouts is the next frontier for full cluster-level determinism.</li>
+      </ul>
+
+      <hr />
+
+      <h2>Bottom line</h2>
+
+      <p>"Make it deterministic" isn't about forbidding GPUs from running in parallel. It's about <strong>engineering batch-invariant numerics</strong> so that <strong>continuous batching no longer changes the math</strong>. Thinking Machines' batch-invariant kernels show this is practical today — with small, predictable performance costs — and unlock the kind of reproducibility production teams have been asking for for years.</p>
+    </div>
+  }
+/>
+
+---
+
+## Key Takeaways
+
+Whether you're approaching this from a business or technical perspective, the core insight remains: **true deterministic AI requires batch-invariant operations**. The traditional focus on "GPU randomness" misses the real issue—that modern inference infrastructure changes the underlying mathematics based on server load.
+
+### Next Steps
+
+- **For Business Leaders:** Assess which of your AI applications require deterministic behavior and plan a phased implementation
+- **For Technical Teams:** Start with the validation tools to measure your current nondeterminism, then implement batch-invariant kernels for critical systems
+
+The future of reliable AI systems depends on getting the infrastructure right. Batch invariance isn't just a technical nicety—it's the foundation for trustworthy AI in production.
+
+---
+
+### References and Resources
+
+- [Thinking Machines Lab blog post](https://thinkingmachines.ai/blog/defeating-nondeterminism-in-llm-inference/)
+- [GitHub repo (batch-invariant kernels)](https://github.com/thinking-machines-lab/batch_invariant_ops)
+- [vLLM PR for deterministic inference](https://github.com/vllm-project/vllm/pull/6625)
+- [PyTorch FlexAttention documentation](https://pytorch.org/blog/flexattention-for-inference/)
+- [Simon Willison's coverage](https://simonwillison.net/2025/Sep/11/defeating-nondeterminism/)
+- [Hacker News discussion](https://news.ycombinator.com/item?id=41525301)
