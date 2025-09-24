@@ -6,6 +6,7 @@ import {Button} from '@/components/Button'
 import {Card} from '@/components/Card'
 import {Container} from '@/components/Container'
 import {GitHubIcon, LinkedInIcon,} from '@/components/SocialIcons'
+import {NewsletterButton} from '@/components/NewsletterButton'
 import logoAInleuchtend from '@/images/logos/ainleuchtend.png'
 import logoCancom from '@/images/logos/cancom.png'
 import logoBMW from '@/images/logos/bmw.png'
@@ -381,6 +382,19 @@ export default async function Home() {
             <Container className="mt-24 md:mt-28">
                 <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
                     <div className="flex flex-col gap-16">
+                        <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+                            <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
+                                <MailIcon className="h-6 w-6 flex-none"/>
+                                <span className="ml-3">KI Newsletter</span>
+                            </h2>
+                            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
+                                Dein Update zu Künstlicher Intelligenz - klar, aktuell, relevant. Wir liefern dir jeden Sonntag frische KI-News ins Postfach.
+                            </p>
+                            <div className="mt-6">
+                                <NewsletterButton className="w-full" />
+                            </div>
+                        </div>
+                        
                         <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
                             Upcoming Events I Will Lead
                         </h2>
@@ -403,7 +417,6 @@ export default async function Home() {
                         </div>
                     </div>
                     <div className="space-y-10 lg:pl-16 xl:pl-24">
-                        {/*<Newsletter/>*/}
                         <Resume/>
                     </div>
                 </div>
