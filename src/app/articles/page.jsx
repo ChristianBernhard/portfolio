@@ -106,7 +106,7 @@ export default async function ArticlesIndex() {
           <SectionDivider
             icon="✍️"
             title="Articles From Me"
-            subtitle="Technical deep-dives and thought leadership"
+            subtitle="Technical articles and tutorials"
           />
           <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
             <div className="flex max-w-3xl flex-col space-y-16">
