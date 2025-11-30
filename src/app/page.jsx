@@ -393,6 +393,16 @@ export default async function Home() {
                             <div className="mt-6">
                                 <NewsletterButton className="w-full" />
                             </div>
+                            <div className="mt-3 text-center">
+                                <Link
+                                    href="https://steady.page/de/ainleuchtend/posts"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="text-xs text-zinc-500 transition-colors hover:text-teal-600 dark:text-zinc-400 dark:hover:text-teal-400"
+                                >
+                                    Alle bisherigen Ausgaben ansehen →
+                                </Link>
+                            </div>
                         </div>
                         
                         <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">

@@ -41,7 +41,8 @@ export default function About() {
         <Container className="mt-16 sm:mt-32">
             <div className="grid grid-cols-1 gap-y-16 lg:grid-cols-2 lg:grid-rows-[auto_1fr] lg:gap-y-12">
                 <div className="lg:pl-20">
-                    <div className="max-w-md px-2.5 lg:max-w-lg">
+                    <div className="max-w-md px-2.5 lg:max-w-lg space-y-6">
+                        {/* YouTube Video */}
                         <div className="aspect-video rounded-2xl bg-zinc-100 dark:bg-zinc-800 overflow-hidden">
                             <iframe
                                 src="https://www.youtube.com/embed/wyvxzMKuXqM?vq=hd1080&hd=1&rel=0&modestbranding=1"
@@ -51,6 +52,39 @@ export default function About() {
                                 className="w-full h-full border-0"
                             />
                         </div>
+
+                        {/* Cancom Webinar */}
+                        <Link
+                            href="https://demo.cancom-ds.de#ki-webinar"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="group block"
+                        >
+                            <div className="relative aspect-video rounded-2xl bg-zinc-100 dark:bg-zinc-800 overflow-hidden ring-1 ring-zinc-200 dark:ring-zinc-700 transition-all duration-300 group-hover:ring-teal-500 group-hover:shadow-lg group-hover:shadow-teal-500/10">
+                                <Image
+                                    src="/webinar.png"
+                                    alt="Cancom KI Webinar"
+                                    fill
+                                    className="object-cover transition-transform duration-300 group-hover:scale-105"
+                                />
+                                {/* Play Button Overlay */}
+                                <div className="absolute inset-0 flex items-center justify-center bg-black/20 transition-colors duration-300 group-hover:bg-black/30">
+                                    <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform duration-300 group-hover:scale-110">
+                                        <svg className="h-7 w-7 text-zinc-900 ml-1" fill="currentColor" viewBox="0 0 24 24">
+                                            <path d="M8 5v14l11-7z" />
+                                        </svg>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="mt-3">
+                                <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 transition-colors group-hover:text-teal-600 dark:group-hover:text-teal-400">
+                                    Vom Prompt zum Mehrwert
+                                </h3>
+                                <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">
+                                    Cancom Webinar: Wissensmanagement mit RAG & On-Prem AI-Infrastruktur. Gehostet auf dem AI Demohub – einer Plattform, die ich eigenständig entwickelt habe. <span className="text-zinc-400 dark:text-zinc-500">(ggf. runterscrollen)</span>
+                                </p>
+                            </div>
+                        </Link>
                     </div>
                 </div>
                                 <div className="lg:order-first lg:row-span-2">
