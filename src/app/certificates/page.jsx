@@ -7,6 +7,13 @@ import logoUdemy from '@/images/logos/udemy.png' // Will be replaced with actual
 
 const certificates = [
   {
+    "title": "Building AI Voice Agents for Production",
+    "provider": "DeepLearning.AI",
+    "issued": "Dec 2025",
+    "link": "https://learn.deeplearning.ai/accomplishments/c859856e-5819-4927-904a-e2c00c5bbc1f?usp=sharing",
+    "logo": logoDeepLearningAI
+  },
+  {
     "title": "Reinforcement Fine-Tuning LLMs With GRPO",
     "provider": "DeepLearning.AI",
     "issued": "Aug 2025",
