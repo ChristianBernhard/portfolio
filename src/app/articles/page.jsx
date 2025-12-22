@@ -5,6 +5,85 @@ import { getAllArticles } from '@/lib/articles'
 import { getAllExternalArticles } from '@/lib/externalArticles'
 import { formatDate } from '@/lib/formatDate'
 import { Container } from '@/components/Container'
+import Link from 'next/link'
+import Image from 'next/image'
+
+function ChevronRightIcon(props) {
+  return (
+    <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
+      <path
+        d="M6.75 5.75 9.25 8l-2.5 2.25"
+        strokeWidth="1.5"
+        strokeLinecap="round"
+        strokeLinejoin="round"
+      />
+    </svg>
+  )
+}
+
+// Map article slugs to their thumbnails
+const articleThumbnails = {
+  'context-engineering': '/context_engineering.png',
+  'rag-embedding-finetuning': '/boost_rag.png',
+  'llama-from-scratch': '/llama2_scratch.png',
+  'linkedin-ai-video': '/memory_requirements_llms.png',
+}
+
+function TechnicalArticleCard({ article }) {
+  const thumbnailSrc = articleThumbnails[article.slug] || '/thumbnail.png'
+  
+  return (
+    <Link
+      href={`/articles/${article.slug}`}
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-all hover:border-teal-500 hover:shadow-lg hover:shadow-teal-500/10 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:border-teal-400"
+    >
+      {/* Thumbnail Image */}
+      <div className="relative aspect-[16/9] w-full overflow-hidden">
+        <Image
+          src={thumbnailSrc}
+          alt={article.title}
+          fill
+          className="object-cover transition-transform duration-300 group-hover:scale-105"
+        />
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-1 flex-col justify-between p-5">
+        <div>
+          {/* Date and Language */}
+          <div className="mb-3 flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
+            <time dateTime={article.date} className="flex items-center">
+              <span className="mr-2 h-3 w-0.5 rounded-full bg-teal-500 dark:bg-teal-400" />
+              {formatDate(article.date)}
+            </time>
+            <span className="text-sm">
+              {article.language === '🏴󠁧󠁢󠁥󠁮󠁧󠁿' ? '🏴󠁧󠁢󠁥󠁮󠁧󠁿' : '🇩🇪'}
+            </span>
+          </div>
+
+          {/* Title */}
+          <h3 className="text-base font-semibold leading-snug tracking-tight text-zinc-800 transition-colors group-hover:text-teal-600 dark:text-zinc-100 dark:group-hover:text-teal-400">
+            {article.title}
+          </h3>
+
+          {/* Description */}
+          <p className="mt-2 text-sm text-zinc-600 line-clamp-2 dark:text-zinc-400">
+            {article.description}
+          </p>
+        </div>
+
+        {/* CTA */}
+        <div className="mt-4 inline-flex items-center text-sm font-medium text-teal-600 transition-colors group-hover:text-teal-700 dark:text-teal-400 dark:group-hover:text-teal-300">
+          Read article
+          <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
+        </div>
+      </div>
+
+      {/* Hover effect overlay */}
+      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/5 transition-all group-hover:ring-teal-500/50 dark:ring-white/5 dark:group-hover:ring-teal-400/50" />
+    </Link>
+  )
+}
 
 function Article({ article }) {
   return (
@@ -108,12 +187,10 @@ export default async function ArticlesIndex() {
             title="Articles From Me"
             subtitle="Technical articles and tutorials"
           />
-          <div className="md:border-l md:border-zinc-100 md:pl-6 md:dark:border-zinc-700/40">
-            <div className="flex max-w-3xl flex-col space-y-16">
-              {articles.map((article) => (
-                <Article key={article.slug} article={article} />
-              ))}
-            </div>
+          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {articles.map((article) => (
+              <TechnicalArticleCard key={article.slug} article={article} />
+            ))}
           </div>
         </div>
       </div>
