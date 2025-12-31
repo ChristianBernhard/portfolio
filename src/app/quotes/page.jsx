@@ -46,6 +46,8 @@ const quotes = [
     {author: "Unknown", text: "Decisions beat delays. You can fix a wrong call faster than no call."},
     {author: "Unknown", text: "Calm is contagious. Your team mirrors your state. Stay steady."},
     {author: "Unknown", text: "Protect thinking time. Urgency kills strategy if you let it."},
+    {author: "Unknown", text: "We are the results of our actions, not our aspirations."},
+    {author: "Dwight D. Eisenhower", text: "Plans are nothing; planning is everything."},
 
 
 ];
