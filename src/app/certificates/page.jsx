@@ -4,8 +4,23 @@ import Image from 'next/image'
 import logoDeepLearningAI from '@/images/logos/deeplearningai.png' // Will be replaced with actual logos
 import logoCoursera from '@/images/logos/coursera.png' // Will be replaced with actual logos
 import logoUdemy from '@/images/logos/udemy.png' // Will be replaced with actual logos
+import logoNvidia from '@/images/logos/nvidia.jpg'
 
 const certificates = [
+  {
+    "title": "NVIDIA Certified Professional: Gen AI LLMs (NCP-GENL)",
+    "provider": "NVIDIA",
+    "issued": "2026",
+    "link": "https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-professional/",
+    "logo": logoNvidia
+  },
+  {
+    "title": "NVIDIA-Certified Associate: Generative AI LLMs (NCA-GENL)",
+    "provider": "NVIDIA",
+    "issued": "2026",
+    "link": "https://www.nvidia.com/en-us/learn/certification/generative-ai-llm-associate/",
+    "logo": logoNvidia
+  },
   {
     "title": "Building AI Voice Agents for Production",
     "provider": "DeepLearning.AI",

@@ -7,10 +7,10 @@ export const metadata = {
     title: {
         template: '%s - Christian Bernhard',
         default:
-            'Christian Bernhard - Head of Software Development, AI Engineer and Founder.',
+            'Christian Bernhard — Team Lead AI at CANCOM, founder of AInleuchtend.',
     },
     description:
-        'I’m Christian Bernhard. I live in Munich, working on Artifical Intelligence.',
+        'Team Lead AI at CANCOM. Enterprise LLMs, RAG, and agentic systems. Founder of AInleuchtend. Based in Munich.',
     alternates: {
         types: {
             'application/rss+xml': `${process.env.NEXT_PUBLIC_SITE_URL}/feed.xml`,

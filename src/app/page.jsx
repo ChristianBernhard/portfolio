@@ -207,8 +207,8 @@ function Role({role}) {
 function Resume() {
     let resume = [
         {
-            company: 'Cancom',
-            title: 'AI Engineer',
+            company: 'CANCOM',
+            title: 'Team Lead AI',
             logo: logoCancom,
             start: '2025',
             end: {
@@ -349,10 +349,13 @@ export default async function Home() {
             <Container className="mt-9">
                                 <div className="max-w-2xl">
                     <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-                        AI Engineer, Founder, and Solution Architect 🚀
+                        Hi, I&apos;m Christian 👋
                     </h1>
+                    <p className="mt-4 text-lg font-medium text-zinc-700 dark:text-zinc-300">
+                        I lead AI at CANCOM and run AInleuchtend—consulting, custom AI software, and training—from Munich.
+                    </p>
                     <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-                        I'm Christian, a computer scientist and entrepreneur based in Munich with 5+ years of experience in software engineering and AI. Currently, I work as an AI Engineer & AI Consultant at Cancom, where I design and deliver enterprise-grade AI solutions with LLMs, RAG, and multi-agent systems.
+                        I'm Christian, a computer scientist and entrepreneur based in Munich with 5+ years of experience in software engineering and AI. As Team Lead AI at CANCOM, I lead the AI department across strategy, portfolio development, and staffing—building and positioning our end-to-end AI offering from use-case discovery to production-grade enterprise solutions. I own technical architecture for scalable applications spanning LLMs, RAG, agentic workflows, and AIoT across cloud and on-prem, and advise C-level stakeholders on cost-optimized, hardware-aware AI strategies.
                         
                         I earned my M.Sc. in Computer Science from LMU Munich, conducting research at BMW on fine-tuning retrievers and generators in Retrieval-Augmented Generation systems. Previously, I served as Head of Operations at Aqarios, leading a team of 10+ engineers in developing the Luna Platform, a SaaS solution for quantum computing integration.
                         

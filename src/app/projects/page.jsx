@@ -3,18 +3,26 @@ import logoMeta from '@/images/logos/meta.png'
 import logoWryte from '@/images/logos/wryte.png'
 import logoGitlab from '@/images/logos/gitlab.png'
 import logoTech4Germany from '@/images/logos/t4g.png'
-import logoCodingWerkstatt from '@/images/logos/codingwerkstatt.svg'
 import logoHubmap from "@/images/logos/hubmap.png"
+import logoCancom from '@/images/logos/cancom.png'
+import logoAInleuchtend from '@/images/logos/ainleuchtend.png'
 import {Card} from "@/components/Card";
 import Image from 'next/image';
 
 const projects = [
     {
-        name: 'Coding Werkstatt',
+        name: 'CANCOM AI Demo Hub',
         description:
-            'My second company: Teaching the next generation in Python and AI programming. Still Work in Progress.',
-        link: {href: 'https://www.coding-werkstatt.com/', label: 'coding-werkstatt.com'},
-        logo: logoCodingWerkstatt,
+            'Implemented the AI Demo Hub to make AI use cases tangible and interactive for clients: hands-on demos spanning LLMs, RAG, and enterprise AI patterns, hosted end-to-end on infrastructure I designed.',
+        link: {href: 'https://demo.cancom-ds.de/', label: 'demo.cancom-ds.de'},
+        logo: logoCancom,
+    },
+    {
+        name: 'AInleuchtend',
+        description:
+            'Self-employed AI consulting: advising on projects, building custom AI software, and running trainings across Germany—including a two-day programme for former President Wulff and his office, works-council advisory at Expedia, upskilling for KVB’s ~200-person IT team, a bespoke RAG with HP Medizintechnik, and 50+ Volkshochschule courses in Bavaria.',
+        link: {href: 'https://www.ainleuchtend.de/', label: 'ainleuchtend.de'},
+        logo: logoAInleuchtend,
     },
     {
         name: 'HuBMAP - Hacking the Human Vasculature',

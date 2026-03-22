@@ -33,7 +33,7 @@ function MailIcon(props) {
 export const metadata = {
     title: 'About',
     description:
-        'I’m Christian Bernhard. I live in Munich, working on Artifical Intelligence.',
+        'Christian Bernhard — Team Lead AI at CANCOM, founder of AInleuchtend, based in Munich.',
 }
 
 export default function About() {
@@ -89,28 +89,29 @@ export default function About() {
                 </div>
                                 <div className="lg:order-first lg:row-span-2">
                     <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
-                        I'm Christian 👋🏼
-                        <br />
-                        Solution Architect for Enterprise AI | Munich, Germany
+                        I&apos;m Christian Bernhard
                     </h1>
+                    <p className="mt-4 max-w-xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+                        I lead the AI team at CANCOM and founded AInleuchtend, where I work with organisations across Germany. Munich is home.
+                    </p>
                     <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">
                         <p>
-                            I specialize in designing and delivering enterprise-grade AI systems with a focus on Large Language Models (LLMs), Retrieval-Augmented Generation (RAG), and multi-agent architectures. My expertise spans the full AI lifecycle - from solution design, fine-tuning, and evaluation to governance, deployment, and user enablement - bridging the gap between cutting-edge research and real business impact.
+                            I lead CANCOM's AI department, including strategy, portfolio development, and staffing for AI initiatives. I design and deliver enterprise AI systems—LLMs, RAG, agentic workflows, and AIoT—across cloud and on-prem, and I own the technical architecture of scalable, full-stack AI applications and platforms. That spans precise GPU memory orchestration, compute sizing, and high-performance interconnects, through to optimizing inference with NVIDIA AI Enterprise (NIMs, TensorRT-LLM, NeMo), vLLM, and open models such as Qwen and Nemotron, with a strong focus on utilization, VRAM efficiency, and TCO.
                         </p>
                         <p>
-                            Hi! I'm a 27-year-old M.Sc. in Computer Science, born and raised in Munich. My passion lies at the crossroads of advanced technology and meaningful communication - two forces that led me to found AInleuchtend, a company dedicated to making AI accessible, actionable, and impactful.
+                            I'm a 28-year-old M.Sc. in Computer Science, born and raised in Munich. My passion sits at the intersection of advanced technology and clear communication—which also drives AInleuchtend, my company dedicated to making AI accessible, actionable, and impactful.
                         </p>
                         <p>
                             I earned my Master's degree from LMU Munich, where I also conducted research at BMW, fine-tuning retriever and generator components in Retrieval-Augmented Generation systems and building evaluation pipelines on high-performance NVIDIA infrastructure.
                         </p>
                         <p>
-                            Professionally, I currently work as an AI Engineer & Consultant at Cancom, helping organizations in industries such as the public sector and defense adopt LLM-based solutions. Previously, I served as Head of Operations at Aqarios, leading a 10+ engineer team in building the Luna Platform, a SaaS product enabling enterprises to integrate with quantum computing backends.
+                            At CANCOM, I act as a trusted advisor to C-level stakeholders, translating complex hardware requirements and business goals into executable, cost-optimized AI strategies—supporting organizations in sectors such as the public sector and defense. Previously, I was Head of Operations at Aqarios, leading a 10+ engineer team building the Luna Platform, a SaaS product for enterprise integration with quantum computing backends.
                         </p>
                         <p>
-                            Beyond AI, I bring over 5 years of software engineering experience across mobile, backend, and full-stack systems - giving me a strong technical foundation for architecting and integrating AI into complex enterprise environments.
+                            Beyond AI, I bring over 5 years of software engineering experience across mobile, backend, and full-stack systems—giving me a strong foundation for architecting and integrating AI into complex enterprise environments.
                         </p>
                         <p>
-                            Through AInleuchtend, I also deliver workshops, advise companies on AI strategy, and implement tailored AI systems. My clients include municipalities, global enterprises, and even former German President Christian Wulff.
+                            Through AInleuchtend, I deliver workshops, advise on AI strategy, and implement tailored AI systems. My clients include municipalities, global enterprises, and former German President Christian Wulff.
                         </p>
                     </div>
                 </div>

@@ -1,5 +1,3 @@
-import { Card } from '@/components/Card'
-import { SimpleLayout } from '@/components/SimpleLayout'
 import { ExternalArticleCard } from '@/components/ExternalArticleCard'
 import { getAllArticles } from '@/lib/articles'
 import { getAllExternalArticles } from '@/lib/externalArticles'
@@ -29,13 +27,18 @@ const articleThumbnails = {
   'linkedin-ai-video': '/memory_requirements_llms.png',
 }
 
+function languageLabel(language) {
+  if (language === '🏴󠁧󠁢󠁥󠁮󠁧󠁿') return 'English'
+  return 'German'
+}
+
 function TechnicalArticleCard({ article }) {
   const thumbnailSrc = articleThumbnails[article.slug] || '/thumbnail.png'
   
   return (
     <Link
       href={`/articles/${article.slug}`}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-all hover:border-teal-500 hover:shadow-lg hover:shadow-teal-500/10 dark:border-zinc-700 dark:bg-zinc-800 dark:hover:border-teal-400"
+      className="group relative flex flex-col overflow-hidden rounded-2xl border border-zinc-200 bg-white transition-colors hover:border-zinc-300 hover:shadow-md dark:border-zinc-700 dark:bg-zinc-800 dark:hover:border-zinc-600"
     >
       {/* Thumbnail Image */}
       <div className="relative aspect-[16/9] w-full overflow-hidden">
@@ -51,18 +54,17 @@ function TechnicalArticleCard({ article }) {
       <div className="flex flex-1 flex-col justify-between p-5">
         <div>
           {/* Date and Language */}
-          <div className="mb-3 flex items-center justify-between text-xs text-zinc-500 dark:text-zinc-400">
-            <time dateTime={article.date} className="flex items-center">
-              <span className="mr-2 h-3 w-0.5 rounded-full bg-teal-500 dark:bg-teal-400" />
+          <div className="mb-3 flex items-center justify-between gap-3 text-xs text-zinc-500 dark:text-zinc-400">
+            <time dateTime={article.date}>
               {formatDate(article.date)}
             </time>
-            <span className="text-sm">
-              {article.language === '🏴󠁧󠁢󠁥󠁮󠁧󠁿' ? '🏴󠁧󠁢󠁥󠁮󠁧󠁿' : '🇩🇪'}
+            <span className="shrink-0 rounded border border-zinc-200 px-2 py-0.5 font-medium text-zinc-600 dark:border-zinc-600 dark:text-zinc-400">
+              {languageLabel(article.language)}
             </span>
           </div>
 
           {/* Title */}
-          <h3 className="text-base font-semibold leading-snug tracking-tight text-zinc-800 transition-colors group-hover:text-teal-600 dark:text-zinc-100 dark:group-hover:text-teal-400">
+          <h3 className="text-base font-semibold leading-snug tracking-tight text-zinc-800 transition-colors group-hover:text-zinc-950 dark:text-zinc-100 dark:group-hover:text-white">
             {article.title}
           </h3>
 
@@ -73,69 +75,32 @@ function TechnicalArticleCard({ article }) {
         </div>
 
         {/* CTA */}
-        <div className="mt-4 inline-flex items-center text-sm font-medium text-teal-600 transition-colors group-hover:text-teal-700 dark:text-teal-400 dark:group-hover:text-teal-300">
+        <div className="mt-4 inline-flex items-center text-sm font-medium text-zinc-600 transition-colors group-hover:text-zinc-900 dark:text-zinc-400 dark:group-hover:text-zinc-200">
           Read article
           <ChevronRightIcon className="ml-1 h-4 w-4 stroke-current" />
         </div>
       </div>
 
-      {/* Hover effect overlay */}
-      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/5 transition-all group-hover:ring-teal-500/50 dark:ring-white/5 dark:group-hover:ring-teal-400/50" />
+      <div className="pointer-events-none absolute inset-0 rounded-2xl ring-1 ring-inset ring-zinc-900/5 dark:ring-white/5" />
     </Link>
   )
 }
 
-function Article({ article }) {
+function SectionHeading({ title, subtitle, withTopBorder = true }) {
   return (
-    <article className="md:grid md:grid-cols-4 md:items-baseline">
-      <Card className="md:col-span-3">
-        <Card.Title href={`/articles/${article.slug}`}>
-          {article.language} {article.title}
-        </Card.Title>
-        <Card.Eyebrow
-          as="time"
-          dateTime={article.date}
-          className="md:hidden"
-          decorate
-        >
-          {formatDate(article.date)}
-        </Card.Eyebrow>
-        <Card.Description>{article.description}</Card.Description>
-        <Card.Cta>Read article</Card.Cta>
-      </Card>
-      <Card.Eyebrow
-        as="time"
-        dateTime={article.date}
-        className="mt-1 hidden md:block"
-      >
-        {formatDate(article.date)}
-      </Card.Eyebrow>
-    </article>
-  )
-}
-
-function SectionDivider({ title, subtitle, icon }) {
-  return (
-    <div className="relative my-16 overflow-visible">
-      {/* Gradient line extending across the full width */}
-      <div className="absolute left-1/2 top-1/2 w-screen -translate-x-1/2 -translate-y-1/2" aria-hidden="true">
-        <div className="h-[2px] w-full bg-gradient-to-r from-transparent via-teal-500/20 to-transparent dark:via-teal-400/20" />
-      </div>
-      
-      {/* Content */}
-      <div className="relative flex justify-center">
-        <div className="flex items-center gap-4 rounded-2xl border border-zinc-200 bg-white px-8 py-4 shadow-lg shadow-zinc-800/5 ring-1 ring-zinc-900/5 backdrop-blur dark:border-zinc-700 dark:bg-zinc-800 dark:ring-white/10">
-          <span className="text-4xl" role="img" aria-label={title}>
-            {icon}
-          </span>
-          <div>
-            <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
-              {title}
-            </h2>
-            <p className="mt-1 text-sm text-zinc-600 dark:text-zinc-400">{subtitle}</p>
-          </div>
-        </div>
-      </div>
+    <div
+      className={
+        withTopBorder
+          ? 'border-t border-zinc-200 pt-12 dark:border-zinc-700/60'
+          : 'pt-2'
+      }
+    >
+      <h2 className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-100">
+        {title}
+      </h2>
+      <p className="mt-2 max-w-2xl text-sm text-zinc-600 dark:text-zinc-400">
+        {subtitle}
+      </p>
     </div>
   )
 }
@@ -158,8 +123,7 @@ export default async function ArticlesIndex() {
           Media & Articles
         </h1>
         <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-          This page features two distinct collections: <span className="font-semibold text-zinc-800 dark:text-zinc-200">media mentions and press coverage</span> about my work in AI education and consulting, 
-          followed by <span className="font-semibold text-zinc-800 dark:text-zinc-200">technical articles I've authored</span> on machine learning, LLMs, and software engineering.
+          Media mentions and press coverage appear first, followed by technical articles on machine learning, LLMs, and software engineering.
         </p>
       </header>
 
@@ -167,10 +131,10 @@ export default async function ArticlesIndex() {
         {/* Articles About Me Section */}
         {externalArticles.length > 0 && (
           <>
-            <SectionDivider
-              icon="🎯"
-              title="Articles About Me"
-              subtitle="Media mentions, interviews, and features"
+            <SectionHeading
+              title="Coverage and mentions"
+              subtitle="Interviews, news, podcasts, and other external features."
+              withTopBorder={false}
             />
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {externalArticles.map((article) => (
@@ -181,11 +145,10 @@ export default async function ArticlesIndex() {
         )}
 
         {/* Articles From Me Section */}
-        <div className="mt-24">
-          <SectionDivider
-            icon="✍️"
-            title="Articles From Me"
-            subtitle="Technical articles and tutorials"
+        <div className="mt-20">
+          <SectionHeading
+            title="Technical writing"
+            subtitle="Long-form notes and tutorials from my own pen."
           />
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {articles.map((article) => (
