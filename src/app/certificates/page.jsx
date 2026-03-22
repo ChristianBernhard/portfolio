@@ -227,7 +227,7 @@ export default function Certificates() {
                             </div>
                             
                             {/* Title with fixed height for 2 lines */}
-                            <h2 className="text-base font-semibold text-zinc-800 group-hover:text-teal-600 dark:text-zinc-100 dark:group-hover:text-teal-400 transition-colors h-12 leading-6">
+                            <h2 className="text-base font-semibold text-zinc-800 group-hover:text-stone-800 dark:text-zinc-100 dark:group-hover:text-stone-200 transition-colors h-12 leading-6">
                                 {certificate.title}
                             </h2>
                             
@@ -240,7 +240,7 @@ export default function Certificates() {
                             <div className="flex-1"></div>
                             
                             {/* View Certificate link - always at bottom */}
-                            <div className="mt-6 flex text-sm font-medium text-zinc-400 group-hover:text-teal-500 dark:text-zinc-200 dark:group-hover:text-teal-400 transition-colors">
+                            <div className="mt-6 flex text-sm font-medium text-zinc-400 group-hover:text-stone-700 dark:text-zinc-200 dark:group-hover:text-stone-300 transition-colors">
                                 <LinkIcon className="h-6 w-6 flex-none"/>
                                 <span className="ml-2">View Certificate</span>
                             </div>

@@ -1,7 +1,23 @@
+import {Cormorant_Garamond, DM_Sans} from 'next/font/google'
+
 import {Providers} from '@/app/providers'
 import {Layout} from '@/components/Layout'
 
 import '@/styles/tailwind.css'
+
+const fontSans = DM_Sans({
+    subsets: ['latin'],
+    weight: ['400', '500', '600', '700'],
+    variable: '--font-body',
+    display: 'swap',
+})
+
+const fontDisplay = Cormorant_Garamond({
+    subsets: ['latin'],
+    weight: ['400', '500', '600', '700'],
+    variable: '--font-display',
+    display: 'swap',
+})
 
 export const metadata = {
     title: {
@@ -20,8 +36,12 @@ export const metadata = {
 
 export default function RootLayout({children}) {
     return (
-        <html lang="en" className="h-full antialiased" suppressHydrationWarning>
-        <body className="flex h-full bg-zinc-50 dark:bg-black">
+        <html
+            lang="en"
+            className={`${fontSans.variable} ${fontDisplay.variable} h-full antialiased`}
+            suppressHydrationWarning
+        >
+        <body className="flex h-full bg-stone-200/90 font-sans dark:bg-zinc-950">
         <Providers>
             <div className="flex w-full">
                 <Layout>{children}</Layout>

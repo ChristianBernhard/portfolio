@@ -20,7 +20,7 @@ const projects = [
     {
         name: 'AInleuchtend',
         description:
-            'Self-employed AI consulting: advising on projects, building custom AI software, and running trainings across Germany—including a two-day programme for former President Wulff and his office, works-council advisory at Expedia, upskilling for KVB’s ~200-person IT team, a bespoke RAG with HP Medizintechnik, and 50+ Volkshochschule courses in Bavaria.',
+            'Self-employed AI consulting: advising on projects, building custom AI software, and running trainings across Germany—including a two-day programme for former President Wulff and his office, works-council advisory at Expedia, upskilling for KVB’s ~200-person IT team, a bespoke RAG with HP Medizintechnik, and 100+ Volkshochschule courses in Bavaria.',
         link: {href: 'https://www.ainleuchtend.de/', label: 'ainleuchtend.de'},
         logo: logoAInleuchtend,
     },
@@ -105,7 +105,7 @@ export default function Projects() {
                             <Card.Link href={project.link.href}>{project.name}</Card.Link>
                         </h2>
                         <Card.Description>{project.description}</Card.Description>
-                        <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-teal-500 dark:text-zinc-200">
+                        <p className="relative z-10 mt-6 flex text-sm font-medium text-zinc-400 transition group-hover:text-stone-700 dark:text-zinc-200 dark:group-hover:text-stone-300">
                             <LinkIcon className="h-6 w-6 flex-none"/>
                             <span className="ml-2">{project.link.label}</span>
                         </p>

@@ -91,7 +91,7 @@ function SectionHeading({ title, subtitle, withTopBorder = true }) {
     <div
       className={
         withTopBorder
-          ? 'border-t border-zinc-200 pt-12 dark:border-zinc-700/60'
+          ? 'border-t border-stone-200/90 pt-12 dark:border-zinc-700/60'
           : 'pt-2'
       }
     >
@@ -119,10 +119,10 @@ export default async function ArticlesIndex() {
     <Container className="mt-16 sm:mt-32">
       {/* Page Header */}
       <header className="max-w-2xl">
-        <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+        <h1 className="font-display text-4xl font-medium tracking-tight text-stone-900 sm:text-5xl dark:text-stone-100">
           Media & Articles
         </h1>
-        <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
+        <p className="mt-6 text-base leading-relaxed text-stone-600 dark:text-stone-400">
           Media mentions and press coverage appear first, followed by technical articles on machine learning, LLMs, and software engineering.
         </p>
       </header>

@@ -152,14 +152,14 @@ function NavItem({href, children}) {
                 className={clsx(
                     'relative block px-3 py-2 transition',
                     isActive
-                        ? 'text-teal-500 dark:text-teal-400'
-                        : 'hover:text-teal-500 dark:hover:text-teal-400',
+                        ? 'text-stone-900 dark:text-stone-100'
+                        : 'hover:text-stone-700 dark:hover:text-stone-300',
                 )}
             >
                 {children}
                 {isActive && (
                     <span
-                        className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-teal-500/0 via-teal-500/40 to-teal-500/0 dark:from-teal-400/0 dark:via-teal-400/40 dark:to-teal-400/0"/>
+                        className="absolute inset-x-1 -bottom-px h-px bg-gradient-to-r from-stone-900/0 via-stone-900/25 to-stone-900/0 dark:from-white/0 dark:via-white/30 dark:to-white/0"/>
                 )}
             </Link>
         </li>
@@ -198,9 +198,9 @@ function ThemeToggle() {
             onClick={() => setTheme(otherTheme)}
         >
             <SunIcon
-                className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-teal-50 [@media(prefers-color-scheme:dark)]:stroke-teal-500 [@media(prefers-color-scheme:dark)]:group-hover:fill-teal-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-teal-600"/>
+                className="h-6 w-6 fill-zinc-100 stroke-zinc-500 transition group-hover:fill-zinc-200 group-hover:stroke-zinc-700 dark:hidden [@media(prefers-color-scheme:dark)]:fill-stone-50 [@media(prefers-color-scheme:dark)]:stroke-stone-600 [@media(prefers-color-scheme:dark)]:group-hover:fill-stone-50 [@media(prefers-color-scheme:dark)]:group-hover:stroke-stone-700"/>
             <MoonIcon
-                className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-teal-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-teal-500"/>
+                className="hidden h-6 w-6 fill-zinc-700 stroke-zinc-500 transition dark:block [@media(prefers-color-scheme:dark)]:group-hover:stroke-zinc-400 [@media_not_(prefers-color-scheme:dark)]:fill-stone-400/10 [@media_not_(prefers-color-scheme:dark)]:stroke-stone-600"/>
         </button>
     )
 }

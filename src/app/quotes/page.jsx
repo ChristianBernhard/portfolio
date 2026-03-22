@@ -71,7 +71,7 @@ function Quote({ author, children }) {
     return (
         <li className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
             <blockquote
-                className="p-8 italic text-lg leading-relaxed text-gray-600 dark:text-gray-300 border-l-4 border-teal-500">
+                className="p-8 italic text-lg leading-relaxed text-stone-600 dark:text-stone-300 border-l-[3px] border-stone-400 dark:border-stone-500">
                 <p>“{children}”</p>
                 <footer className="mt-4 text-gray-500 dark:text-gray-400 text-right">{author}</footer>
             </blockquote>

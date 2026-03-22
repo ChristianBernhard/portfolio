@@ -8,6 +8,21 @@ module.exports = {
   darkMode: 'selector',
   plugins: [typographyPlugin],
   theme: {
+    extend: {
+      fontFamily: {
+        sans: ['var(--font-body)', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+        display: ['var(--font-display)', 'ui-serif', 'Georgia', 'serif'],
+      },
+      keyframes: {
+        'fade-up': {
+          from: { opacity: '0', transform: 'translateY(0.6rem)' },
+          to: { opacity: '1', transform: 'translateY(0)' },
+        },
+      },
+      animation: {
+        'fade-up': 'fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both',
+      },
+    },
     fontSize: {
       xs: ['0.8125rem', { lineHeight: '1.5rem' }],
       sm: ['0.875rem', { lineHeight: '1.5rem' }],

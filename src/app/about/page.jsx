@@ -10,9 +10,9 @@ function SocialLink({ className, href, children, icon: Icon }) {
         <li className={clsx(className, 'flex')}>
             <Link
                 href={href}
-                className="group flex text-sm font-medium text-zinc-800 transition hover:text-teal-500 dark:text-zinc-200 dark:hover:text-teal-500"
+                className="group flex text-sm font-medium text-zinc-800 transition hover:text-stone-800 dark:text-zinc-200 dark:hover:text-stone-300"
             >
-                <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-teal-500" />
+                <Icon className="h-6 w-6 flex-none fill-zinc-500 transition group-hover:fill-stone-600 dark:group-hover:fill-stone-400" />
                 <span className="ml-4">{children}</span>
             </Link>
         </li>
@@ -60,7 +60,7 @@ export default function About() {
                             rel="noopener noreferrer"
                             className="group block"
                         >
-                            <div className="relative aspect-video rounded-2xl bg-zinc-100 dark:bg-zinc-800 overflow-hidden ring-1 ring-zinc-200 dark:ring-zinc-700 transition-all duration-300 group-hover:ring-teal-500 group-hover:shadow-lg group-hover:shadow-teal-500/10">
+                            <div className="relative aspect-video rounded-2xl bg-zinc-100 dark:bg-zinc-800 overflow-hidden ring-1 ring-zinc-200 dark:ring-zinc-700 transition-all duration-300 group-hover:ring-stone-400/80 group-hover:shadow-md dark:group-hover:ring-stone-500/40">
                                 <Image
                                     src="/webinar.png"
                                     alt="Cancom KI Webinar"
@@ -77,7 +77,7 @@ export default function About() {
                                 </div>
                             </div>
                             <div className="mt-3">
-                                <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 transition-colors group-hover:text-teal-600 dark:group-hover:text-teal-400">
+                                <h3 className="text-sm font-semibold text-zinc-900 dark:text-zinc-100 transition-colors group-hover:text-stone-800 dark:group-hover:text-stone-200">
                                     Vom Prompt zum Mehrwert
                                 </h3>
                                 <p className="mt-1 text-xs text-zinc-600 dark:text-zinc-400">
@@ -88,10 +88,10 @@ export default function About() {
                     </div>
                 </div>
                                 <div className="lg:order-first lg:row-span-2">
-                    <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+                    <h1 className="font-display text-4xl font-medium tracking-tight text-stone-900 sm:text-5xl dark:text-stone-100">
                         I&apos;m Christian Bernhard
                     </h1>
-                    <p className="mt-4 max-w-xl text-lg leading-relaxed text-zinc-600 dark:text-zinc-400">
+                    <p className="mt-4 max-w-xl text-lg leading-relaxed text-stone-600 dark:text-stone-400">
                         I lead the AI team at CANCOM and founded AInleuchtend, where I work with organisations across Germany. Munich is home.
                     </p>
                     <div className="mt-6 space-y-7 text-base text-zinc-600 dark:text-zinc-400">

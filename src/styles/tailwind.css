@@ -3,7 +3,15 @@
 @import './prism.css';
 @import 'tailwindcss/utilities';
 
-/* custom.css */
+@layer base {
+  ::selection {
+    @apply bg-stone-300/90 text-stone-900;
+  }
+
+  .dark ::selection {
+    @apply bg-stone-600 text-stone-100;
+  }
+}
 
 @keyframes scroll {
     0% {

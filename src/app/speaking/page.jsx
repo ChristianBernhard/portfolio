@@ -46,7 +46,7 @@ export default async function Speaking() {
                         href="https://www.ainleuchtend.de"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-teal-500 hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300 transition-colors"
+                        className="font-medium text-stone-800 underline decoration-stone-400/60 underline-offset-2 transition hover:decoration-stone-700 dark:text-stone-200 dark:decoration-stone-500/50 dark:hover:decoration-stone-300"
                     >
                         AInleuchtend
                     </Link>{' '}
@@ -55,7 +55,7 @@ export default async function Speaking() {
                         href="https://www.ainleuchtend.de"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-teal-500 hover:text-teal-600 dark:text-teal-400 dark:hover:text-teal-300 transition-colors"
+                        className="font-medium text-stone-800 underline decoration-stone-400/60 underline-offset-2 transition hover:decoration-stone-700 dark:text-stone-200 dark:decoration-stone-500/50 dark:hover:decoration-stone-300"
                     >
                         www.ainleuchtend.de
                     </Link>{' '}

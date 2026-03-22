@@ -18,7 +18,7 @@ import image1 from '@/images/photos/image-1.png'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/beck_1.jpeg'
 import image4 from '@/images/photos/image-4.jpg'
-import image5 from '@/images/photos/beck_2.jpeg'
+import image7 from '@/images/photos/image-7.jpg'
 import {getAllSpeakings} from '@/lib/speakings'
 import {formatDate} from '@/lib/formatDate'
 
@@ -139,7 +139,7 @@ function Newsletter() {
         <form
             action="https://script.google.com/macros/s/AKfycbxKtNarPufaMjMeURmzlWYAf0zKs57rPdzfN_RnQEc/dev"
             method="POST"
-            className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40"
+            className="rounded-2xl border border-stone-200/80 p-6 dark:border-zinc-700/50"
         >
             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 <MailIcon className="h-6 w-6 flex-none"/>
@@ -155,7 +155,7 @@ function Newsletter() {
                     placeholder="Email address"
                     aria-label="Email address"
                     required
-                    className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-teal-500 focus:outline-none focus:ring-4 focus:ring-teal-500/10 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-teal-400 dark:focus:ring-teal-400/10"
+                    className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-stone-400 focus:outline-none focus:ring-4 focus:ring-stone-400/15 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-stone-500 dark:focus:ring-stone-500/20"
                 />
                 <Button type="submit" className="ml-4 flex-none">
                     Join
@@ -270,7 +270,7 @@ function Resume() {
     ]
 
     return (
-        <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+        <div className="rounded-2xl border border-stone-200/80 p-6 dark:border-zinc-700/50">
             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                 <BriefcaseIcon className="h-6 w-6 flex-none"/>
                 <span className="ml-3">Work</span>
@@ -295,14 +295,14 @@ function Photos() {
 
     // Define object-position for each image
     const objectPositions = [
-        'object-[80%_center]',        // image1 - centered
-        'object-[20%_center]',    // image2 - you're more on the left
-        'object-[95%_center]',    // image3 - you're on the right
-        'object-[10%_center]',        // image4 - centered
-        'object-[10%_0%]',    // image5 - slight left
-    ];
+        'object-[80%_center]', // image-1
+        'object-[20%_center]', // image-2
+        'object-[95%_center]', // beck_1
+        'object-[50%_center]', // image-7 (centre strip)
+        'object-[10%_center]', // image-4 (right)
+    ]
 
-    const images = [image1, image2, image3, image4, image5];
+    const images = [image1, image2, image3, image7, image4]
 
     return (
         <div className="mt-16 sm:mt-20">
@@ -311,7 +311,7 @@ function Photos() {
                     <div
                         key={image.src}
                         className={clsx(
-                            'relative aspect-[9/10] w-44 sm:w-72 flex-none overflow-hidden rounded-xl sm:rounded-2xl bg-zinc-100 dark:bg-zinc-800',
+                            'relative aspect-[9/10] w-44 sm:w-72 flex-none overflow-hidden rounded-xl sm:rounded-2xl bg-stone-100 ring-1 ring-stone-200/60 dark:bg-zinc-800 dark:ring-white/10',
                             rotations[index % rotations.length],
                         )}
                     >
@@ -348,19 +348,21 @@ export default async function Home() {
         <>
             <Container className="mt-9">
                                 <div className="max-w-2xl">
-                    <h1 className="text-4xl font-bold tracking-tight text-zinc-800 sm:text-5xl dark:text-zinc-100">
+                    <div className="animate-fade-up motion-reduce:animate-none">
+                    <h1 className="font-display text-[2.65rem] font-normal leading-[1.08] tracking-tight text-stone-900 sm:text-5xl sm:leading-[1.06] dark:text-stone-100 text-balance">
                         Hi, I&apos;m Christian 👋
                     </h1>
-                    <p className="mt-4 text-lg font-medium text-zinc-700 dark:text-zinc-300">
+                    <p className="mt-5 text-lg font-medium leading-relaxed text-stone-700 text-balance dark:text-stone-300">
                         I lead AI at CANCOM and run AInleuchtend—consulting, custom AI software, and training—from Munich.
                     </p>
-                    <p className="mt-6 text-base text-zinc-600 dark:text-zinc-400">
-                        I'm Christian, a computer scientist and entrepreneur based in Munich with 5+ years of experience in software engineering and AI. As Team Lead AI at CANCOM, I lead the AI department across strategy, portfolio development, and staffing—building and positioning our end-to-end AI offering from use-case discovery to production-grade enterprise solutions. I own technical architecture for scalable applications spanning LLMs, RAG, agentic workflows, and AIoT across cloud and on-prem, and advise C-level stakeholders on cost-optimized, hardware-aware AI strategies.
+                    <p className="mt-8 text-base leading-relaxed text-stone-600 dark:text-stone-400">
+                        I&apos;m a computer scientist and entrepreneur based in Munich with 5+ years in software engineering and AI. As Team Lead AI at CANCOM, I lead the AI department across strategy, portfolio development, and staffing—building and positioning our end-to-end AI offering from use-case discovery to production-grade enterprise solutions. I own technical architecture for scalable applications spanning LLMs, RAG, agentic workflows, and AIoT across cloud and on-prem, and advise C-level stakeholders on cost-optimized, hardware-aware AI strategies.
                         
                         I earned my M.Sc. in Computer Science from LMU Munich, conducting research at BMW on fine-tuning retrievers and generators in Retrieval-Augmented Generation systems. Previously, I served as Head of Operations at Aqarios, leading a team of 10+ engineers in developing the Luna Platform, a SaaS solution for quantum computing integration.
                         
-                        I'm also the founder of AInleuchtend, where I advise organizations, executives, and public institutions on AI strategy and deliver workshops that make AI accessible, actionable, and impactful.
+                        I&apos;m also the founder of AInleuchtend, where I advise organizations, executives, and public institutions on AI strategy and deliver workshops that make AI accessible, actionable, and impactful.
                     </p>
+                    </div>
                     <div className="mt-6 flex gap-6">
                         {/*<SocialLink href="#" aria-label="Follow on X" icon={XIcon}/>*/}
                         {/*<SocialLink*/}
@@ -385,7 +387,7 @@ export default async function Home() {
             <Container className="mt-24 md:mt-28">
                 <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
                     <div className="flex flex-col gap-16">
-                        <div className="rounded-2xl border border-zinc-100 p-6 dark:border-zinc-700/40">
+                        <div className="rounded-2xl border border-stone-200/80 p-6 dark:border-zinc-700/50">
                             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
                                 <MailIcon className="h-6 w-6 flex-none"/>
                                 <span className="ml-3">KI Newsletter</span>
@@ -401,7 +403,7 @@ export default async function Home() {
                                     href="https://steady.page/de/ainleuchtend/posts"
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="text-xs text-zinc-500 transition-colors hover:text-teal-600 dark:text-zinc-400 dark:hover:text-teal-400"
+                                    className="text-xs text-zinc-500 transition-colors hover:text-stone-800 dark:text-zinc-400 dark:hover:text-stone-300"
                                 >
                                     Alle bisherigen Ausgaben ansehen →
                                 </Link>
