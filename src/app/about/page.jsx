@@ -136,16 +136,25 @@ export default function About() {
                         Skills
                     </p>
                     <p className="hidden text-xs text-zinc-500 sm:block dark:text-zinc-400">
-                        The tools and techniques behind the work above.
+                        What I build, how I scale it, and how I enable teams and customers.
                     </p>
                 </div>
                 <div className="mt-7 grid grid-cols-1 gap-x-10 gap-y-8 sm:grid-cols-2">
                     {skills.map((group) => (
-                        <div key={group.category}>
+                        <div
+                            key={group.category}
+                            className={group.fullWidth ? 'sm:col-span-2' : undefined}
+                        >
                             <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-stone-700 dark:text-stone-300">
                                 {group.category}
                             </p>
-                            <div className="mt-3 flex flex-wrap gap-2">
+                            <div
+                                className={
+                                    group.fullWidth
+                                        ? 'mt-3 flex flex-wrap gap-2 sm:flex-nowrap'
+                                        : 'mt-3 flex flex-wrap gap-2'
+                                }
+                            >
                                 {group.items.map((item) => (
                                     <span
                                         key={item.name}
