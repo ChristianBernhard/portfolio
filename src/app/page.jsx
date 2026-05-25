@@ -1,49 +1,20 @@
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
-import {isAfter, parseISO} from 'date-fns'; // You might need to install date-fns if you haven't already
-import {Button} from '@/components/Button'
-import {Card} from '@/components/Card'
-import {Container} from '@/components/Container'
-import {GitHubIcon, LinkedInIcon,} from '@/components/SocialIcons'
-import {NewsletterButton} from '@/components/NewsletterButton'
+
+import { Container } from '@/components/Container'
+import { GitHubIcon, LinkedInIcon } from '@/components/SocialIcons'
+import { NewsletterButton } from '@/components/NewsletterButton'
 import logoAInleuchtend from '@/images/logos/ainleuchtend.png'
 import logoCancom from '@/images/logos/cancom.png'
 import logoBMW from '@/images/logos/bmw.png'
 import logoAqarios from '@/images/logos/aqarios.png'
 import logoAdesso from '@/images/logos/adesso.png'
-import logoWryte from '@/images/logos/wryte.png'
-import logoT4G from '@/images/logos/t4g.png'
 import image1 from '@/images/photos/image-1.png'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/beck_1.jpeg'
 import image4 from '@/images/photos/image-4.jpg'
 import image7 from '@/images/photos/image-7.jpg'
-import {getAllSpeakings} from '@/lib/speakings'
-import {formatDate} from '@/lib/formatDate'
-
-function MailIcon(props) {
-    return (
-        <svg
-            viewBox="0 0 24 24"
-            fill="none"
-            strokeWidth="1.5"
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            aria-hidden="true"
-            {...props}
-        >
-            <path
-                d="M2.75 7.75a3 3 0 0 1 3-3h12.5a3 3 0 0 1 3 3v8.5a3 3 0 0 1-3 3H5.75a3 3 0 0 1-3-3v-8.5Z"
-                className="fill-zinc-100 stroke-zinc-400 dark:fill-zinc-100/10 dark:stroke-zinc-500"
-            />
-            <path
-                d="m4 6 6.024 5.479a2.915 2.915 0 0 0 3.952 0L20 6"
-                className="stroke-zinc-400 dark:stroke-zinc-500"
-            />
-        </svg>
-    )
-}
 
 function BriefcaseIcon(props) {
     return (
@@ -68,104 +39,29 @@ function BriefcaseIcon(props) {
     )
 }
 
-function ArrowDownIcon(props) {
+function ArrowRightIcon(props) {
     return (
         <svg viewBox="0 0 16 16" fill="none" aria-hidden="true" {...props}>
             <path
-                d="M4.75 8.75 8 12.25m0 0 3.25-3.5M8 12.25v-8.5"
+                d="M3.75 8h8.5m0 0L8.75 4.5M12.25 8l-3.5 3.5"
                 strokeWidth="1.5"
                 strokeLinecap="round"
                 strokeLinejoin="round"
+                stroke="currentColor"
             />
         </svg>
     )
 }
 
-function Article({article}) {
-    return (
-        <Card as="article">
-            <Card.Title href={`/articles/${article.slug}`}>
-                {article.title}
-            </Card.Title>
-            <Card.Eyebrow as="time" dateTime={article.date} decorate>
-                {formatDate(article.date)}
-            </Card.Eyebrow>
-            <Card.Description>{article.description}</Card.Description>
-            <Card.Cta>Read article</Card.Cta>
-        </Card>
-    )
-}
-
-function Speaking({speaking}) {
-    return (
-        <Card as="article">
-            <Card.Title href={`/speaking/${speaking.slug}`}>
-                {speaking.title}
-            </Card.Title>
-            <Card.Eyebrow as="time" dateTime={speaking.date} decorate>
-                {formatDate(speaking.date)}
-            </Card.Eyebrow>
-            <Card.Description>{speaking.description}</Card.Description>
-            <Card.Cta href={`/speakings/${speaking.slug}`}>Read more</Card.Cta>
-        </Card>
-    )
-}
-
-function Appearance({title, description, language, date, location, cta, href}) {
-    return (
-        <Card as="article">
-            <Card.Title href={href}>
-                {title}
-            </Card.Title>
-            <Card.Eyebrow decorate>{language} {date} - {location}</Card.Eyebrow>
-            <Card.Description>{description}</Card.Description>
-            <Card.Cta href={href}>{cta}</Card.Cta>
-        </Card>
-    );
-}
-
-
-function SocialLink({icon: Icon, ...props}) {
+function SocialLink({ icon: Icon, ...props }) {
     return (
         <Link className="group -m-1 p-1" {...props}>
-            <Icon
-                className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300"/>
+            <Icon className="h-6 w-6 fill-zinc-500 transition group-hover:fill-zinc-600 dark:fill-zinc-400 dark:group-hover:fill-zinc-300" />
         </Link>
     )
 }
 
-function Newsletter() {
-    return (
-        <form
-            action="https://script.google.com/macros/s/AKfycbxKtNarPufaMjMeURmzlWYAf0zKs57rPdzfN_RnQEc/dev"
-            method="POST"
-            className="rounded-2xl border border-stone-200/80 p-6 dark:border-zinc-700/50"
-        >
-            <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                <MailIcon className="h-6 w-6 flex-none"/>
-                <span className="ml-3">Stay up to date</span>
-            </h2>
-            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                Get notified when I publish something new, and unsubscribe at any time.
-            </p>
-            <div className="mt-6 flex">
-                <input
-                    name="email"
-                    type="email"
-                    placeholder="Email address"
-                    aria-label="Email address"
-                    required
-                    className="min-w-0 flex-auto appearance-none rounded-md border border-zinc-900/10 bg-white px-3 py-[calc(theme(spacing.2)-1px)] shadow-md shadow-zinc-800/5 placeholder:text-zinc-400 focus:border-stone-400 focus:outline-none focus:ring-4 focus:ring-stone-400/15 sm:text-sm dark:border-zinc-700 dark:bg-zinc-700/[0.15] dark:text-zinc-200 dark:placeholder:text-zinc-500 dark:focus:border-stone-500 dark:focus:ring-stone-500/20"
-                />
-                <Button type="submit" className="ml-4 flex-none">
-                    Join
-                </Button>
-            </div>
-        </form>
-    )
-}
-
-function Role({role}) {
+function Role({ role }) {
     let startLabel =
         typeof role.start === 'string' ? role.start : role.start.label
     let startDate =
@@ -176,9 +72,8 @@ function Role({role}) {
 
     return (
         <li className="flex gap-4">
-            <div
-                className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
-                <Image src={role.logo} alt="" className="h-7 w-7 rounded-full" unoptimized/>
+            <div className="relative mt-1 flex h-10 w-10 flex-none items-center justify-center rounded-full shadow-md shadow-zinc-800/5 ring-1 ring-zinc-900/5 dark:border dark:border-zinc-700/50 dark:bg-zinc-800 dark:ring-0">
+                <Image src={role.logo} alt="" className="h-7 w-7 rounded-full" unoptimized />
             </div>
             <dl className="flex flex-auto flex-wrap gap-x-2">
                 <dt className="sr-only">Company</dt>
@@ -186,16 +81,13 @@ function Role({role}) {
                     {role.company}
                 </dd>
                 <dt className="sr-only">Role</dt>
-                <dd className="text-xs text-zinc-500 dark:text-zinc-400">
-                    {role.title}
-                </dd>
+                <dd className="text-xs text-zinc-500 dark:text-zinc-400">{role.title}</dd>
                 <dt className="sr-only">Date</dt>
                 <dd
                     className="ml-auto text-xs text-zinc-400 dark:text-zinc-500"
                     aria-label={`${startLabel} until ${endLabel}`}
                 >
-                    <time dateTime={startDate}>{startLabel}</time>
-                    {' '}
+                    <time dateTime={startDate}>{startLabel}</time>{' '}
                     <span aria-hidden="true">—</span>{' '}
                     <time dateTime={endDate}>{endLabel}</time>
                 </dd>
@@ -205,10 +97,12 @@ function Role({role}) {
 }
 
 function Resume() {
+    // Homepage shows a curated set of recent roles only. The full timeline
+    // (including Tech4Germany, Wryte and earlier work) lives on /about.
     let resume = [
         {
             company: 'CANCOM',
-            title: 'Team Lead AI',
+            title: 'Team Leader AI',
             logo: logoCancom,
             start: '2025',
             end: {
@@ -247,45 +141,32 @@ function Resume() {
             },
         },
         {
-            company: 'Tech4Germany',
-            title: 'Engineering Fellow',
-            logo: logoT4G,
-            start: '2022',
-            end: '2022',
-        },
-        {
             company: 'Adesso',
             title: 'Software Engineer',
             logo: logoAdesso,
             start: '2020',
             end: '2022',
         },
-        {
-            company: 'Wryte',
-            title: 'iOS Developer',
-            logo: logoWryte,
-            start: '2020',
-            end: '2020',
-        },
     ]
 
     return (
         <div className="rounded-2xl border border-stone-200/80 p-6 dark:border-zinc-700/50">
             <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                <BriefcaseIcon className="h-6 w-6 flex-none"/>
+                <BriefcaseIcon className="h-6 w-6 flex-none" />
                 <span className="ml-3">Work</span>
             </h2>
             <ol className="mt-6 space-y-4">
                 {resume.map((role, roleIndex) => (
-                    <Role key={roleIndex} role={role}/>
+                    <Role key={roleIndex} role={role} />
                 ))}
             </ol>
-            <Button href="/cv.pdf" variant="secondary" className="group mt-6 w-full" download="cv.pdf">
-                Download CV
-                <ArrowDownIcon
-                    className="h-4 w-4 stroke-zinc-400 transition group-active:stroke-zinc-600 dark:group-hover:stroke-zinc-50 dark:group-active:stroke-zinc-50"/>
-            </Button>
-
+            <Link
+                href="/about"
+                className="group relative mt-6 inline-flex w-full items-center justify-center gap-2 rounded-lg border border-stone-200/90 bg-gradient-to-b from-white to-stone-50/90 px-4 py-2.5 text-sm font-semibold text-stone-900 transition-[border-color,background-color,transform] duration-300 hover:border-stone-300 hover:from-stone-50 hover:to-stone-100/90 hover:shadow-md active:scale-[0.99] motion-reduce:animate-none motion-reduce:transition-none dark:border-zinc-600/70 dark:from-zinc-800/90 dark:to-zinc-900/50 dark:text-stone-100 dark:hover:border-zinc-500 dark:hover:from-zinc-800 dark:hover:to-zinc-800/90 animate-cta-invite dark:animate-cta-invite-dark"
+            >
+                Explore the full story
+                <ArrowRightIcon className="h-4 w-4 stroke-stone-500 transition-transform duration-300 group-hover:translate-x-1 group-hover:animate-none dark:stroke-stone-400 motion-reduce:animate-none animate-cta-arrow-nudge" />
+            </Link>
         </div>
     )
 }
@@ -293,13 +174,12 @@ function Resume() {
 function Photos() {
     let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
 
-    // Define object-position for each image
     const objectPositions = [
-        'object-[80%_center]', // image-1
-        'object-[20%_center]', // image-2
-        'object-[95%_center]', // beck_1
-        'object-[50%_center]', // image-7 (centre strip)
-        'object-[10%_center]', // image-4 (right)
+        'object-[80%_center]',
+        'object-[20%_center]',
+        'object-[95%_center]',
+        'object-[50%_center]',
+        'object-[10%_center]',
     ]
 
     const images = [image1, image2, image3, image7, image4]
@@ -319,121 +199,75 @@ function Photos() {
                             src={image}
                             alt=""
                             fill
-                            className={clsx(
-                                'object-cover',
-                                objectPositions[index]
-                            )}
+                            className={clsx('object-cover', objectPositions[index])}
                             priority
                         />
                     </div>
                 ))}
             </div>
         </div>
-    );
+    )
 }
 
-
-export default async function Home() {
-    // let articles = (await getAllArticles()).slice(0, 4)
-
-    let allSpeakings = await getAllSpeakings();
-    // Filter out past events, sort by closest upcoming date, then take the first three
-    let speakings = allSpeakings
-        .filter(speaking => isAfter(parseISO(speaking.date), new Date()))
-        .sort((a, b) => parseISO(a.date) - parseISO(b.date))
-        .slice(0, 2);
-
-
+export default function Home() {
     return (
         <>
+            {/* HERO — intro on the left, Work widget on the right */}
             <Container className="mt-9">
-                                <div className="max-w-2xl">
-                    <div className="animate-fade-up motion-reduce:animate-none">
-                    <h1 className="font-display text-[2.65rem] font-normal leading-[1.08] tracking-tight text-stone-900 sm:text-5xl sm:leading-[1.06] dark:text-stone-100 text-balance">
-                        Hi, I&apos;m Christian 👋
-                    </h1>
-                    <p className="mt-5 text-lg font-medium leading-relaxed text-stone-700 text-balance dark:text-stone-300">
-                        I lead AI at CANCOM and run AInleuchtend—consulting, custom AI software, and training—from Munich.
-                    </p>
-                    <p className="mt-8 text-base leading-relaxed text-stone-600 dark:text-stone-400">
-                        I&apos;m a computer scientist and entrepreneur based in Munich with 5+ years in software engineering and AI. As Team Lead AI at CANCOM, I lead the AI department across strategy, portfolio development, and staffing—building and positioning our end-to-end AI offering from use-case discovery to production-grade enterprise solutions. I own technical architecture for scalable applications spanning LLMs, RAG, agentic workflows, and AIoT across cloud and on-prem, and advise C-level stakeholders on cost-optimized, hardware-aware AI strategies.
-                        
-                        I earned my M.Sc. in Computer Science from LMU Munich, conducting research at BMW on fine-tuning retrievers and generators in Retrieval-Augmented Generation systems. Previously, I served as Head of Operations at Aqarios, leading a team of 10+ engineers in developing the Luna Platform, a SaaS solution for quantum computing integration.
-                        
-                        I&apos;m also the founder of AInleuchtend, where I advise organizations, executives, and public institutions on AI strategy and deliver workshops that make AI accessible, actionable, and impactful.
-                    </p>
+                <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_20rem] lg:items-start lg:gap-14">
+                    <div className="animate-fade-up max-w-2xl motion-reduce:animate-none">
+                        <h1 className="font-display text-[2.65rem] font-normal leading-[1.08] tracking-tight text-balance text-stone-900 sm:text-5xl sm:leading-[1.06] dark:text-stone-100">
+                            Hi, I&apos;m Christian 👋
+                        </h1>
+                        <p className="mt-5 text-lg font-medium leading-relaxed text-balance text-stone-700 dark:text-stone-300">
+                            I lead AI at CANCOM and run AInleuchtend—consulting, custom AI software, and training—from Munich.
+                        </p>
+                        <p className="mt-5 text-base leading-relaxed text-stone-600 dark:text-stone-400">
+                            Computer scientist and entrepreneur with 5+ years in software engineering and AI. I design and ship production-grade LLM, RAG and agentic systems across cloud and on-prem, advise C-level stakeholders on sovereign, hardware-aware AI strategies, and run workshops that turn vague ambition into a working PoC.
+                        </p>
+                        <p className="mt-5 text-base leading-relaxed text-stone-600 dark:text-stone-400">
+                            My{' '}
+                            <Link
+                                href="/about"
+                                className="font-medium text-stone-800 underline decoration-stone-300 underline-offset-4 transition hover:decoration-stone-600 dark:text-stone-200 dark:decoration-stone-600 dark:hover:decoration-stone-300"
+                            >
+                                about page
+                            </Link>{' '}
+                            turns each chapter of my career—from researching RAG fine-tuning at BMW to leading the AI team at CANCOM—into a hands-on case study with the work, the artefacts and the impact behind it.
+                        </p>
+                        <div className="mt-7 flex items-center gap-6">
+                            <SocialLink
+                                href="https://github.com/ChristianBernhard?tab=repositories"
+                                aria-label="Follow on GitHub"
+                                icon={GitHubIcon}
+                            />
+                            <SocialLink
+                                href="https://www.linkedin.com/in/christian-bernhard-597224199/"
+                                aria-label="Follow on LinkedIn"
+                                icon={LinkedInIcon}
+                            />
+                        </div>
                     </div>
-                    <div className="mt-6 flex gap-6">
-                        {/*<SocialLink href="#" aria-label="Follow on X" icon={XIcon}/>*/}
-                        {/*<SocialLink*/}
-                        {/*    href="#"*/}
-                        {/*    aria-label="Follow on Instagram"*/}
-                        {/*    icon={InstagramIcon}*/}
-                        {/*/>*/}
-                        <SocialLink
-                            href="https://github.com/ChristianBernhard?tab=repositories"
-                            aria-label="Follow on GitHub"
-                            icon={GitHubIcon}
-                        />
-                        <SocialLink
-                            href="https://www.linkedin.com/in/christian-bernhard-597224199/"
-                            aria-label="Follow on LinkedIn"
-                            icon={LinkedInIcon}
-                        />
+                    <div className="lg:pt-1">
+                        <Resume />
                     </div>
                 </div>
             </Container>
-            <Photos/>
-            <Container className="mt-24 md:mt-28">
-                <div className="mx-auto grid max-w-xl grid-cols-1 gap-y-20 lg:max-w-none lg:grid-cols-2">
-                    <div className="flex flex-col gap-16">
-                        <div className="rounded-2xl border border-stone-200/80 p-6 dark:border-zinc-700/50">
-                            <h2 className="flex text-sm font-semibold text-zinc-900 dark:text-zinc-100">
-                                <MailIcon className="h-6 w-6 flex-none"/>
-                                <span className="ml-3">KI Newsletter</span>
-                            </h2>
-                            <p className="mt-2 text-sm text-zinc-600 dark:text-zinc-400">
-                                Dein Update zu Künstlicher Intelligenz - klar, aktuell, relevant. Wir liefern dir jeden Sonntag frische KI-News ins Postfach.
-                            </p>
-                            <div className="mt-6">
-                                <NewsletterButton className="w-full" />
-                            </div>
-                            <div className="mt-3 text-center">
-                                <Link
-                                    href="https://steady.page/de/ainleuchtend/posts"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="text-xs text-zinc-500 transition-colors hover:text-stone-800 dark:text-zinc-400 dark:hover:text-stone-300"
-                                >
-                                    Alle bisherigen Ausgaben ansehen →
-                                </Link>
-                            </div>
-                        </div>
-                        
-                        <h2 className="text-2xl font-bold tracking-tight text-zinc-800 dark:text-zinc-100">
-                            Upcoming Events I Will Lead
-                        </h2>
-                        {speakings.map((speaking) => (
-                            <Appearance
-                                key={speaking.slug}
-                                href={`/speaking/${speaking.slug}`}
-                                title={speaking.title}
-                                description={speaking.description}
-                                language={speaking.language}
-                                date={formatDate(speaking.date)}
-                                location={speaking.location}
-                                cta="Read more"
-                            />
-                        ))}
-                        <div className="flex justify-center">
-                            <Button href="/speaking" variant="secondary">
-                                Discover More Events
-                            </Button>
-                        </div>
-                    </div>
-                    <div className="space-y-10 lg:pl-16 xl:pl-24">
-                        <Resume/>
-                    </div>
+
+            <Photos />
+
+            {/* Compact newsletter one-liner below the gallery */}
+            <Container className="mt-12 sm:mt-16">
+                <div className="mx-auto flex max-w-md flex-col items-stretch gap-2">
+                    <NewsletterButton />
+                    <Link
+                        href="https://steady.page/de/ainleuchtend/posts"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-center text-xs text-zinc-500 transition-colors hover:text-stone-800 dark:text-zinc-400 dark:hover:text-stone-300"
+                    >
+                        Alle bisherigen Ausgaben ansehen →
+                    </Link>
                 </div>
             </Container>
         </>

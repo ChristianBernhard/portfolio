@@ -18,9 +18,36 @@ module.exports = {
           from: { opacity: '0', transform: 'translateY(0.6rem)' },
           to: { opacity: '1', transform: 'translateY(0)' },
         },
+        'cta-invite': {
+          '0%, 100%': {
+            boxShadow:
+              '0 1px 2px 0 rgb(28 25 23 / 0.05), 0 0 0 1px rgb(28 25 23 / 0.06)',
+          },
+          '50%': {
+            boxShadow:
+              '0 6px 16px -4px rgb(28 25 23 / 0.12), 0 0 0 1px rgb(28 25 23 / 0.1)',
+          },
+        },
+        'cta-invite-dark': {
+          '0%, 100%': {
+            boxShadow:
+              '0 1px 2px 0 rgb(0 0 0 / 0.2), 0 0 0 1px rgb(255 255 255 / 0.06)',
+          },
+          '50%': {
+            boxShadow:
+              '0 6px 16px -4px rgb(0 0 0 / 0.35), 0 0 0 1px rgb(255 255 255 / 0.12)',
+          },
+        },
+        'cta-arrow-nudge': {
+          '0%, 100%': { transform: 'translateX(0)' },
+          '50%': { transform: 'translateX(0.35rem)' },
+        },
       },
       animation: {
         'fade-up': 'fade-up 0.65s cubic-bezier(0.22, 1, 0.36, 1) both',
+        'cta-invite': 'cta-invite 3.5s ease-in-out infinite',
+        'cta-invite-dark': 'cta-invite-dark 3.5s ease-in-out infinite',
+        'cta-arrow-nudge': 'cta-arrow-nudge 1.6s ease-in-out infinite',
       },
     },
     fontSize: {
