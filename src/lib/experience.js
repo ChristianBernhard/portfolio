@@ -392,8 +392,8 @@ export const skills = [
 export const heroKpis = [
   { value: '5+', label: 'Years in software & AI' },
   { value: '100+', label: 'Workshops, talks & trainings delivered' },
-  { value: '20+', label: 'AI certifications (NVIDIA DLI, DeepLearning.AI, Coursera)' },
   { value: 'M.Sc.', label: 'Computer Science, LMU Munich' },
+  { value: '20+', label: 'AI certifications' },
 ]
 
 export const education = [
