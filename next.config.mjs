@@ -5,6 +5,9 @@ import remarkGfm from 'remark-gfm'
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ['js', 'jsx', 'ts', 'tsx', 'mdx'],
+  async redirects() {
+    return [{ source: '/imprint', destination: '/impressum', permanent: true }]
+  },
 }
 
 const withMDX = nextMDX({
