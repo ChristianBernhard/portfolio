@@ -47,7 +47,12 @@ export const experience = [
         label: 'Role & Mandate',
         title: 'From first AI hire to Team Leader in a year',
         body:
-          'First AI hire of a brand-new business unit — started as Forward Deployed Engineer, promoted to Team Leader to scale the whole thing. I joined CANCOM as the first dedicated AI employee with a mandate to help build the new Digital Solutions & AI Business Unit from scratch: designing the AI customer journey, the portfolio and the operating model alongside leadership. Started fully operational and engineering-heavy, then promoted to Team Leader to scale the team, projects and revenue — 20+ AI workshops delivered DACH-wide with C-level audiences, a team of 5+ Forward Deployed Engineers, and a growing on-prem AI portfolio on the NVIDIA stack. The following chapters walk through the concrete projects and artefacts.',
+          'First AI hire of a brand-new business unit — started as Forward Deployed Engineer, promoted to Team Leader to scale the whole thing. I joined CANCOM as the first dedicated AI employee with a mandate to help build the new Digital Solutions & AI Business Unit from scratch: designing the AI customer journey, the portfolio and the operating model alongside leadership. Started fully operational and engineering-heavy, then promoted to Team Leader to scale the team, projects and revenue — 20+ AI workshops delivered DACH-wide with C-level audiences, a team of 5+ Forward Deployed Engineers, and a growing on-prem AI portfolio on the NVIDIA stack.',
+        exploreCta: {
+          text: 'The following chapters walk through the concrete projects and artefacts.',
+          label: 'Explore',
+          targetChapterId: 'discovery',
+        },
       },
       {
         id: 'discovery',

@@ -533,6 +533,23 @@ function BulletCard({ bullet, index }) {
     )
 }
 
+function ChapterExploreCta({ cta, onSelect }) {
+    return (
+        <div className="mt-8 flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-3 rounded-2xl border border-stone-200/80 bg-gradient-to-b from-stone-50/80 to-white/90 px-5 py-4 dark:border-zinc-700/60 dark:from-zinc-800/40 dark:to-zinc-900/30 sm:gap-x-6 sm:px-6 sm:py-5">
+            <p className="min-w-0 flex-1 text-base leading-relaxed text-zinc-600 dark:text-zinc-400">
+                {cta.text}
+            </p>
+            <button
+                type="button"
+                onClick={() => onSelect(cta.targetChapterId)}
+                className="inline-flex shrink-0 items-center rounded-lg border border-stone-200/90 bg-white px-4 py-2 text-sm font-semibold text-stone-900 transition hover:border-stone-300 hover:bg-stone-50 hover:shadow-sm active:scale-[0.99] dark:border-zinc-600/70 dark:bg-zinc-800/90 dark:text-stone-100 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
+            >
+                {cta.label}
+            </button>
+        </div>
+    )
+}
+
 function LinkPills({ links }) {
     if (!links?.length) return null
     return (
@@ -558,7 +575,7 @@ function LinkPills({ links }) {
 /** Renders the inner body of either a chapter or a single panel:
  *  optional title + body paragraph + 2-col bullet cards + link pills + media.
  */
-function ContentBody({ content, showTitle = true, chapterNav }) {
+function ContentBody({ content, showTitle = true, chapterNav, onSelectChapter }) {
     return (
         <>
             {(showTitle && content.title) || content.body ? (
@@ -583,6 +600,13 @@ function ContentBody({ content, showTitle = true, chapterNav }) {
                     )}
                 </>
             ) : null}
+
+            {content.exploreCta && onSelectChapter && (
+                <ChapterExploreCta
+                    cta={content.exploreCta}
+                    onSelect={onSelectChapter}
+                />
+            )}
 
             {content.bullets?.length > 0 && (
                 <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-4">
@@ -685,6 +709,7 @@ function Walkthrough({ role }) {
                         content={chapter}
                         showTitle
                         chapterNav={chapterNav}
+                        onSelectChapter={setActiveId}
                     />
                 </motion.div>
             </AnimatePresence>
