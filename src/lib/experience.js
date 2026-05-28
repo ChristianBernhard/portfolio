@@ -97,6 +97,7 @@ export const experience = [
         label: 'ASYS Customer Story',
         title:
           'ASYS Group — from Discovery Workshop to productive PoC in under 4 weeks',
+        titleFlag: 'de',
         body:
           'I designed CANCOM\'s end-to-end AI journey — Discovery → PoC → Scale — and ASYS is one of the clearest customer stories that walks through it in practice. They came in with a manual fertigungsdokumentation pain point: manually renaming and filing roughly 100 machine documentations per week. We ran the AI Discovery Workshop I built, then designed and shipped a mobile web-app and Vision-Language Model that automated the workflow in less than four weeks.',
         links: [
@@ -118,6 +119,7 @@ export const experience = [
           'Built a productised voice-first AI assistant — from scratch to live deployment',
         body:
           'A CANCOM product I self-initiated by creating a first running demo and then designed and built together with my team. The Digital Voice Agent (DVA) is a voice-first AI assistant built among others on LiveKit and Azure OpenAI Realtime for physical touchpoints. Use cases range from reception, lobby, clinic, campus and trade show. Visitors talk to it naturally; it answers in multiple languages, uses the customer\u2019s knowledge, and takes real actions instead of just chatting.',
+        mediaNote: 'Video coming soon (the webapp needs access).',
         media: {
           kind: 'browser',
           url: 'dva.cancom-ds.de',
@@ -134,6 +136,7 @@ export const experience = [
         id: 'sovereign',
         label: 'Sovereign AI Stack',
         title: 'Sovereign AI from DGX Spark prototypes to scaled production',
+        titleFlag: 'en',
         body:
           'I concept the company-wide AI strategy and portfolio for the on-prem market — and translate it into a customer journey that starts with the DGX Spark for rapid prototyping, all the way to scaled production on data-center AI servers such as H200, B300 and beyond. Hands-on inference optimisation on the NVIDIA AI Enterprise stack, plus webinars and developer briefings to enable customers along the way.',
         media: {

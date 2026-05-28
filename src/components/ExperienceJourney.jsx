@@ -533,6 +533,24 @@ function BulletCard({ bullet, index }) {
     )
 }
 
+function ChapterTitleFlag({ locale }) {
+    if (locale === 'de') {
+        return (
+            <span className="mr-2.5 inline-block text-[1.15em] leading-none" aria-hidden="true">
+                🇩🇪
+            </span>
+        )
+    }
+    if (locale === 'en') {
+        return (
+            <span className="mr-2.5 inline-block text-[1.15em] leading-none" aria-hidden="true">
+                🇬🇧
+            </span>
+        )
+    }
+    return null
+}
+
 function ChapterExploreCta({ cta, onSelect }) {
     return (
         <div className="mt-8 flex w-full flex-wrap items-center justify-between gap-x-4 gap-y-3 rounded-2xl border border-stone-200/80 bg-gradient-to-b from-stone-50/80 to-white/90 px-5 py-4 dark:border-zinc-700/60 dark:from-zinc-800/40 dark:to-zinc-900/30 sm:gap-x-6 sm:px-6 sm:py-5">
@@ -583,6 +601,9 @@ function ContentBody({ content, showTitle = true, chapterNav, onSelectChapter })
                     {showTitle && content.title && (
                         <div className="flex items-start justify-between gap-4">
                             <h4 className="max-w-3xl min-w-0 flex-1 font-display text-2xl font-medium tracking-tight text-stone-900 sm:text-[1.75rem] dark:text-stone-100">
+                                {content.titleFlag && (
+                                    <ChapterTitleFlag locale={content.titleFlag} />
+                                )}
                                 {content.title}
                             </h4>
                             {chapterNav && <ChapterNavButtons {...chapterNav} />}
@@ -622,8 +643,14 @@ function ContentBody({ content, showTitle = true, chapterNav, onSelectChapter })
                 </div>
             )}
 
+            {content.mediaNote && (
+                <p className="mt-6 text-sm font-medium text-zinc-500 dark:text-zinc-400">
+                    {content.mediaNote}
+                </p>
+            )}
+
             {content.media && (
-                <div className="mt-8">
+                <div className={content.mediaNote ? 'mt-4' : 'mt-8'}>
                     <MediaPanel media={content.media} />
                 </div>
             )}
