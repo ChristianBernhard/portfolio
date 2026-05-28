@@ -98,7 +98,7 @@ export const experience = [
         title:
           'ASYS Group — from Discovery Workshop to productive PoC in under 4 weeks',
         body:
-          'A textbook example of the full CANCOM AI journey end-to-end. ASYS came in with a manual fertigungsdokumentation pain point — manually renaming and filing roughly 100 machine documentations per week. We ran the AI Discovery Workshop, then designed and shipped a mobile web-app + Vision-Language Model that automated the workflow in less than four weeks.',
+          'I designed CANCOM\'s end-to-end AI journey — Discovery → PoC → Scale — and ASYS is one of the clearest customer stories that walks through it in practice. They came in with a manual fertigungsdokumentation pain point: manually renaming and filing roughly 100 machine documentations per week. We ran the AI Discovery Workshop I built, then designed and shipped a mobile web-app and Vision-Language Model that automated the workflow in less than four weeks.',
         links: [
           {
             label: 'CANCOM newsroom reference ↗',
@@ -135,7 +135,7 @@ export const experience = [
         label: 'Sovereign AI Stack',
         title: 'Sovereign AI from DGX Spark prototypes to scaled production',
         body:
-          'I concept the company-wide AI strategy and portfolio for the on-prem market — and translate it into a customer journey that starts with the DGX Spark for rapid prototyping, all the way to DGX H200 clusters for scaled production. Hands-on inference optimisation on the NVIDIA AI Enterprise stack, plus webinars and developer briefings to enable customers along the way.',
+          'I concept the company-wide AI strategy and portfolio for the on-prem market — and translate it into a customer journey that starts with the DGX Spark for rapid prototyping, all the way to scaled production on data-center AI servers such as H200, B300 and beyond. Hands-on inference optimisation on the NVIDIA AI Enterprise stack, plus webinars and developer briefings to enable customers along the way.',
         media: {
           kind: 'video',
           src: 'https://player.vimeo.com/video/1188051694?h=c0a5436c6d&badge=0&autopause=0&player_id=0&app_id=58479',
