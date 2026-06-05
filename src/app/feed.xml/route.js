@@ -6,7 +6,7 @@ export async function GET(req) {
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
 
     let author = {
-        name: 'Christian Bernhard',
+        name: 'Christian Nicolussi (geb. Bernhard)',
         email: 'christian.bernhard@gmail.com',
     }
 

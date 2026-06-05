@@ -29,7 +29,7 @@ export function Footer() {
                                 <NavLink href="/impressum">Impressum</NavLink>
                             </div>
                             <p className="text-sm text-zinc-400 dark:text-zinc-500">
-                                &copy; {new Date().getFullYear()} Christian Bernhard. All rights
+                                &copy; {new Date().getFullYear()} Christian Nicolussi (geb. Bernhard). All rights
                                 reserved.
                             </p>
                         </div>

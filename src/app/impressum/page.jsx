@@ -26,7 +26,7 @@ export default function Impressum() {
             <article className="prose prose-zinc mt-12 max-w-2xl dark:prose-invert sm:mt-16">
                 <h2>Angaben gemäß § 5 TMG</h2>
                 <p>
-                    Christian Bernhard
+                    Christian Nicolussi (geb. Bernhard)
                     <br />
                     Anzingerstraße 37A
                     <br />
@@ -43,7 +43,7 @@ export default function Impressum() {
                 </p>
 
                 <h2>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV</h2>
-                <p>Christian Bernhard</p>
+                <p>Christian Nicolussi (geb. Bernhard)</p>
 
                 <h2>Haftungsausschluss (Disclaimer)</h2>
 

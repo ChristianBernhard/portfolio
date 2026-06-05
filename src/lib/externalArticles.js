@@ -1,4 +1,4 @@
-// External articles and media mentions about Christian Bernhard
+// External articles and media mentions about Christian Nicolussi (geb. Bernhard)
 
 export const externalArticles = [
   {

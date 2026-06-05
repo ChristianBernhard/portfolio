@@ -58,7 +58,7 @@ function SocialLink({ className, href, children, icon: Icon }) {
 export const metadata = {
     title: 'About',
     description:
-        'Christian Bernhard — Team Leader AI at CANCOM, founder of AInleuchtend. An interactive portfolio of roles, projects and impact across enterprise AI.',
+        'Christian Nicolussi (geb. Bernhard) — Team Leader AI at CANCOM, founder of AInleuchtend. An interactive portfolio of roles, projects and impact across enterprise AI.',
 }
 
 export default function About() {
@@ -71,7 +71,7 @@ export default function About() {
                         About
                     </p>
                     <h1 className="mt-3 font-display text-4xl font-medium tracking-tight text-stone-900 sm:text-5xl dark:text-stone-100">
-                        I&apos;m Christian Bernhard from Munich.
+                        I&apos;m Christian Nicolussi (geb. Bernhard) from Munich.
                     </h1>
                     <p className="mt-6 max-w-2xl text-lg leading-relaxed text-stone-700 dark:text-stone-300">
                         I lead the AI team at CANCOM. My work sits at the intersection of GenAI engineering, hardware-aware system design and translating all of that into language a board actually understands.
@@ -85,7 +85,7 @@ export default function About() {
                     <div className="relative aspect-[4/5] w-56 overflow-hidden rounded-3xl bg-stone-100 shadow-lg ring-1 ring-zinc-900/5 sm:w-64 lg:w-full dark:bg-zinc-800 dark:ring-white/10">
                         <Image
                             src={heroImage}
-                            alt="Christian Bernhard on stage"
+                            alt="Christian Nicolussi (geb. Bernhard) on stage"
                             fill
                             sizes="(min-width: 1024px) 18rem, 16rem"
                             className="object-cover object-[55%_center]"
@@ -254,7 +254,7 @@ export default function About() {
                                 href="https://www.linkedin.com/in/christian-bernhard-597224199/"
                                 icon={LinkedInIcon}
                             >
-                                Christian Bernhard
+                                Christian Nicolussi (geb. Bernhard)
                             </SocialLink>
                             <SocialLink
                                 href="mailto:christianbernhard089@gmail.com"

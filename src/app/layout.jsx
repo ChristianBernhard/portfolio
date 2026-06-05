@@ -21,9 +21,9 @@ const fontDisplay = Cormorant_Garamond({
 
 export const metadata = {
     title: {
-        template: '%s - Christian Bernhard',
+        template: '%s - Christian Nicolussi (geb. Bernhard)',
         default:
-            'Christian Bernhard — Team Leader AI at CANCOM, founder of AInleuchtend.',
+            'Christian Nicolussi (geb. Bernhard) — Team Leader AI at CANCOM, founder of AInleuchtend.',
     },
     description:
         'Team Leader AI at CANCOM. Enterprise LLMs, RAG, and agentic systems. Founder of AInleuchtend. Based in Munich.',
