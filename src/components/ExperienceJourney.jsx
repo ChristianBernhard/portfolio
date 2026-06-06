@@ -1,12 +1,23 @@
 'use client'
 
-import { useState, useMemo } from 'react'
+import { useState, useMemo, useEffect, useRef, useCallback } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useSearchParams, useRouter, usePathname } from 'next/navigation'
 import clsx from 'clsx'
 import { AnimatePresence, motion } from 'framer-motion'
 
 import { experience } from '@/lib/experience'
+
+function resolveExperienceSelection(roleId, chapterId) {
+    const role =
+        experience.find((entry) => entry.id === roleId) ?? experience[0]
+    const tab =
+        chapterId && role.tabs.some((entry) => entry.id === chapterId)
+            ? chapterId
+            : role.tabs[0].id
+    return { roleId: role.id, chapterId: tab }
+}
 
 // Showcase screenshots in /public are already export-quality; serve them
 // directly and preserve their native aspect ratio (no 16:9 crop + recompress).
@@ -700,18 +711,21 @@ function ChapterTabBar({ chapters, activeId, onSelect }) {
     )
 }
 
-function Walkthrough({ role }) {
-    const [activeId, setActiveId] = useState(role.tabs[0].id)
+function Walkthrough({ role, activeChapterId, onChapterChange }) {
     const chapter =
-        role.tabs.find((c) => c.id === activeId) ?? role.tabs[0]
-    const activeIndex = role.tabs.findIndex((c) => c.id === chapter.id)
+        role.tabs.find((entry) => entry.id === activeChapterId) ?? role.tabs[0]
+    const activeIndex = role.tabs.findIndex((entry) => entry.id === chapter.id)
     const prevChapter = activeIndex > 0 ? role.tabs[activeIndex - 1] : null
     const nextChapter =
         activeIndex < role.tabs.length - 1 ? role.tabs[activeIndex + 1] : null
 
     const chapterNav = {
-        onPrev: prevChapter ? () => setActiveId(prevChapter.id) : undefined,
-        onNext: nextChapter ? () => setActiveId(nextChapter.id) : undefined,
+        onPrev: prevChapter
+            ? () => onChapterChange(prevChapter.id)
+            : undefined,
+        onNext: nextChapter
+            ? () => onChapterChange(nextChapter.id)
+            : undefined,
         prevLabel: prevChapter?.label,
         nextLabel: nextChapter?.label,
     }
@@ -721,7 +735,7 @@ function Walkthrough({ role }) {
             <ChapterTabBar
                 chapters={role.tabs}
                 activeId={chapter.id}
-                onSelect={setActiveId}
+                onSelect={onChapterChange}
             />
             <AnimatePresence mode="wait">
                 <motion.div
@@ -736,7 +750,7 @@ function Walkthrough({ role }) {
                         content={chapter}
                         showTitle
                         chapterNav={chapterNav}
-                        onSelectChapter={setActiveId}
+                        onSelectChapter={onChapterChange}
                     />
                 </motion.div>
             </AnimatePresence>
@@ -753,16 +767,92 @@ function SinglePanel({ content }) {
 }
 
 export function ExperienceJourney() {
-    const [activeRoleId, setActiveRoleId] = useState(experience[0].id)
+    const searchParams = useSearchParams()
+    const router = useRouter()
+    const pathname = usePathname()
+    const sectionRef = useRef(null)
+    const hasScrolledRef = useRef(false)
+
+    const initialSelection = useMemo(
+        () =>
+            resolveExperienceSelection(
+                searchParams.get('role') ?? experience[0].id,
+                searchParams.get('chapter')
+            ),
+        [searchParams]
+    )
+
+    const [activeRoleId, setActiveRoleId] = useState(initialSelection.roleId)
+    const [activeChapterId, setActiveChapterId] = useState(
+        initialSelection.chapterId
+    )
+
     const role = useMemo(
-        () => experience.find((r) => r.id === activeRoleId) ?? experience[0],
+        () => experience.find((entry) => entry.id === activeRoleId) ?? experience[0],
         [activeRoleId]
     )
 
     const isWalkthrough = role.tabs.length > 1
 
+    const updateUrl = useCallback(
+        (roleId, chapterId) => {
+            const selectedRole =
+                experience.find((entry) => entry.id === roleId) ?? experience[0]
+            const params = new URLSearchParams()
+            params.set('role', selectedRole.id)
+            if (selectedRole.tabs.length > 1 && chapterId) {
+                params.set('chapter', chapterId)
+            }
+            router.replace(`${pathname}?${params.toString()}`, { scroll: false })
+        },
+        [pathname, router]
+    )
+
+    useEffect(() => {
+        const roleParam = searchParams.get('role')
+        const chapterParam = searchParams.get('chapter')
+        if (!roleParam && !chapterParam) return
+
+        const next = resolveExperienceSelection(roleParam, chapterParam)
+        setActiveRoleId(next.roleId)
+        setActiveChapterId(next.chapterId)
+
+        if (!hasScrolledRef.current) {
+            hasScrolledRef.current = true
+            requestAnimationFrame(() => {
+                sectionRef.current?.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start',
+                })
+            })
+        }
+    }, [searchParams])
+
+    const handleRoleSelect = useCallback(
+        (roleId) => {
+            const next = resolveExperienceSelection(roleId, activeChapterId)
+            setActiveRoleId(next.roleId)
+            setActiveChapterId(next.chapterId)
+            updateUrl(next.roleId, next.chapterId)
+        },
+        [activeChapterId, updateUrl]
+    )
+
+    const handleChapterChange = useCallback(
+        (chapterId) => {
+            setActiveChapterId(chapterId)
+            updateUrl(activeRoleId, chapterId)
+        },
+        [activeRoleId, updateUrl]
+    )
+
     return (
-        <section aria-label="Experience" className="mt-14 sm:mt-20">
+        <section
+            ref={sectionRef}
+            id="experience"
+            aria-label="Experience"
+            className="mt-14 scroll-mt-28 sm:mt-20"
+        >
             <div className="mb-6 flex items-baseline justify-between gap-6 border-b border-stone-200/70 pb-3 dark:border-zinc-700/60">
                 <p className="text-xs font-semibold uppercase tracking-[0.18em] text-stone-700 dark:text-stone-300">
                     Experience
@@ -777,7 +867,7 @@ export function ExperienceJourney() {
                     <CareerRail
                         roles={experience}
                         activeId={activeRoleId}
-                        onSelect={setActiveRoleId}
+                        onSelect={handleRoleSelect}
                     />
                 </div>
 
@@ -830,7 +920,11 @@ export function ExperienceJourney() {
                         </header>
 
                         {isWalkthrough ? (
-                            <Walkthrough role={role} />
+                            <Walkthrough
+                                role={role}
+                                activeChapterId={activeChapterId}
+                                onChapterChange={handleChapterChange}
+                            />
                         ) : (
                             <SinglePanel content={role.tabs[0]} />
                         )}

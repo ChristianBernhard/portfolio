@@ -1,3 +1,4 @@
+import { Suspense } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import clsx from 'clsx'
@@ -123,8 +124,10 @@ export default function About() {
                 ))}
             </section>
 
-            {/* EXPERIENCE TIMELINE (interactive) */}
-            <ExperienceJourney />
+            {/* EXPERIENCE TIMELINE (interactive) — ?role=&chapter= deep-links supported */}
+            <Suspense fallback={null}>
+                <ExperienceJourney />
+            </Suspense>
 
             {/* SKILLS — one consolidated card spanning the full width */}
             <section

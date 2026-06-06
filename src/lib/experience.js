@@ -11,13 +11,23 @@ import logoMeta from '@/images/logos/meta.png'
 const ainleuchtendSiteImage = { src: '/ainleuchtend-site.png', width: 1024, height: 562 }
 const lunaSolveImage = { src: '/luna-solve.png', width: 1024, height: 574 }
 const wryteAppStoreImage = { src: '/wryte-app-store.png', width: 1024, height: 650 }
-const digitalVoiceAgentImage = { src: '/digital-voice-agent.png', width: 1024, height: 556 }
+const digitalVoiceAgentImage = { src: '/digital-voice-agent.png', width: 1417, height: 1249 }
 const demohubImage = { src: '/demohub.png', width: 1024, height: 661 }
 const discoveryWorkshopImage = { src: '/discovery-workshop.png', width: 1024, height: 510 }
 
 // Tech badge helper. Pass a logo only when we have a real one; the chip
 // renders cleanly without one otherwise.
 const tech = (name, logo = null) => ({ name, logo })
+
+/** Deep-link into a role (and optional chapter) on /about — e.g. for video CTAs. */
+export function experienceLink(roleId, chapterId) {
+  const params = new URLSearchParams({ role: roleId })
+  if (chapterId) params.set('chapter', chapterId)
+  return `/about?${params.toString()}`
+}
+
+/** Direct link to the DGX Spark / Sovereign AI Stack chapter (CANCOM tab 06). */
+export const CANCOM_SOVEREIGN_AI_LINK = experienceLink('cancom', 'sovereign')
 
 export const experience = [
   {
@@ -122,8 +132,8 @@ export const experience = [
         mediaNote: 'Video coming soon (the webapp needs access).',
         media: {
           kind: 'browser',
-          url: 'dva.cancom-ds.de',
-          href: 'https://dva.cancom-ds.de/',
+          url: 'demo.cancom-ds.de/ai/voice-agents',
+          href: 'https://demo.cancom-ds.de/ai/voice-agents',
           title: 'Digital Voice Agent',
           subtitle:
             'Voice-first AI assistant for reception, lobby and trade-show touchpoints — multilingual, action-capable, tenant-sovereign.',
