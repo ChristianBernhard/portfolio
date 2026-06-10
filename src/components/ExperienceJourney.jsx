@@ -339,7 +339,25 @@ function ImageMedia({ src, width = 1600, height = 900, caption }) {
     )
 }
 
-function VideoMedia({ src, title }) {
+function VideoMedia({ src, title, poster }) {
+    const isNative = src.endsWith('.mp4')
+
+    if (isNative) {
+        return (
+            <div className="aspect-video w-full overflow-hidden rounded-2xl bg-stone-900 ring-1 ring-zinc-900/5 dark:ring-white/10">
+                <video
+                    src={src}
+                    title={title}
+                    poster={poster}
+                    controls
+                    playsInline
+                    preload="metadata"
+                    className="h-full w-full object-contain"
+                />
+            </div>
+        )
+    }
+
     return (
         <div className="aspect-video w-full overflow-hidden rounded-2xl bg-stone-100 ring-1 ring-zinc-900/5 dark:bg-zinc-800 dark:ring-white/10">
             <iframe
@@ -363,10 +381,11 @@ function VideoEmbed({ item }) {
                 <video
                     src={item.src}
                     title={item.title}
+                    poster={item.poster}
                     controls
                     playsInline
                     preload="metadata"
-                    className="h-full w-full"
+                    className="h-full w-full object-contain"
                 />
             </div>
         )

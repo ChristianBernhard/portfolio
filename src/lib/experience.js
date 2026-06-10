@@ -11,7 +11,6 @@ import logoMeta from '@/images/logos/meta.png'
 const ainleuchtendSiteImage = { src: '/ainleuchtend-site.png', width: 1024, height: 562 }
 const lunaSolveImage = { src: '/luna-solve.png', width: 1024, height: 574 }
 const wryteAppStoreImage = { src: '/wryte-app-store.png', width: 1024, height: 650 }
-const digitalVoiceAgentImage = { src: '/digital-voice-agent.png', width: 1417, height: 1249 }
 const demohubImage = { src: '/demohub.png', width: 1024, height: 661 }
 const discoveryWorkshopImage = { src: '/discovery-workshop.png', width: 1024, height: 510 }
 
@@ -129,17 +128,17 @@ export const experience = [
           'Built a productised voice-first AI assistant — from scratch to live deployment',
         body:
           'A CANCOM product I self-initiated by creating a first running demo and then designed and built together with my team. The Digital Voice Agent (DVA) is a voice-first AI assistant built among others on LiveKit and Azure OpenAI Realtime for physical touchpoints. Use cases range from reception, lobby, clinic, campus and trade show. Visitors talk to it naturally; it answers in multiple languages, uses the customer\u2019s knowledge, and takes real actions instead of just chatting.',
-        mediaNote: 'Video coming soon (the webapp needs access).',
+        links: [
+          {
+            label: 'More details ↗',
+            href: 'https://demo.cancom-ds.de/ai/voice-agents',
+          },
+        ],
         media: {
-          kind: 'browser',
-          url: 'demo.cancom-ds.de/ai/voice-agents',
-          href: 'https://demo.cancom-ds.de/ai/voice-agents',
-          title: 'Digital Voice Agent',
-          subtitle:
-            'Voice-first AI assistant for reception, lobby and trade-show touchpoints — multilingual, action-capable, tenant-sovereign.',
-          imageSrc: digitalVoiceAgentImage.src,
-          imageWidth: digitalVoiceAgentImage.width,
-          imageHeight: digitalVoiceAgentImage.height,
+          kind: 'video',
+          src: '/dva_productvideo.mp4',
+          poster: '/dva_productvideo-poster.jpg',
+          title: 'Digital Voice Agent — product video',
         },
       },
       {
