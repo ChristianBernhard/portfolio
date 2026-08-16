@@ -135,10 +135,27 @@ export const experience = [
           },
         ],
         media: {
-          kind: 'video',
-          src: '/dva_productvideo.mp4',
-          poster: '/dva_productvideo-poster.jpg',
-          title: 'Digital Voice Agent — product video',
+          kind: 'videoSwitcher',
+          eyebrow: 'Watch the Digital Voice Agent',
+          items: [
+            {
+              id: 'official',
+              label: 'Official product video',
+              src: '/dva_productvideo.mp4',
+              poster: '/dva_productvideo-poster.jpg',
+              title: 'Digital Voice Agent — official product video',
+              description: 'The official CANCOM product overview.',
+            },
+            {
+              id: 'feature-spotlight',
+              label: 'Feature spotlight',
+              src: 'https://www.youtube-nocookie.com/embed/Ox-OujwYSco?rel=0&modestbranding=1',
+              title:
+                'Digital Voice Agent — feature spotlight by Christian Nicolussi',
+              description:
+                'A focused walkthrough highlighting one of the product\u2019s features.',
+            },
+          ],
         },
       },
       {
@@ -196,7 +213,7 @@ export const experience = [
     id: 'bmw',
     company: 'BMW',
     title: 'AI Researcher',
-    period: 'Oct 2024 — May 2025',
+    period: 'Jan 2025 — May 2025',
     location: 'Munich, Germany',
     logo: logoBMW,
     headline:
@@ -246,7 +263,7 @@ export const experience = [
     id: 'aqarios',
     company: 'Aqarios',
     title: 'Head of Operations',
-    period: 'Apr 2023 — Apr 2025',
+    period: 'Apr 2023 — May 2025',
     location: 'Munich, Germany',
     logo: logoAqarios,
     headline:

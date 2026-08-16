@@ -124,11 +124,8 @@ function Resume() {
             company: 'BMW',
             title: 'AI Researcher',
             logo: logoBMW,
-            start: '2024',
-            end: {
-                label: '2025',
-                dateTime: new Date().getFullYear().toString(),
-            },
+            start: '2025',
+            end: '2025',
         },
         {
             company: 'Aqarios',

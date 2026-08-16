@@ -440,6 +440,66 @@ function VideoGrid({ items, eyebrow, caption }) {
     )
 }
 
+function VideoSwitcher({ items, eyebrow }) {
+    const [activeId, setActiveId] = useState(items?.[0]?.id)
+    const activeItem =
+        items?.find((item) => item.id === activeId) ?? items?.[0]
+
+    if (!activeItem) return null
+
+    return (
+        <div>
+            {eyebrow && (
+                <p className="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-stone-700 dark:text-stone-300">
+                    {eyebrow}
+                </p>
+            )}
+            <div
+                role="group"
+                aria-label="Choose a Digital Voice Agent video"
+                className="mb-4 grid grid-cols-2 gap-1 rounded-xl bg-stone-100 p-1 dark:bg-zinc-800/80"
+            >
+                {items.map((item) => {
+                    const isActive = item.id === activeItem.id
+
+                    return (
+                        <button
+                            key={item.id}
+                            type="button"
+                            aria-pressed={isActive}
+                            onClick={() => setActiveId(item.id)}
+                            className={clsx(
+                                'rounded-lg px-3 py-2.5 text-xs font-semibold transition sm:text-sm',
+                                isActive
+                                    ? 'bg-white text-stone-900 shadow-sm ring-1 ring-zinc-900/5 dark:bg-zinc-700 dark:text-stone-100 dark:ring-white/10'
+                                    : 'text-zinc-600 hover:bg-white/60 hover:text-stone-900 dark:text-zinc-400 dark:hover:bg-zinc-700/60 dark:hover:text-stone-100'
+                            )}
+                        >
+                            {item.label}
+                        </button>
+                    )
+                })}
+            </div>
+            <AnimatePresence mode="wait" initial={false}>
+                <motion.div
+                    key={activeItem.id}
+                    initial={{ opacity: 0, y: 4 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.2 }}
+                >
+                    <VideoEmbed item={activeItem} />
+                </motion.div>
+            </AnimatePresence>
+            {activeItem.description && (
+                <p className="mt-3 text-sm leading-relaxed text-zinc-500 dark:text-zinc-400">
+                    {activeItem.description}
+                </p>
+            )}
+        </div>
+    )
+}
+
 function IframeMedia({ src, href, url, title }) {
     return (
         <div className="overflow-hidden rounded-2xl border border-stone-200/80 bg-white shadow-sm dark:border-zinc-700/60 dark:bg-zinc-900/60">
@@ -542,6 +602,7 @@ function MediaPanel({ media }) {
     if (media.kind === 'browser') return <BrowserPreview {...media} />
     if (media.kind === 'video') return <VideoMedia {...media} />
     if (media.kind === 'videoGrid') return <VideoGrid {...media} />
+    if (media.kind === 'videoSwitcher') return <VideoSwitcher {...media} />
     if (media.kind === 'iframe') return <IframeMedia {...media} />
     if (media.kind === 'articleGrid') return <ArticleGrid {...media} />
     return <ImageMedia {...media} />
