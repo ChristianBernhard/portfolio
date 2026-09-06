@@ -597,6 +597,96 @@ function ArticleGrid({ items, eyebrow, caption }) {
     )
 }
 
+function PublicationCard({
+    eyebrow,
+    title,
+    authorLine,
+    meta,
+    description,
+    imageSrc,
+    imageWidth,
+    imageHeight,
+    pdfHref,
+    onlineHref,
+}) {
+    return (
+        <section
+            aria-label={`Research paper: ${title}`}
+            className="overflow-hidden rounded-2xl border border-stone-200/80 bg-gradient-to-br from-stone-50 via-white to-stone-100/70 shadow-sm dark:border-zinc-700/60 dark:from-zinc-800/70 dark:via-zinc-900/70 dark:to-zinc-800/40"
+        >
+            <div className="grid items-center gap-8 p-5 sm:p-7 lg:grid-cols-[minmax(13rem,0.72fr)_minmax(0,1.28fr)] lg:gap-10 lg:p-9">
+                <Link
+                    href={onlineHref}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    aria-label={`Read ${title} on arXiv`}
+                    className="group relative mx-auto block w-full max-w-[19rem] py-5"
+                >
+                    <span
+                        aria-hidden="true"
+                        className="absolute inset-x-[13%] inset-y-8 translate-x-4 rotate-[4deg] rounded-xl border border-stone-200 bg-stone-100 shadow-md dark:border-zinc-600 dark:bg-zinc-700"
+                    />
+                    <span
+                        aria-hidden="true"
+                        className="absolute inset-x-[10%] inset-y-7 translate-x-2 rotate-[2deg] rounded-xl border border-stone-200 bg-stone-50 shadow-lg dark:border-zinc-600 dark:bg-zinc-800"
+                    />
+                    <span
+                        className="relative mx-auto block w-[80%] overflow-hidden rounded-xl bg-white shadow-xl ring-1 ring-zinc-900/10 transition duration-500 group-hover:-translate-y-1 group-hover:shadow-2xl dark:ring-white/15"
+                        style={showcaseAspectStyle(imageWidth, imageHeight)}
+                    >
+                        <Image
+                            src={imageSrc}
+                            alt={`First page of ${title}`}
+                            fill
+                            sizes="(min-width: 1024px) 250px, 70vw"
+                            className="object-cover"
+                        />
+                    </span>
+                </Link>
+
+                <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.16em] text-stone-700 dark:text-stone-300">
+                        {eyebrow}
+                    </p>
+                    <h5 className="mt-3 font-display text-2xl font-medium leading-tight tracking-tight text-stone-900 dark:text-stone-100">
+                        {title}
+                    </h5>
+                    <p className="mt-3 text-sm font-semibold text-stone-800 dark:text-stone-200">
+                        {authorLine}
+                    </p>
+                    <p className="mt-1 text-xs text-zinc-500 dark:text-zinc-400">
+                        {meta}
+                    </p>
+                    <p className="mt-5 text-sm leading-relaxed text-zinc-600 dark:text-zinc-400">
+                        {description}
+                    </p>
+                    <div className="mt-6 flex flex-col gap-2.5 sm:flex-row">
+                        <Link
+                            href={onlineHref}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="inline-flex items-center justify-center gap-2 rounded-full bg-stone-900 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-stone-700 dark:bg-white dark:text-stone-900 dark:hover:bg-stone-200"
+                        >
+                            Read on arXiv
+                            <ArrowUpRightIcon className="h-4 w-4" />
+                        </Link>
+                        <Link
+                            href={pdfHref}
+                            download
+                            className="inline-flex items-center justify-center gap-2 rounded-full border border-stone-300 bg-white/80 px-4 py-2.5 text-sm font-semibold text-stone-800 transition hover:border-stone-400 hover:bg-white dark:border-zinc-600 dark:bg-zinc-800/80 dark:text-stone-200 dark:hover:border-zinc-500 dark:hover:bg-zinc-800"
+                        >
+                            <span aria-hidden="true" className="text-base leading-none">
+                                ↓
+                            </span>
+                            Download PDF
+                        </Link>
+                    </div>
+                </div>
+            </div>
+        </section>
+    )
+}
+
 function MediaPanel({ media }) {
     if (!media) return null
     if (media.kind === 'browser') return <BrowserPreview {...media} />
@@ -731,6 +821,12 @@ function ContentBody({ content, showTitle = true, chapterNav, onSelectChapter })
             {content.links?.length > 0 && (
                 <div className="mt-6">
                     <LinkPills links={content.links} />
+                </div>
+            )}
+
+            {content.publication && (
+                <div className="mt-8">
+                    <PublicationCard {...content.publication} />
                 </div>
             )}
 

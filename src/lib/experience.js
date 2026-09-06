@@ -219,7 +219,7 @@ export const experience = [
     headline:
       'Master\u2019s research on Retrieval-Augmented Generation — fine-tuning retrievers and generators on H100s.',
     summary:
-      'My Master\u2019s thesis at BMW (1.4 grade) investigated how far fine-tuning of both retriever AND generator can push end-to-end RAG quality across very different domains. The goal: understand exactly where fine-tuning effort pays off — and where it doesn\u2019t. All training and inference ran on a 2× NVIDIA H100 DGX cluster with TensorRT-LLM, with a reusable evaluation pipeline that combined classical metrics with LLM-as-a-Judge. Alongside the research I published a series of short technical explainers — the same instinct that drives my workshops and pre-sales work today.',
+      'My Master\u2019s thesis at BMW (1.4 grade) investigated how far fine-tuning of both retriever AND generator can push end-to-end RAG quality across very different domains. The goal: understand exactly where fine-tuning effort pays off — and where it doesn\u2019t. All training and inference ran on a 2× NVIDIA H100 DGX cluster with TensorRT-LLM, with a reusable evaluation pipeline that combined classical metrics with LLM-as-a-Judge. The research has since been published on arXiv. Alongside it I published a series of short technical explainers — the same instinct that drives my workshops and pre-sales work today.',
     tabs: [
       {
         id: 'thesis',
@@ -229,6 +229,20 @@ export const experience = [
           'Cross-domain study: how do retriever / generator gains transfer between domains?',
           'End-to-end evaluation pipeline with classical metrics + LLM-as-a-Judge.',
         ],
+        publication: {
+          eyebrow: 'Research paper · BMW Group',
+          title:
+            'Assessment of RAG and Fine-Tuning for Industrial Question-Answering-Applications',
+          authorLine: 'Co-authored and published under Christian Bernhard',
+          meta: 'arXiv:2605.09533v1 · May 2026 · cs.CL / cs.AI',
+          description:
+            'A cost–accuracy study comparing RAG, fine-tuning and their combination on two proprietary automotive question-answering datasets. The results identify RAG as the most effective and cost-efficient adaptation method across both closed- and open-source models.',
+          imageSrc: '/assessment-rag-finetuning-industrial-qa-preview.png',
+          imageWidth: 885,
+          imageHeight: 1151,
+          pdfHref: '/assessment-rag-finetuning-industrial-qa.pdf',
+          onlineHref: 'https://arxiv.org/html/2605.09533v1',
+        },
         media: {
           kind: 'articleGrid',
           eyebrow: 'Published explainers',
