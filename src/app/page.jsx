@@ -10,11 +10,11 @@ import logoCancom from '@/images/logos/cancom.png'
 import logoBMW from '@/images/logos/bmw.png'
 import logoAqarios from '@/images/logos/aqarios.png'
 import logoAdesso from '@/images/logos/adesso.png'
-import image1 from '@/images/photos/image-1.png'
 import image2 from '@/images/photos/image-2.jpg'
 import image3 from '@/images/photos/beck_1.jpeg'
 import image4 from '@/images/photos/image-4.jpg'
 import image7 from '@/images/photos/image-7.jpg'
+import awardImage from '@/images/photos/best-of-technology-award-2026.jpeg'
 
 function BriefcaseIcon(props) {
     return (
@@ -172,14 +172,14 @@ function Photos() {
     let rotations = ['rotate-2', '-rotate-2', 'rotate-2', 'rotate-2', '-rotate-2']
 
     const objectPositions = [
-        'object-[80%_center]',
-        'object-[20%_center]',
         'object-[95%_center]',
+        'object-[20%_center]',
+        'object-center',
         'object-[50%_center]',
         'object-[10%_center]',
     ]
 
-    const images = [image1, image2, image3, image7, image4]
+    const images = [image3, image2, awardImage, image7, image4]
 
     return (
         <div className="mt-16 sm:mt-20">
