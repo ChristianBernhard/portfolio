@@ -9,6 +9,16 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import { experience } from '@/lib/experience'
 
+const careerRoles = [...experience]
+const bmwRoleIndex = careerRoles.findIndex((role) => role.id === 'bmw')
+const aqariosRoleIndex = careerRoles.findIndex((role) => role.id === 'aqarios')
+
+if (bmwRoleIndex !== -1 && aqariosRoleIndex !== -1) {
+    const bmwRole = careerRoles[bmwRoleIndex]
+    careerRoles[bmwRoleIndex] = careerRoles[aqariosRoleIndex]
+    careerRoles[aqariosRoleIndex] = bmwRole
+}
+
 function resolveExperienceSelection(roleId, chapterId) {
     const role =
         experience.find((entry) => entry.id === roleId) ?? experience[0]
@@ -1041,7 +1051,7 @@ export function ExperienceJourney() {
             <div className="grid grid-cols-1 gap-8 lg:grid-cols-[14rem_minmax(0,1fr)] lg:gap-8 xl:gap-10">
                 <div>
                     <CareerRail
-                        roles={experience}
+                        roles={careerRoles}
                         activeId={activeRoleId}
                         onSelect={handleRoleSelect}
                     />
