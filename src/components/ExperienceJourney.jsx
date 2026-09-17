@@ -9,15 +9,23 @@ import { AnimatePresence, motion } from 'framer-motion'
 
 import { experience } from '@/lib/experience'
 
-const careerRoles = [...experience]
-const bmwRoleIndex = careerRoles.findIndex((role) => role.id === 'bmw')
-const aqariosRoleIndex = careerRoles.findIndex((role) => role.id === 'aqarios')
+const careerRoleOrder = [
+    'cancom',
+    'aqarios',
+    'bmw',
+    'ainleuchtend',
+    't4g',
+    'adesso',
+]
 
-if (bmwRoleIndex !== -1 && aqariosRoleIndex !== -1) {
-    const bmwRole = careerRoles[bmwRoleIndex]
-    careerRoles[bmwRoleIndex] = careerRoles[aqariosRoleIndex]
-    careerRoles[aqariosRoleIndex] = bmwRole
-}
+const careerRoles = [...experience].sort((a, b) => {
+    const aIndex = careerRoleOrder.indexOf(a.id)
+    const bIndex = careerRoleOrder.indexOf(b.id)
+    return (
+        (aIndex === -1 ? careerRoleOrder.length : aIndex) -
+        (bIndex === -1 ? careerRoleOrder.length : bIndex)
+    )
+})
 
 function resolveExperienceSelection(roleId, chapterId) {
     const role =
