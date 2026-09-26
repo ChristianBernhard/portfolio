@@ -14,8 +14,8 @@ const careerRoleOrder = [
     'aqarios',
     'bmw',
     'ainleuchtend',
-    't4g',
     'adesso',
+    't4g',
 ]
 
 const careerRoles = [...experience].sort((a, b) => {
