@@ -12,8 +12,8 @@ import { experience } from '@/lib/experience'
 const careerRoleOrder = [
     'cancom',
     'aqarios',
-    'bmw',
     'ainleuchtend',
+    'bmw',
     'adesso',
     't4g',
 ]
