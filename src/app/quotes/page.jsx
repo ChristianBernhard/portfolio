@@ -49,7 +49,8 @@ const quotes = [
     {author: "Unknown", text: "We are the results of our actions, not our aspirations."},
     {author: "Dwight D. Eisenhower", text: "Plans are nothing; planning is everything."},
     {
-        author: "Mark Zuckerberg",
+        author: "Peter Thiel",
+        recipient: "Mark Zuckerberg",
         text: (
             <>
                 In a world that is changing really quickly,{' '}
@@ -78,13 +79,20 @@ function QuotesSection({ children, ...props }) {
 }
 
 
-function Quote({ author, children }) {
+function Quote({ author, recipient, children }) {
     return (
         <li className="bg-white dark:bg-gray-800 shadow-lg rounded-lg overflow-hidden">
             <blockquote
                 className="p-8 italic text-lg leading-relaxed text-stone-600 dark:text-stone-300 border-l-[3px] border-stone-400 dark:border-stone-500">
                 <p>“{children}”</p>
-                <footer className="mt-4 text-gray-500 dark:text-gray-400 text-right">{author}</footer>
+                <footer className="mt-4 text-gray-500 dark:text-gray-400 text-right">
+                    {author}
+                    {recipient && (
+                        <span className="ml-1 text-xs not-italic tracking-wide text-gray-400 dark:text-gray-500">
+                            — to {recipient}
+                        </span>
+                    )}
+                </footer>
             </blockquote>
         </li>
     );
@@ -107,7 +115,7 @@ export default function Quotes() {
             <div className="space-y-20">
                 <QuotesSection>
                     {quotes.map((quote, index) => (
-                        <Quote key={index} author={quote.author}>
+                        <Quote key={index} author={quote.author} recipient={quote.recipient}>
                             {quote.text}
                         </Quote>
                     ))}
