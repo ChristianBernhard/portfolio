@@ -48,6 +48,17 @@ const quotes = [
     {author: "Unknown", text: "Protect thinking time. Urgency kills strategy if you let it."},
     {author: "Unknown", text: "We are the results of our actions, not our aspirations."},
     {author: "Dwight D. Eisenhower", text: "Plans are nothing; planning is everything."},
+    {
+        author: "Mark Zuckerberg",
+        text: (
+            <>
+                In a world that is changing really quickly,{' '}
+                <strong className="font-semibold text-stone-800 dark:text-stone-100">
+                    the only strategy that is guaranteed to fail is not taking risks
+                </strong>
+            </>
+        ),
+    },
 
 
 ];
