@@ -60,6 +60,10 @@ const quotes = [
             </>
         ),
     },
+    {
+        author: "Jeff Bezos",
+        text: "Big leaders have three jobs: identify the big ideas, enforce tough execution against them, and grow the next generation of leaders. That’s really it."
+    },
 
 
 ];
